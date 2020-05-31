@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BackECommerceTest": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
