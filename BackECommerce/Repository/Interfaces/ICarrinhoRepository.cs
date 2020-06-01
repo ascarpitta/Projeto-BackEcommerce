@@ -13,8 +13,7 @@ namespace BackECommerce.Repository.Interfaces
         Carrinho CriarCarrinho(string produtoId);
         Carrinho AddProduto(string userId, string produtoId);
         Carrinho AddEndereco(string userId, string enderecoId);
-        Carrinho AumentarQuantProduto(string userId, string produtoId);
-        Carrinho DiminuirQuantProduto(string userId, string produtoId);
+        Carrinho AlterarQuantProduto(string userId, string produtoId, int tipo);
         Carrinho RemoverProduto(string userId, string produtoId);
         void RemoverCarrinhoPorUsuario(string userId);
         Pedido FinalizarCarrinho(string userId);

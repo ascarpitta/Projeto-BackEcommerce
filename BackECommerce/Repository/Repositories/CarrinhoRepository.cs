@@ -102,7 +102,7 @@ namespace BackECommerce.Repository.Repositories
             return null;
         }
 
-        public Carrinho AumentarQuantProduto(string userId, string produtoId)
+        public Carrinho AlterarQuantProduto(string userId, string produtoId, int tipo)
         {
             var usuario = _usuarioRepository.BuscarUsuario(userId);
             bool existe = false;
@@ -119,15 +119,34 @@ namespace BackECommerce.Repository.Repositories
                         {
                             if (prod.IdProduto == produtoId)
                             {
-                                if(prod.Quantidade + 1 <= produto.Quantity)
+                                if (tipo == 1) //aumenta qtde
                                 {
-                                    existe = true;
-                                    prod.Quantidade += 1;
+                                    if (prod.Quantidade + 1 <= produto.Quantity)
+                                    {
+                                        existe = true;
+                                        prod.Quantidade += 1;
+                                    }
+                                    else
+                                    {
+                                        return null;
+                                    }
                                 }
-                                else
+                                else //diminui qtde
                                 {
-                                    return null;
-                                }                                
+                                    if (prod.Quantidade - 1 == 0)
+                                    {
+                                        return RemoverProduto(userId, produtoId);
+                                    }
+                                    else
+                                    {
+                                        existe = true;
+                                        prod.Quantidade -= 1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                return RemoverProduto(userId, produtoId);
                             }
                         }
                         if (!existe)
@@ -152,46 +171,6 @@ namespace BackECommerce.Repository.Repositories
         public void RemoverCarrinhoPorUsuario(string userId)
         {
             _carrinhoService.EndCarrinhoByUser(userId);
-        }
-
-        public Carrinho DiminuirQuantProduto(string userId, string produtoId)
-        {
-            var usuario = _usuarioRepository.BuscarUsuario(userId);
-            bool existe = false;
-
-            if (usuario != null)
-            {
-                var carrinho = BuscarCarrinhoPorUsuario(usuario.Id);
-                var produto = _produtoRepository.BuscarProduto(produtoId);
-
-                if (carrinho != null && produto != null)
-                {
-                    foreach (ProdutosCarrinho prod in carrinho.Produtos)
-                    {
-                        if (prod.IdProduto == produtoId)
-                        {
-                            if (prod.Quantidade - 1 == 0)
-                            {
-                                
-                                return RemoverProduto(userId, produtoId);
-                            }
-                            else
-                            {
-                                existe = true;
-                                prod.Quantidade -= 1;
-                            }
-                        }
-                    }
-                    if (!existe)
-                    {
-                        return null;
-                    }
-                    _carrinhoService.UpdateCarrinho(carrinho, userId);                   
-                    
-                    return carrinho;                    
-                }
-            }
-            return null;
         }
 
         public Carrinho RemoverProduto(string userId, string produtoId)

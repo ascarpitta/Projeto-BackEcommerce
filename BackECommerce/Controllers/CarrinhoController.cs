@@ -80,7 +80,7 @@ namespace BackECommerce.Controllers
         [HttpGet("AumentarProduto/{userId}/{produtoId}")]
         public ActionResult<Carrinho> PutAlterarQtd(string userId, string produtoId)
         {
-            var carrinho = _carrinhoRepository.AumentarQuantProduto(userId, produtoId);
+            var carrinho = _carrinhoRepository.AlterarQuantProduto(userId, produtoId, 1);
 
             if (carrinho == null)
             {
@@ -92,7 +92,7 @@ namespace BackECommerce.Controllers
         [HttpGet("DiminuirProduto/{userId}/{produtoId}")]
         public ActionResult<Carrinho> PutDiminuirQtd(string userId, string produtoId)
         {
-            var carrinho = _carrinhoRepository.DiminuirQuantProduto(userId, produtoId);
+            var carrinho = _carrinhoRepository.AlterarQuantProduto(userId, produtoId, -1);
 
             if (carrinho == null)
             {

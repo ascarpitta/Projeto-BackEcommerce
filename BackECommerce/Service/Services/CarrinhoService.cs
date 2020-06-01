@@ -39,7 +39,6 @@ namespace BackECommerce.Service.Services
 
         public void EndCarrinhos()
         {
-            DateTime hoje = DateTime.Today;
             _carrinho.DeleteMany<Carrinho>(c => c.CreatedAt.AddDays(3) <= (DateTime.Today.AddDays(-3)));
         }
 
