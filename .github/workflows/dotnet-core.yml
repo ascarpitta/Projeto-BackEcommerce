@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+    - name: Install dependencies
+      run: dotnet "BackECommerce/BackECommerce.csproj" restore
     - name: Build
       run: dotnet build "BackECommerce/BackECommerce.csproj" --configuration Release --no-restore
     - name: Test
