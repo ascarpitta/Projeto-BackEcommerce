@@ -22,4 +22,4 @@ jobs:
     - name: Build
       run: dotnet build "BackECommerce/BackECommerce.csproj" --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test "BackECommerceTest/BackECommerceTest.csproj" --no-restore --verbosity normal
