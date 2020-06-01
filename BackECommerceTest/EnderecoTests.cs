@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace EnderecoTeste.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class EnderecoTests
     {
         private readonly EnderecoRepository _enderecoRepository;

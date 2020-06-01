@@ -9,7 +9,7 @@ using BackECommerce.Models;
 
 namespace BackECommerceTest
 {
-    [TestClass()]
+    [TestClass]
     public class UsuarioTests
     {
 
@@ -84,7 +84,7 @@ namespace BackECommerceTest
         }
 
 //Alteração de usuário
-        [Test] //AtualizarUsuario(string id, Usuario novoUsuario);
+        [Test] 
         public void AlterarUsuarioSucesso()
         {
 
@@ -131,27 +131,6 @@ namespace BackECommerceTest
 
             _usuarioRepository.DeletarUsuarioPorId(usuarioresult.Id);
         }
-
-        //[Test] //com email incorreto
-        //public void VerificaLoginEmailErro()
-        //{
-        //    Usuario usuarioTeste = new Usuario();
-        //    usuarioTeste.Name = "teste cadastro";
-        //    usuarioTeste.Cpf = 88216545320;
-        //    usuarioTeste.Email = "teste_cadastr1o@hotmail.com";
-        //    usuarioTeste.Password = "123454";
-
-        //    _usuarioRepository.CadastroUsuario(usuarioTeste);
-
-        //    Usuario usuarioresult = _usuarioRepository.VerificarLogin("teste1_cadastro1@hotmail.com1", "123454");
-
-        //    if (usuarioresult != null)
-        //    {
-        //        Assert.Fail();
-        //    }
-
-        //    _usuarioRepository.DeletarUsuarioPorId(usuarioresult.Id);
-        //}
 
         [Test] //com senha incorreta
         public void VerficaLoginSenhaErro()

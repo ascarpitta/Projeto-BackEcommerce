@@ -11,34 +11,34 @@ namespace BackECommerce.Models
         public string Id { get; set; }
 
         [BsonElement("name")]
-        [BsonRequired()]
+        [BsonRequired]
         public string Name { get; set; }
 
         [BsonElement("description")]
-        [BsonRequired()]
+        [BsonRequired]
         public string Description { get; set; }
 
         [BsonElement("price")]
-        [BsonRequired()]
+        [BsonRequired]
         public double Price { get; set; }
 
         [BsonElement("frete")]
-        //[BsonRequired()]
+        [BsonRequired]
         public double Frete { get; set; }
 
         [BsonElement("quantity")]
-        [BsonRequired()]
+        [BsonRequired]
         public int Quantity { get; set; }
 
         [BsonElement("category")]
-        [BsonRequired()]
+        [BsonRequired]
         public string Category { get; set; }
 
         [BsonElement("marca")]
         public string Marca { get; set; }
 
         [BsonElement("user")]
-        [BsonRequired()]
+        [BsonRequired]
         [BsonRepresentation(BsonType.ObjectId)]
         public string User { get; set; }
 

@@ -135,8 +135,6 @@ namespace BackECommerce.Repository.Repositories
                             return null;
                         }
                         _carrinhoService.UpdateCarrinho(carrinho, userId);
-                        //carrinho.Produtos.Find<ProdutosCarrinho>(p => p.IdProduto == produtoId).Quantidade.Equals(qtd);
-                        //carrinho.Produtos.FindAll(p => p.IdProduto == produtoId).Quantidade.
                         return carrinho;
                     }
                 }

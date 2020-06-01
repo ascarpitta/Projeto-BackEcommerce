@@ -9,7 +9,7 @@ using BackECommerce.Models;
 
 namespace ProdutoTeste.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class ProdutoTests
     {
         private readonly ProdutoRepository _produtoRepository;

@@ -101,8 +101,3 @@ namespace BackECommerce.Repository.Repositories
         }
     }
 }
-//public DateTime DataPagamentoConfirmado { get; set; }
-//public DateTime DataNfEmitida { get; set; }
-//public DateTime DataPedidoSeparacao { get; set; }
-//public DateTime DataPedidoEntregue { get; set; }
-//public DateTime DataCancelamento { get; set; }

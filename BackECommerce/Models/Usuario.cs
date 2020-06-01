@@ -12,20 +12,20 @@ namespace BackECommerce.Models
 		public string Id { get; set; }
 
 		[BsonElement("name")]
-		[BsonRequired()]
+		[BsonRequired]
 		public string Name { get; set; }
 
 		[BsonElement("cpf")]
 		[BsonRepresentation(BsonType.Int64)]
-		[BsonRequired()]
+		[BsonRequired]
 		public long Cpf { get; set; }
 
 		[BsonElement("email")]
-		[BsonRequired()]
+		[BsonRequired]
 		public string Email { get; set; }
 
 		[BsonElement("password")]
-		[BsonRequired()]
+		[BsonRequired]
 		public string Password { get; set; }
 
 		[BsonElement("createdAt")]

@@ -49,6 +49,3 @@ namespace BackECommerce.Controllers
 
     }
 }
-//Pedido CriarPedido(string userId, Carrinho carrinho);
-//void AtualizarPedido(Pedido pedidoNovo, string id);
-//void DeletarPedidoPorUsuario(string userId);

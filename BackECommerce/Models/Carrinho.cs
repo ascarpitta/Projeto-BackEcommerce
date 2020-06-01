@@ -15,7 +15,7 @@ namespace BackECommerce.Models
         public string Id { get; set; }
 
         [BsonElement("userId")]
-        [BsonRequired()]
+        [BsonRequired]
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; }
 

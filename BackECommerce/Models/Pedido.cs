@@ -14,32 +14,32 @@ namespace BackECommerce.Models
 		public string Id { get; set; }
 
 		[BsonElement("userId")]
-		[BsonRequired()]
+		[BsonRequired]
 		[BsonRepresentation(BsonType.ObjectId)]
 		public string UserId { get; set; }
 
 		[BsonElement("NomeEndereco")]
-		[BsonRequired()]
+		[BsonRequired]
 		public string NomeEndereco { get; set; }
 
 		[BsonElement("Uf")]
-		[BsonRequired()]
+		[BsonRequired]
 		public string Uf { get; set; }
 
 		[BsonElement("Cidade")]
-		[BsonRequired()]
+		[BsonRequired]
 		public string Cidade { get; set; }
 
 		[BsonElement("Cep")]
-		[BsonRequired()]
+		[BsonRequired]
 		public string Cep { get; set; }
 
 		[BsonElement("Bairro")]
-		[BsonRequired()]
+		[BsonRequired]
 		public string Bairro { get; set; }
 
 		[BsonElement("Rua")]
-		[BsonRequired()]
+		[BsonRequired]
 		public string Rua { get; set; }
 
 		[BsonElement("Numero")]

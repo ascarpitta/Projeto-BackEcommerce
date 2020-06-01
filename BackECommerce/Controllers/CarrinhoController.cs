@@ -37,12 +37,7 @@ namespace BackECommerce.Controllers
             return carrinho;
         }
 
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-            //Carrinho CriarCarrinho(string produtoId);
-        }
-
+        
         [HttpGet("AddProduto/{userId}/{produtoId}")]
         public ActionResult<Carrinho> PutAddProduto(string userId, string produtoid)
         {
