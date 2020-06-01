@@ -75,11 +75,25 @@ namespace BackECommerce.Repository.Repositories
                         foreach (var substring in substrings)
                         {
                             string[] valor = substring.Split(":".ToCharArray());
-                            if (cont == 2) enderecoViaCep.Rua = valor[1];
-                            if (cont == 3) enderecoViaCep.Complemento = valor[1];
-                            if (cont == 4) enderecoViaCep.Bairro = valor[1];
-                            if (cont == 5) enderecoViaCep.Cidade = valor[1];
-                            if (cont == 6) enderecoViaCep.Uf = valor[1];
+                            if (cont == 2)
+                            {
+                                enderecoViaCep.Rua = valor[1];
+                            }
+                            if (cont == 3) { 
+                                enderecoViaCep.Complemento = valor[1]; 
+                            }
+                            if (cont == 4)
+                            {
+                                enderecoViaCep.Bairro = valor[1];
+                            }
+                            if (cont == 5)
+                            {
+                                enderecoViaCep.Cidade = valor[1];
+                            }
+                            if (cont == 6)
+                            {
+                                enderecoViaCep.Uf = valor[1];
+                            }
 
                             cont++;
                         }

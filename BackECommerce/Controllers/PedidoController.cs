@@ -37,23 +37,16 @@ namespace BackECommerce.Controllers
             return _pedidoRepository.BuscarPedidosPorUsuario(userid);
         }
 
-        // POST: api/Pedido
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //[HttpPost]
+        //public void Post([FromBody] string value)
+        //{
+        //}
 
-        // PUT: api/Pedido/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
 //Pedido CriarPedido(string userId, Carrinho carrinho);
