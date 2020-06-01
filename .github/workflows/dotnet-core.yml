@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore "../../BackECommerce/BackECommerce.csproj"
+      run: dotnet restore "Projeto-BackEcommerceBackECommerce/BackECommerce.csproj"
     - name: Build
       run: dotnet build "BackECommerce/BackECommerce.csproj" --configuration Release --no-restore
     - name: Test
