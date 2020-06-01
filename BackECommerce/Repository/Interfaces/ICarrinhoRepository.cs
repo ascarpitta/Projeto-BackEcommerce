@@ -18,7 +18,6 @@ namespace BackECommerce.Repository.Interfaces
         Carrinho RemoverProduto(string userId, string produtoId);
         void RemoverCarrinhoPorUsuario(string userId);
         Pedido FinalizarCarrinho(string userId);
-        //void EncerrarCarrinhos();
     }
 }
 

@@ -31,7 +31,6 @@ namespace BackECommerce.Repository.Repositories
                 }                
             }
             //usuário já existe
-            //
         }
 
         public Usuario VerificarLogin(string email, string senha)
@@ -133,7 +132,6 @@ namespace BackECommerce.Repository.Repositories
                             existe = true;
                         }
                     }
-                    //var item = usuario.ListaDesejos.Find(x.IdProduto => x == idProduto);
 
                     if (!existe)
                     {

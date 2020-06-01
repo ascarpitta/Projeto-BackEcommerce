@@ -329,7 +329,6 @@ namespace ProdutoTeste.Tests
                 }
                 else
                 {
-                    var prod = _produtoRepository.BuscarProduto(_produtoTeste.Id);
                     var teste = _produtoRepository.InativaProduto(_produtoTeste.Id, _produtoTeste.Id);
                     if (teste != null)
                     {
@@ -431,20 +430,6 @@ namespace ProdutoTeste.Tests
             }
         }
 
-        //[Test] //buscar por usuário sem produto cadastrado
-        //public void BuscarProdutosPorUsuarioTest_UserSemProd()
-        //{
-        //    try
-        //    {
-        //        Assert.Fail();
-
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        Assert.Fail(ex.Message);
-        //    }
-        //}
-
         [Test] //buscar por usuário existente
         public void BuscarProdutoPorUsuarioTest()
         {
@@ -482,27 +467,6 @@ namespace ProdutoTeste.Tests
                 Assert.Fail(ex.Message);
             }
         }
-
-        //[Test] //buscar por usuário existente com produto de outro usuário
-        //public void BuscarProdutoPorUsuarioTest_UserExistente_ProdutoOutroUser()
-        //{
-        //    try
-        //    {
-        //        Assert.Fail();
-
-        //        var prod = _produtoRepository.BuscarProdutoPorUsuario(_produtoTeste.User, _produtoTeste.Id);
-
-        //        if (prod != null)
-        //        {
-        //            Assert.Fail();
-        //        }
-
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        Assert.Fail(ex.Message);
-        //    }
-        //}
 
         [Test] //buscar por usuário existente com produto inexistente
         public void BuscarProdutoPorUsuarioTest_UserExistente_ProdutoInexistente()
@@ -732,18 +696,3 @@ namespace ProdutoTeste.Tests
 
     }
 }
-
-
-//Produto usado
-//"id": "5ebcb414e06d5752dc873d54",
-//"name": "teste",
-//"description": null,
-//"price": 12.5,
-//"frete": 10,
-//"quantity": 1,
-//"category": null,
-//"marca": null,
-//"user": "5e8cfff8d7067e80b084664d",
-//"createdAt": "2020-05-14T02:59:30.46Z",
-//"version": 0,
-//"ativo": true

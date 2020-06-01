@@ -37,15 +37,5 @@ namespace BackECommerce.Controllers
             return _pedidoRepository.BuscarPedidosPorUsuario(userid);
         }
 
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
     }
 }

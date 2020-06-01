@@ -13,7 +13,7 @@ namespace BackECommerce.Service.Interfaces
         Carrinho CreateCarrinho(Carrinho carrinho);
         void UpdateCarrinho(Carrinho carrinhoNovo, string id);
         void EndCarrinhoByUser(string userId);
-        //void EndCarrinhos();
+        void EndCarrinhos();
 
     }
 }
