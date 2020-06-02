@@ -40,6 +40,8 @@ namespace BackECommerce
             services.AddSingleton<IPedidoService, PedidoService>();
             services.AddSingleton<IPedidoRepository, PedidoRepository>();
 
+            services.AddSingleton<IEmailRepository, EmailRepository>();
+
             services.AddCors();
 
             services.AddControllers();
