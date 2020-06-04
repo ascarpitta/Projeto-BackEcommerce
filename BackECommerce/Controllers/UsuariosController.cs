@@ -3,6 +3,10 @@ using BackECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using BackECommerce.Service.Interfaces;
 using BackECommerce.Repository.Interfaces;
+using BackECommerce.Repository.Repositories;
+using System.Security.Cryptography;
+using System.Text;
+using System;
 
 namespace BackECommerce.Controllers
 {
@@ -11,9 +15,11 @@ namespace BackECommerce.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private EmailRepository _emailRepository;
         public UsuariosController(IUsuarioRepository usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
+            _emailRepository = new EmailRepository();
         }
 
         [HttpGet]
@@ -39,9 +45,18 @@ namespace BackECommerce.Controllers
         {
             var cpfOk = _usuarioRepository.VerificarCpf(cpf);
             var emailOk = _usuarioRepository.VerificarEmail(email);
-            if (cpfOk != null && emailOk != null)
+
+            var user = _usuarioRepository.BuscarUsuarioPorEmail(email);
+
+            if (cpfOk != null && emailOk != null && user != null)
             {
                 //chamar função de recuperação de senha
+                Usuario newUser = user;
+                string newPassword = GenerateHash();
+                string criptedPassword = _usuarioRepository.CriptografarSenha(newPassword);
+                newUser.Password = criptedPassword;
+                _usuarioRepository.AtualizarUsuario(user.Id, newUser);
+                _emailRepository.EnviarEmail(user.Email, "Senha alterada com sucesso!", $"Olá {user.Name}, sua nova senha é {newPassword}");
                 return Ok();
             }
             return NotFound();
@@ -103,7 +118,9 @@ namespace BackECommerce.Controllers
             usuario.Cpf = cpf;
             usuario.Password = senha;
             usuario.Ativo = true;
+            usuario.Name = nome; //Adicao leo, provavelmente a amandinha esqueceu de colocar pra preencher o nome
             _usuarioRepository.CadastroUsuario(usuario);
+            _emailRepository.EnviarEmail(usuario.Email, "Cadastro realizado com sucesso!", $"Olá {usuario.Name}, seja bem vindo(a)");
             return Ok();
         }
 
@@ -120,9 +137,9 @@ namespace BackECommerce.Controllers
             return NotFound();
         }
 
-        [HttpGet("AlterarSenha/{id}/{senhaAntiga}/{senhaNova}")]
+        [HttpPost("AlterarSenha/{id}/{senhaAntiga}/{senhaNova}")]
         public IActionResult AlterarSenha(string id, string senhaAntiga, string senhaNova)
-        {            
+        {
             var usuario = _usuarioRepository.AlterarSenha(id, senhaAntiga, senhaNova);
 
             if (usuario != null)
@@ -195,6 +212,20 @@ namespace BackECommerce.Controllers
         public void DeleteUserByEmail(string email)
         {
             _usuarioRepository.DeletarUsuarioPorEmail(email);
+        }
+
+        public string GenerateHash()
+        { 
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(new Random().Next(1000, 10000).ToString()));  
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < 10; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
     }
 }

@@ -14,12 +14,14 @@ namespace BackECommerce.Repository.Repositories
         private readonly IProdutoRepository _produtoRepository;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IEnderecoRepository _enderecoRepository;
+        private EmailRepository _emailRepository;
         public PedidoRepository(IPedidoService pedidoService, IProdutoRepository produtoRepository, IUsuarioRepository usuarioRepository, IEnderecoRepository enderecoRepository)
         {
             _pedidoService = pedidoService;
             _produtoRepository = produtoRepository;
             _usuarioRepository = usuarioRepository;
             _enderecoRepository = enderecoRepository;
+            _emailRepository = new EmailRepository();
         }
 
         public void AtualizarPedido(Pedido pedidoNovo, string id)
@@ -87,8 +89,15 @@ namespace BackECommerce.Repository.Repositories
                 }
 
                 pedido.VlTotal = pedido.VlFinal + pedido.VlFrete;
-                                
-                //email pós compra
+
+                var user = _usuarioRepository.BuscarUsuario(userId);
+
+                string products = "";
+                foreach (var prod in pedido.Produtos)
+                {
+                    products = products + "\n" + prod.NameProduto;
+                }
+                _emailRepository.EnviarEmail(user.Email, "Pedido realizado com sucesso!", $"Caro(a) {user.Name}, seu pedido foi processado em nosso sistema. \nProdutos: \n{products}");
 
                 return _pedidoService.CreatePedido(pedido);
             }

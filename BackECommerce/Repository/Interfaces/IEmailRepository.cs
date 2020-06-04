@@ -7,6 +7,6 @@ namespace BackECommerce.Repository.Interfaces
 {
     public interface IEmailRepository
     {
-        void EnviarEmail(string de, string para, string assunto, string conteudo);
+        void EnviarEmail(string para, string assunto, string conteudo, string de = "suporte@ecommerce.com.br");
     }
 }
