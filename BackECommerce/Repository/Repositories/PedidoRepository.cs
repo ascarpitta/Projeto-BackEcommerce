@@ -97,7 +97,7 @@ namespace BackECommerce.Repository.Repositories
                 {
                     products = products + "\n" + prod.NameProduto;
                 }
-                _emailRepository.EnviarEmail(user.Email, "Pedido realizado com sucesso!", $"Caro(a) {user.Name}, seu pedido foi processado em nosso sistema. \nProdutos: \n{products}");
+                _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Numero} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
 
                 return _pedidoService.CreatePedido(pedido);
             }

@@ -14,6 +14,7 @@ namespace BackECommerce.Repository.Repositories
         private readonly IProdutoRepository _produtoRepository;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IPedidoRepository _pedidoRepository;
+        private readonly IEmailRepository _emailRepository;
         public CarrinhoRepository(ICarrinhoService carrinhoService, IProdutoRepository produtoRepository, IUsuarioRepository usuarioRepository, IPedidoRepository pedidoRepository)
         {
             _carrinhoService = carrinhoService;
@@ -213,6 +214,7 @@ namespace BackECommerce.Repository.Repositories
                         if (pedido != null)
                         {
                             RemoverCarrinhoPorUsuario(userId);
+                            _emailRepository.EnviarEmail(usuario.Email, "Pedido realizado com sucesso!", $"Caro(a) {usuario.Name}, \n\nseu pedido está sendo processado em nosso sistema e ficará pronto em breve. \n\nObrigado!");
                             return pedido;
                         }                        
                     }
