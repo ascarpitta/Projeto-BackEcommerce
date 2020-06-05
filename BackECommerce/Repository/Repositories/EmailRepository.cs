@@ -22,7 +22,10 @@ namespace BackECommerce.Repository.Repositories
                     EnableSsl = true
                 };
                 MailMessage mailMessage = new MailMessage(de, para, assunto, conteudo);
-                mailMessage.Attachments.Add(new Attachment(caminhoAnexo));
+                if (caminhoAnexo != null)
+                {
+                    mailMessage.Attachments.Add(new Attachment(caminhoAnexo));
+                }
                 client.Send(de, para, assunto, conteudo);
             }
             catch (Exception ex)
