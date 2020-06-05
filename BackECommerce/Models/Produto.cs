@@ -23,7 +23,6 @@ namespace BackECommerce.Models
         public double Price { get; set; }
 
         [BsonElement("frete")]
-        [BsonRequired]
         public double Frete { get; set; }
 
         [BsonElement("quantity")]
