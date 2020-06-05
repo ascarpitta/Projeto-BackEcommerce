@@ -137,7 +137,7 @@ namespace BackECommerce.Controllers
             return NotFound();
         }
 
-        [HttpPost("AlterarSenha/{id}/{senhaAntiga}/{senhaNova}")]
+        [HttpGet("AlterarSenha/{id}/{senhaAntiga}/{senhaNova}")]
         public IActionResult AlterarSenha(string id, string senhaAntiga, string senhaNova)
         {
             var usuario = _usuarioRepository.AlterarSenha(id, senhaAntiga, senhaNova);

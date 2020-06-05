@@ -12,7 +12,7 @@ namespace BackECommerce.Repository.Repositories
     {
         public EmailRepository() { }
 
-        public void EnviarEmail(string para, string assunto, string conteudo, string de = "suporte@ecommerce.com.br")
+        public void EnviarEmail(string para, string assunto, string conteudo, string de = "suporte@ecommerce.com.br", string caminhoAnexo = null)
         {
             try
             {
@@ -21,6 +21,8 @@ namespace BackECommerce.Repository.Repositories
                     Credentials = new NetworkCredential("c50fa06de5aace", "019fdd06cb1b43"),
                     EnableSsl = true
                 };
+                MailMessage mailMessage = new MailMessage(de, para, assunto, conteudo);
+                mailMessage.Attachments.Add(new Attachment(caminhoAnexo));
                 client.Send(de, para, assunto, conteudo);
             }
             catch (Exception ex)
