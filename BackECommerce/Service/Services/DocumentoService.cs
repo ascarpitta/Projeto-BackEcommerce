@@ -24,9 +24,7 @@ namespace BackECommerce.Service.Services
         /// <returns></returns>
         public string CarregarImagem(string caminhoArquivo)
         {
-            //Account account = new Account("hisd40dpu", "122483761947377", "PQfOwDI0EFUzf0GJzqtKlFWaGVs");
-            //Cloudinary cloudinary = new Cloudinary(account);
-            var uploadParams = new ImageUploadParams()
+            var uploadParams = new ImageUploadParams
             {
                 File = new FileDescription(caminhoArquivo),
                 Folder = "images"
@@ -43,9 +41,7 @@ namespace BackECommerce.Service.Services
         /// <returns></returns>
         public string CarregarNFe(string caminhoArquivo)
         {
-            //Account account = new Account("hisd40dpu", "122483761947377", "PQfOwDI0EFUzf0GJzqtKlFWaGVs");
-            //Cloudinary cloudinary = new Cloudinary(account);
-            var uploadParams = new ImageUploadParams()
+            var uploadParams = new ImageUploadParams
             {
                 File = new FileDescription(caminhoArquivo),
                 Folder = "NFe's"
