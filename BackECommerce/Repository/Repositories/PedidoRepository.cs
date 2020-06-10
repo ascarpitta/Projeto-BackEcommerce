@@ -14,7 +14,7 @@ namespace BackECommerce.Repository.Repositories
         private readonly IProdutoRepository _produtoRepository;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IEnderecoRepository _enderecoRepository;
-        private EmailRepository _emailRepository;
+        private readonly EmailRepository _emailRepository;
         public PedidoRepository(IPedidoService pedidoService, IProdutoRepository produtoRepository, IUsuarioRepository usuarioRepository, IEnderecoRepository enderecoRepository)
         {
             _pedidoService = pedidoService;

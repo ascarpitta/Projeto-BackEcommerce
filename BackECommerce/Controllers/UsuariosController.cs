@@ -15,7 +15,7 @@ namespace BackECommerce.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioRepository _usuarioRepository;
-        private EmailRepository _emailRepository;
+        private readonly EmailRepository _emailRepository;
         public UsuariosController(IUsuarioRepository usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
@@ -214,7 +214,7 @@ namespace BackECommerce.Controllers
             _usuarioRepository.DeletarUsuarioPorEmail(email);
         }
 
-        public string GenerateHash()
+        public static string GenerateHash()
         { 
             using (SHA256 sha256Hash = SHA256.Create())
             {
