@@ -26,6 +26,5 @@ namespace BackECommerce.Repository.Interfaces
         Usuario AtivarUsuario(string userId);
         Usuario InativarUsuario(string userId);
         void RecuperarSenha(string email, long cpf);
-        //string GenerateHash();
     }
 }
