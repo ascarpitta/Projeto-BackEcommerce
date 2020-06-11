@@ -42,6 +42,9 @@ namespace BackECommerce
 
             services.AddSingleton<IEmailRepository, EmailRepository>();
 
+            //services.AddSingleton<IVendaService, VendaService>();
+            //services.AddSingleton<IVendaRepository, VendaRepository>();
+
             services.AddCors();
 
             services.AddControllers();

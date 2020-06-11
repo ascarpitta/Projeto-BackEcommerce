@@ -53,5 +53,17 @@ namespace BackECommerce.Models
 
         [BsonElement("idUservenda")]
         public string IdUserVenda { get; set; }
+
+        [BsonElement("dataNfEmitida")]
+        public DateTime DataNfEmitida { get; set; }
+
+        [BsonElement("dataItemSeparacao")]
+        public DateTime DataItemSeparacao { get; set; }
+
+        [BsonElement("dataItemEntregue")]
+        public DateTime DataItemEntregue { get; set; }
+
+        [BsonElement("dataItemCancelado")]
+        public DateTime DataItemCancelado { get; set; }
     }
 }

@@ -14,9 +14,11 @@ namespace BackECommerce.Controllers
     public class PedidoController : ControllerBase
     {
         private readonly IPedidoRepository _pedidoRepository;
+        //private readonly IVendaRepository _vendaRepository;
         public PedidoController(IPedidoRepository pedidoRepository)
         {
             _pedidoRepository = pedidoRepository;
+            //_vendaRepository = vendaRepository;
         }
 
         [HttpGet]
@@ -31,11 +33,52 @@ namespace BackECommerce.Controllers
             return _pedidoRepository.BuscarPedidoPorUsuario(userid, pedidoId);
         }
 
-        [HttpGet("BuscarPedido/{userId}")]
+        [HttpGet("BuscarPedidos/{userId}")]
         public ActionResult<List<Pedido>> GetPedidosPorUsuario(string userid)
         {
             return _pedidoRepository.BuscarPedidosPorUsuario(userid);
         }
 
+        [HttpGet("PagarPedido/{userId}/{pedidoId}")]
+        public ActionResult<Pedido> GetPagarPedido(string userId, string pedidoId)
+        {
+            return _pedidoRepository.PagarPedido(userId, pedidoId);
+        }
+
+        [HttpGet("CancelarItemPedido/{userId}/{pedidoId}/{produtoId}")]
+        public ActionResult<Pedido> GetCancelarItemPedido(string userId, string pedidoId, string produtoId)
+        {
+            return _pedidoRepository.AtualizarStatusPedidoCompra(userId, pedidoId, produtoId, 0);
+        }
+
+        [HttpGet("ReceberItemPedido/{userId}/{pedidoId}/{produtoId}")]
+        public ActionResult<Pedido> GetReceberItemPedido(string userId, string pedidoId, string produtoId)
+        {
+            return _pedidoRepository.AtualizarStatusPedidoCompra(userId, pedidoId, produtoId, 1);
+        }
+
+        //[HttpGet("CancelarItemPedidoVenda/{userId}/{pedidoId}/{produtoId}")]
+        //public ActionResult<Venda> CancelarItemPedidoVenda(string userId, string pedidoId)
+        //{
+        //    return _vendaRepository.AtualizarStatusPedido(userId, pedidoId, 0);
+        //}
+
+        //[HttpGet("ItemEmTransportePedidoVenda/{userId}/{pedidoId}/{produtoId}")]
+        //public ActionResult<Venda> ItemEmTransportePedidoVenda(string userId, string pedidoId)
+        //{
+        //    return _vendaRepository.AtualizarStatusPedido(userId, pedidoId, 1);
+        //}
+
+        //[HttpGet("ExibirPedidosVenda/{userId}")]
+        //public ActionResult<List<Venda>> GetExibirPedidosVenda(string userId)
+        //{
+        //    return _vendaRepository.BuscarVendasPorUsuario(userId);
+        //}
+
+        //[HttpGet("ExibirPedidoVenda/{userId}/{pedidoId}")]
+        //public ActionResult<Venda> GetExibirPedidoVenda(string userId, string pedidoId)
+        //{
+        //    return _vendaRepository.BuscarVendaPorUsuario(userId, pedidoId);
+        //}
     }
 }

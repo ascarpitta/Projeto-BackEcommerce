@@ -4,7 +4,6 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BackECommerce.Service.Services
 {
@@ -30,7 +29,7 @@ namespace BackECommerce.Service.Services
             _pedido.DeleteOne<Pedido>(pedido => pedido.UserId == userId);
         }
 
-        public List<Pedido> GetPedido()
+        public List<Pedido> GetPedidos()
         {
             return _pedido.Find(pedido => true).ToList();
         }
@@ -48,6 +47,11 @@ namespace BackECommerce.Service.Services
         public void UpdatePedido(Pedido pedidoNovo, string id)
         {
             _pedido.ReplaceOne(pedido => pedido.UserId == id, pedidoNovo);
+        }
+
+        public Pedido GetPedido(string pedidoId)
+        {
+            return _pedido.Find<Pedido>(p => p.Id == pedidoId).FirstOrDefault();
         }
     }
 }

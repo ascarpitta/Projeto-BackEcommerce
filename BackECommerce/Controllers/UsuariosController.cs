@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using BackECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
-using BackECommerce.Service.Interfaces;
 using BackECommerce.Repository.Interfaces;
 using BackECommerce.Repository.Repositories;
 using System.Security.Cryptography;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BackECommerce.Models
 {
     public class Pedido
-    {
+	{
 		[BsonId]
 		[BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
@@ -65,18 +65,6 @@ namespace BackECommerce.Models
 
 		[BsonElement("dataPagamento")]
 		public DateTime DataPagamentoConfirmado { get; set; }
-
-		[BsonElement("dataNfEmitida")]
-		public DateTime DataNfEmitida { get; set; }		
-
-		[BsonElement("dataPedidoSeparacao")]
-		public DateTime DataPedidoSeparacao { get; set; }
-
-		[BsonElement("dataPedidoEntregue")]
-		public DateTime DataPedidoEntregue { get; set; }
-
-		[BsonElement("dataCancelamento")]
-		public DateTime DataCancelamento { get; set; }
 
 		[BsonElement("__v")]
 		[BsonRepresentation(BsonType.Int32)]

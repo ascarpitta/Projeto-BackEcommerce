@@ -8,7 +8,8 @@ namespace BackECommerce.Service.Interfaces
 {
     public interface IPedidoService
     {
-        List<Pedido> GetPedido();
+        List<Pedido> GetPedidos();
+        Pedido GetPedido(string pedidoId);
         List<Pedido> GetPedidosByUser(string id);
         Pedido GetPedidoByUser(string userId, string pedidoId);
         Pedido CreatePedido(Pedido pedido);

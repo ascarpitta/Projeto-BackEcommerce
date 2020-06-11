@@ -1,6 +1,6 @@
 ﻿using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
-using BackECommerce.Service.Interfaces;
+using BackECommerce.Service.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +10,13 @@ namespace BackECommerce.Repository.Repositories
 {
     public class CarrinhoRepository : ICarrinhoRepository
     {
-        private readonly ICarrinhoService _carrinhoService;
-        private readonly IProdutoRepository _produtoRepository;
-        private readonly IUsuarioRepository _usuarioRepository;
-        private readonly IPedidoRepository _pedidoRepository;
-        private readonly IEmailRepository _emailRepository;
-        public CarrinhoRepository(ICarrinhoService carrinhoService, IProdutoRepository produtoRepository, IUsuarioRepository usuarioRepository, IPedidoRepository pedidoRepository)
+        private readonly CarrinhoService _carrinhoService = new CarrinhoService();
+        private readonly IProdutoRepository _produtoRepository = new ProdutoRepository();
+        private readonly IUsuarioRepository _usuarioRepository = new UsuarioRepository();
+        private readonly IPedidoRepository _pedidoRepository = new PedidoRepository();
+        private readonly IEmailRepository _emailRepository = new EmailRepository();
+        public CarrinhoRepository()
         {
-            _carrinhoService = carrinhoService;
-            _produtoRepository = produtoRepository;
-            _usuarioRepository = usuarioRepository;
-            _pedidoRepository = pedidoRepository;
         }
         public Carrinho BuscarCarrinhoPorUsuario(string id)
         {
