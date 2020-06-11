@@ -57,8 +57,8 @@ namespace BackECommerce.Models
         [BsonElement("dataNfEmitida")]
         public DateTime DataNfEmitida { get; set; }
 
-        [BsonElement("dataItemSeparacao")]
-        public DateTime DataItemSeparacao { get; set; }
+        [BsonElement("dataItemEmTransporte")]
+        public DateTime DataItemEmTransporte { get; set; }
 
         [BsonElement("dataItemEntregue")]
         public DateTime DataItemEntregue { get; set; }

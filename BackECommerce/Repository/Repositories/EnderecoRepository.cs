@@ -1,6 +1,5 @@
 ﻿using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
-using BackECommerce.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +13,8 @@ namespace BackECommerce.Repository.Repositories
 {
     public class EnderecoRepository : IEnderecoRepository
     {
-        private readonly EnderecoService _enderecoService;
-        public EnderecoRepository()
-        {
-            _enderecoService = new EnderecoService();
-        }
-
+        private readonly EnderecoService _enderecoService = new EnderecoService();
+        
         public Endereco AtualizarEndereco(string userId, string idEndereco, Endereco enderecoNovo)
         {
             var end = BuscarEndereco(idEndereco);

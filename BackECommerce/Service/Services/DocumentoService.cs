@@ -1,21 +1,16 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using BackECommerce.Service.Interfaces;
 using System.Globalization;
 using System.Configuration;
 using BackECommerce.Configs;
 
 namespace BackECommerce.Service.Services
 {
-    public class DocumentoService : IDocumentoService
+    public class DocumentoService 
     {
         private static readonly CloudinaryConfig CloudinaryConfig = new CloudinaryConfig();
         private static readonly Account Account = new Account(CloudinaryConfig.Cloud, CloudinaryConfig.ApiKey, CloudinaryConfig.ApiSecret);
         private static readonly Cloudinary Cloudinary = new Cloudinary(Account);
-
-        public DocumentoService() 
-        {
-        }
 
         /// <summary>
         /// Faz o carregamento da imagem para o servidor em nuvem e retorna a URL dela

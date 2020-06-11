@@ -1,5 +1,4 @@
 ﻿using BackECommerce.Models;
-using BackECommerce.Service.Interfaces;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -7,18 +6,14 @@ using System.Linq;
 
 namespace BackECommerce.Service
 {
-	public class UsuarioService : IUsuarioService
+	public class UsuarioService
     {		
 		private readonly IMongoCollection<Usuario> _usuarios;
 
 		public UsuarioService()
 		{
 			MongoClient client = new MongoClient("mongodb+srv://UserAdmin:projetocalebe@clusterecommerce-onzbe.mongodb.net/test?retryWrites=true&w=majority");
-//#if DEBUG
-//			IMongoDatabase database = client.GetDatabase("ProjetoEcommerceTest");
-//#else
 			IMongoDatabase database = client.GetDatabase("ProjetoEcommerce");
-//#endif
 			_usuarios = database.GetCollection<Usuario>("Users");
 		}
 

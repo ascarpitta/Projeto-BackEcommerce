@@ -1,25 +1,22 @@
 ﻿using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
-using BackECommerce.Service.Interfaces;
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BackECommerce.Service;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BackECommerce.Repository.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly UsuarioService _usuarioService;
-        private readonly ProdutoRepository _produtoRepository;
-        public UsuarioRepository()
-        {
-            _usuarioService = new UsuarioService();
-            _produtoRepository = new ProdutoRepository();
-        }
-
+        private readonly UsuarioService _usuarioService = new UsuarioService();
+        private readonly ProdutoRepository _produtoRepository = new ProdutoRepository();
+        private readonly EmailRepository _emailRepository = new EmailRepository();
+        
         public void CadastroUsuario(Usuario usuario)
         {            
             if (_usuarioService.VerificarEmail(usuario.Email))
@@ -28,6 +25,7 @@ namespace BackECommerce.Repository.Repositories
                 {
                     usuario.Password = CriptografarSenha(usuario.Password);
                     _usuarioService.CreateUsuario(usuario);
+                    _emailRepository.EnviarEmail(usuario.Email, "Cadastro realizado com sucesso!", $"Olá {usuario.Name}, seja bem vindo(a)");
                 }                
             }
             //usuário já existe
@@ -90,7 +88,7 @@ namespace BackECommerce.Repository.Repositories
                     {
                         usuario.Password = CriptografarSenha(senhaNova);
                         AtualizarUsuario(id, usuario);
-                        //email de aviso
+                        _emailRepository.EnviarEmail(usuario.Email, "Senha alterada com sucesso!", $"Olá {usuario.Name}, sua senha acaba de ser alterada! Caso essa alteração não tenha sido feita por você, inicie o processo de recuperação de senha em nosso site.");
                         return usuario;
                     }
                 }
@@ -201,6 +199,27 @@ namespace BackECommerce.Repository.Repositories
             return _usuarioService.GetUsuarioByEmail(email);
         }
 
-        
+        public void RecuperarSenha(string email, long cpf)
+        {
+            var usuario = BuscarUsuarioPorEmail(email);
+            string newPassword = GenerateHash();
+            usuario.Password = CriptografarSenha(newPassword);
+            AtualizarUsuario(usuario.Id, usuario);
+            _emailRepository.EnviarEmail(usuario.Email, "Recuperação de senha", $"Olá {usuario.Name}, sua nova senha é {newPassword}");
+        }
+
+        public static string GenerateHash()
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(new Random().Next(1000, 10000).ToString()));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < 10; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
     }
 }

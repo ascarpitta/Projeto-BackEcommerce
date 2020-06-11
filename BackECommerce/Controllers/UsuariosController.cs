@@ -14,11 +14,9 @@ namespace BackECommerce.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioRepository _usuarioRepository;
-        private readonly EmailRepository _emailRepository;
         public UsuariosController(IUsuarioRepository usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
-            _emailRepository = new EmailRepository();
         }
 
         [HttpGet]
@@ -49,13 +47,7 @@ namespace BackECommerce.Controllers
 
             if (cpfOk != null && emailOk != null && user != null)
             {
-                //chamar função de recuperação de senha
-                Usuario newUser = user;
-                string newPassword = GenerateHash();
-                string criptedPassword = _usuarioRepository.CriptografarSenha(newPassword);
-                newUser.Password = criptedPassword;
-                _usuarioRepository.AtualizarUsuario(user.Id, newUser);
-                _emailRepository.EnviarEmail(user.Email, "Senha alterada com sucesso!", $"Olá {user.Name}, sua nova senha é {newPassword}");
+                _usuarioRepository.RecuperarSenha(email, cpf);
                 return Ok();
             }
             return NotFound();
@@ -117,9 +109,8 @@ namespace BackECommerce.Controllers
             usuario.Cpf = cpf;
             usuario.Password = senha;
             usuario.Ativo = true;
-            usuario.Name = nome; //Adicao leo, provavelmente a amandinha esqueceu de colocar pra preencher o nome
-            _usuarioRepository.CadastroUsuario(usuario);
-            _emailRepository.EnviarEmail(usuario.Email, "Cadastro realizado com sucesso!", $"Olá {usuario.Name}, seja bem vindo(a)");
+            usuario.Name = nome;
+            _usuarioRepository.CadastroUsuario(usuario);            
             return Ok();
         }
 
@@ -213,18 +204,5 @@ namespace BackECommerce.Controllers
             _usuarioRepository.DeletarUsuarioPorEmail(email);
         }
 
-        public static string GenerateHash()
-        { 
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(new Random().Next(1000, 10000).ToString()));  
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < 10; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
     }
 }

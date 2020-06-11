@@ -1,6 +1,5 @@
 ﻿using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
-using BackECommerce.Service.Interfaces;
 using BackECommerce.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -11,17 +10,13 @@ namespace BackECommerce.Repository.Repositories
 {
     public class PedidoRepository : IPedidoRepository
     {
-        private readonly IPedidoService _pedidoService;
-        //private readonly IVendaRepository _vendaRepository = new VendaRepository();
+        private readonly PedidoService _pedidoService = new PedidoService();
+        private readonly VendaService _vendaService = new VendaService();
         private readonly IProdutoRepository _produtoRepository = new ProdutoRepository();
         private readonly IUsuarioRepository _usuarioRepository = new UsuarioRepository();
         private readonly IEnderecoRepository _enderecoRepository = new EnderecoRepository();
-        private EmailRepository _emailRepository = new EmailRepository();
-        public PedidoRepository()
-        {
-            _pedidoService = new PedidoService();
-        }
-
+        private readonly EmailRepository _emailRepository = new EmailRepository();
+        
         public void AtualizarPedido(Pedido pedidoNovo, string id)
         {
             _pedidoService.UpdatePedido(pedidoNovo, id);
@@ -49,7 +44,8 @@ namespace BackECommerce.Repository.Repositories
                 var endereco = _enderecoRepository.BuscarEndereco(carrinho.EnderecoId);
 
                 Pedido pedido = new Pedido();
-                //Venda venda = new Venda();
+                Venda venda = new Venda();
+                ProdutosCarrinho produtoCarrinho = new ProdutosCarrinho();
 
                 pedido.UserId = userId;
                 pedido.NomeEndereco = endereco.NomeEndereco;
@@ -63,15 +59,18 @@ namespace BackECommerce.Repository.Repositories
                 pedido.Produtos = carrinho.Produtos;
                 pedido.DataPedidoRealizado = DateTime.Now;
 
-                //venda.BairroCompra = pedido.Bairro;
-                //venda.CepCompra = pedido.Cep;
-                //venda.CidadeCompra = pedido.Cidade;
-                //venda.Complemento = pedido.Complemento;
-                //venda.NomeEnderecoCompra = pedido.NomeEndereco;
-                //venda.NumeroCompra = pedido.Numero;
-                //venda.PedidoIdCompra = pedido.Id;
-                //venda.RuaCompra = pedido.Rua;
-                //venda.UfCompra = pedido.Uf;
+                pedido.DataPagamentoConfirmado = DateTime.Now.AddDays(-1);
+                pedido.DataPedidoFinalizado = DateTime.Now.AddDays(-1);
+
+                venda.BairroCompra = pedido.Bairro;
+                venda.CepCompra = pedido.Cep;
+                venda.CidadeCompra = pedido.Cidade;
+                venda.Complemento = pedido.Complemento;
+                venda.NomeEnderecoCompra = pedido.NomeEndereco;
+                venda.NumeroCompra = pedido.Numero;
+                venda.PedidoIdCompra = pedido.Id;
+                venda.RuaCompra = pedido.Rua;
+                venda.UfCompra = pedido.Uf;
 
                 //Verificar se todos os produtos estão ativos e com estoque
                 foreach (ProdutosCarrinho prod in carrinho.Produtos)
@@ -96,14 +95,27 @@ namespace BackECommerce.Repository.Repositories
                     produto.Quantity -= prod.Quantidade;
                     _produtoRepository.AtualizarProduto(prod.IdUserVenda, prod.IdProduto, produto);
 
+                    //Adicionar produto no pedido
+                    produtoCarrinho.Preco = prod.Preco * prod.Quantidade;
+                    produtoCarrinho.Quantidade = prod.Quantidade;
+                    produtoCarrinho.NameProduto = prod.NameProduto;
+                    produtoCarrinho.IdUserVenda = prod.IdUserVenda;
+                    produtoCarrinho.IdProduto = prod.IdProduto;
+                    produtoCarrinho.Frete = prod.Frete;
+                    produtoCarrinho.DataNfEmitida = DateTime.Now.AddDays(-1);
+                    produtoCarrinho.DataItemEmTransporte = DateTime.Now.AddDays(-1);
+                    produtoCarrinho.DataItemEntregue = DateTime.Now.AddDays(-1);
+                    produtoCarrinho.DataItemCancelado = DateTime.Now.AddDays(-1);
+                    pedido.Produtos.Add(produtoCarrinho);
+
                     //criar pedido de venda
-                    //venda.DataPedidoRealizadoCompra = DateTime.Now;
-                    //venda.IdProdutoCompra = produto.Id;
-                    //venda.UserIdVenda = produto.User;
-                    //venda.VlFinalCompra = prod.Preco * prod.Quantidade;
-                    //venda.VlFreteCompra = prod.Frete;
-                    //venda.VlTotalCompra = venda.VlFinalCompra + venda.VlFreteCompra;
-                    //_vendaRepository.CriarVenda(venda);
+                    venda.DataPedidoRealizadoCompra = DateTime.Now;
+                    venda.IdProdutoCompra = produto.Id;
+                    venda.UserIdVenda = produto.User;
+                    venda.VlFinalCompra = prod.Preco * prod.Quantidade;
+                    venda.VlFreteCompra = prod.Frete;
+                    venda.VlTotalCompra = venda.VlFinalCompra + venda.VlFreteCompra;
+                    CriarVenda(venda);
                 }
 
                 pedido.VlTotal = pedido.VlFinal + pedido.VlFrete;
@@ -129,13 +141,22 @@ namespace BackECommerce.Repository.Repositories
 
         public Pedido PagarPedido(string userId, string pedidoId)
         {
-
             var pedido = BuscarPedidoPorUsuario(userId, pedidoId);
             if (pedido != null)
             {
                 pedido.DataPagamentoConfirmado = DateTime.Now;
-
                 AtualizarPedido(pedido, pedido.Id);
+
+                //gerar recibo compra
+
+                foreach(ProdutosCarrinho itens in pedido.Produtos)
+                {
+                    var venda = BuscarVendaPorUsuario(itens.IdUserVenda, pedido.Id);
+                    venda.DataPagamentoConfirmadoCompra = DateTime.Now;
+                    _vendaService.UpdateSale(venda, venda.Id);
+
+                    //gerar recibo venda
+                }
                 return pedido;
             }//pedido não encontrado
             return null;
@@ -143,28 +164,47 @@ namespace BackECommerce.Repository.Repositories
 
         public Pedido AtualizarStatusPedidoCompra(string userId, string pedidoId, string produtoId, int tipo)
         {
+            bool finalizado = true;
             var pedido = BuscarPedidoPorUsuario(userId, pedidoId);
             if (pedido != null)
             {
-                foreach (ProdutosCarrinho item in pedido.Produtos)
-                {
-                    if (item.IdProduto == produtoId)
+                if (pedido.DataPedidoRealizado > pedido.DataPedidoFinalizado) { //se o pedido ainda não foi finalizado
+                    foreach (ProdutosCarrinho item in pedido.Produtos)
                     {
-                        if (tipo == 0) //item cancelado
+                        if (item.IdProduto == produtoId)
                         {
-                            if (item.DataItemSeparacao != null && item.DataItemSeparacao.Year < 2020) //item não saiu para entrega
+                            if (item.DataItemEntregue < pedido.DataPedidoRealizado)
                             {
-                                item.DataItemCancelado = DateTime.Now;
-                            }
-                        }
-                        else if (tipo == 1) //item recebido
-                        {
-                            if (item.DataItemSeparacao != null && item.DataItemSeparacao >= item.DataNfEmitida) //item enviado e com nf
-                            {
-                                item.DataItemEntregue = DateTime.Now;
+                                var pedidoVenda = BuscarVendaPorUsuario(item.IdUserVenda, pedido.Id);
+                                finalizado = false;
+
+                                if (tipo == 0 && item.DataItemCancelado < pedido.DataPedidoRealizado) //item cancelado
+                                {
+                                    if (item.DataItemEmTransporte != null && item.DataItemEmTransporte.Year < 2020 && item.DataItemEmTransporte > pedido.DataPedidoRealizado) //item não saiu para entrega
+                                    {
+                                        item.DataItemCancelado = DateTime.Now;
+                                        pedidoVenda.DataCancelamentoCompra = DateTime.Now;
+
+                                        _vendaService.UpdateSale(pedidoVenda, pedidoVenda.Id);
+                                    }
+                                }
+                                else if (tipo == 1 && item.DataItemCancelado < pedido.DataPedidoRealizado) //item recebido
+                                {
+                                    if (item.DataItemEmTransporte != null && item.DataItemEmTransporte >= item.DataNfEmitida && item.DataItemEmTransporte > pedido.DataPedidoRealizado) //item enviado e com nf
+                                    {
+                                        item.DataItemEntregue = DateTime.Now;
+                                        pedidoVenda.DataPedidoRealizadoCompra = DateTime.Now;
+                                        _vendaService.UpdateSale(pedidoVenda, pedidoVenda.Id);
+                                    }
+                                }
                             }
                         }
                     }
+                }
+
+                if (finalizado)
+                {
+                    pedido.DataPedidoFinalizado = DateTime.Now;
                 }
                 AtualizarPedido(pedido, pedidoId);
                 return pedido;
@@ -177,6 +217,107 @@ namespace BackECommerce.Repository.Repositories
             if (pedidoId.Length == 24)
             {
                 return _pedidoService.GetPedido(pedidoId);
+            }
+            return null;
+        }
+
+        public List<Pedido> PedidosCompraEmAndamento(string userId)
+        {
+            if (userId.Length == 24)
+            {
+                if (_usuarioRepository.BuscarUsuario(userId) != null)
+                {
+                    return _pedidoService.GetPedidosAndamentoByUser(userId);
+                }
+            }
+            return null;
+        }
+
+
+        //VENDA
+        public Venda BuscarVendaPorUsuario(string userId, string vendaId)
+        {
+            if (userId.Length == 24 && vendaId.Length == 24)
+            {
+                var usuario = _usuarioRepository.BuscarUsuario(userId);
+                if (usuario != null)
+                {
+                    return _vendaService.GetSaleByUser(usuario.Id, vendaId);
+                }
+            }
+            return null;
+        }
+
+        public List<Venda> BuscarVendas()
+        {
+            return _vendaService.GetSales();
+        }
+
+        public List<Venda> BuscarVendasPorUsuario(string id)
+        {
+            if (id.Length == 24)
+            {
+                var usuario = _usuarioRepository.BuscarUsuario(id);
+                if (usuario != null)
+                {
+                    return _vendaService.GetSalesByUser(usuario.Id);
+                }
+            }
+            return null;
+        }
+
+        public Venda CriarVenda(Venda venda)
+        {
+            return _vendaService.CreateSale(venda);
+        }
+
+        public Venda AtualizarStatusPedido(string userId, string vendaId, int tipo) //0 cancelado, 1 em transporte
+        {
+            if (userId.Length == 24 && vendaId.Length == 24)
+            {
+                var venda = BuscarVendaPorUsuario(userId, vendaId);
+                if (venda != null)
+                {
+                    var pedido = BuscarPedido(venda.PedidoIdCompra);
+                    if (pedido != null)
+                    {
+                        foreach (ProdutosCarrinho item in pedido.Produtos)
+                        {
+                            if (item.IdUserVenda == userId && venda.IdProdutoCompra == item.IdProduto)
+                            {
+                                if (tipo == 1 && item.DataItemEmTransporte < pedido.DataPedidoRealizado && item.DataItemCancelado < pedido.DataPedidoRealizado && item.DataItemCancelado < pedido.DataPedidoRealizado)
+                                {
+                                    item.DataItemEmTransporte = DateTime.Now;
+                                    venda.DataEmTransporteCompra = DateTime.Now;
+
+                                    _vendaService.UpdateSale(venda, venda.Id);
+                                    AtualizarPedido(pedido, pedido.Id);
+                                }
+                                else if (tipo == 0 && item.DataItemEmTransporte < pedido.DataPedidoRealizado && item.DataItemCancelado < pedido.DataPedidoRealizado && item.DataItemCancelado < pedido.DataPedidoRealizado)
+                                {
+                                    item.DataItemCancelado = DateTime.Now;
+                                    venda.DataCancelamentoCompra = DateTime.Now;
+
+                                    _vendaService.UpdateSale(venda, venda.Id);
+                                    AtualizarPedido(pedido, pedido.Id);
+                                }
+                                return venda;
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }        
+
+        public List<Venda> PedidosVendaEmAndamento(string userId)
+        {
+            if (userId.Length == 24)
+            {
+                if (_usuarioRepository.BuscarUsuario(userId) != null)
+                {
+                    return _vendaService.GetSalesAndamentoByUser(userId);
+                }
             }
             return null;
         }

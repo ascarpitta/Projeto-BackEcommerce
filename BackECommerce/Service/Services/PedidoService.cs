@@ -1,5 +1,4 @@
 ﻿using BackECommerce.Models;
-using BackECommerce.Service.Interfaces;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 
 namespace BackECommerce.Service.Services
 {
-    public class PedidoService : IPedidoService
+    public class PedidoService
     {
         private readonly IMongoCollection<Pedido> _pedido;
         public PedidoService()
@@ -52,6 +51,11 @@ namespace BackECommerce.Service.Services
         public Pedido GetPedido(string pedidoId)
         {
             return _pedido.Find<Pedido>(p => p.Id == pedidoId).FirstOrDefault();
+        }
+
+        public List<Pedido> GetPedidosAndamentoByUser(string id)
+        {
+            return _pedido.Find<Pedido>(pedido => pedido.Id == id && pedido.DataPedidoFinalizado < pedido.DataPedidoRealizado).ToList();
         }
     }
 }

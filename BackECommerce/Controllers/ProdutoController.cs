@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
-using BackECommerce.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
