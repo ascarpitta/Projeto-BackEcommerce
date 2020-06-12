@@ -80,7 +80,7 @@ namespace BackECommerceTest
         [Test]
         public void AddEnderecoSucesso()
         {
-            Carrinho carrinho = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            //Codacy acusou como não utilizado: Carrinho carrinho = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
             Endereco novo = new Endereco();
             novo.Bairro = "Vila Paiva";
@@ -94,7 +94,7 @@ namespace BackECommerceTest
 
             _enderecoRepository.CadastroEndereco(novo);
 
-            Endereco enderecoTest = _enderecoRepository.BuscarEndereco("5e8fa9c6d776493a38eb4cfc");
+            //Codacy acusou como não utilizado: Endereco enderecoTest = _enderecoRepository.BuscarEndereco("5e8fa9c6d776493a38eb4cfc");
 
             var teste = _enderecoRepository.BuscarEnderecoPorNome(novo.NomeEndereco).FirstOrDefault();
 
@@ -133,7 +133,7 @@ namespace BackECommerceTest
         {
             Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");
 
-            Carrinho carrinhoResult1 = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            //Codacy acusou como não utilizado: Carrinho carrinhoResult1 = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
 
             Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, prod.Id, 1);
 
@@ -251,7 +251,7 @@ namespace BackECommerceTest
         public void RemoveProdutoSucesso()
         {
 
-            Carrinho carrinhotest = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            //Codacy acusou como não utilizado: Carrinho carrinhotest = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
             Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
@@ -267,10 +267,9 @@ namespace BackECommerceTest
         {
             Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");
 
-
             _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
-            Carrinho carrinhotest = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            //Codacy acusou como não utilizado: Carrinho carrinhotest = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
 
             Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
