@@ -80,7 +80,7 @@ namespace BackECommerceTest
         [Test]
         public void AddEnderecoSucesso()
         {
-            Carrinho carrinho = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
             Endereco novo = new Endereco();
             novo.Bairro = "Vila Paiva";
@@ -93,8 +93,6 @@ namespace BackECommerceTest
             novo.Rua = "Manuel de Almeida";
 
             _enderecoRepository.CadastroEndereco(novo);
-
-            Endereco enderecoTest = _enderecoRepository.BuscarEndereco("5e8fa9c6d776493a38eb4cfc");
 
             var teste = _enderecoRepository.BuscarEnderecoPorNome(novo.NomeEndereco).FirstOrDefault();
 
@@ -257,7 +255,7 @@ namespace BackECommerceTest
         public void RemoveProdutoSucesso()
         {
 
-            Carrinho carrinhotest = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
             Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
@@ -276,7 +274,7 @@ namespace BackECommerceTest
 
             _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
-            Carrinho carrinhotest = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
 
             Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, _produtoTeste.Id);
 
