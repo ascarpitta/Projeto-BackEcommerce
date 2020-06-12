@@ -65,5 +65,14 @@ namespace BackECommerce.Models
 
         [BsonElement("dataItemCancelado")]
         public DateTime DataItemCancelado { get; set; }
+
+        [BsonElement("statusEmTransporte")]
+        public bool StatusEmTransporte { get; set; }
+
+        [BsonElement("statusEntregue")]
+        public bool StatusEntregue { get; set; }
+
+        [BsonElement("statusCancelado")]
+        public bool StatusCancelado { get; set; }
     }
 }

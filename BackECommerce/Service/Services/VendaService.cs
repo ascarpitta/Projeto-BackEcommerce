@@ -57,7 +57,7 @@ namespace BackECommerce.Service.Services
 
         public List<Venda> GetSalesAndamentoByUser(string userId)
         {
-            return _venda.Find<Venda>(v => v.DataPedidoFinalizado < v.DataPedidoRealizadoCompra).ToList();
+            return _venda.Find<Venda>(v => !v.StatusFinalizado && v.UserIdVenda == userId).ToList();
         }
     }
 }

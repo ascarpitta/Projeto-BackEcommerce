@@ -10,7 +10,6 @@ using System.Linq;
 
 namespace BackECommerceTest
 {
-    [TestClass()]
     public class CarrinhoTest
     {
         private readonly CarrinhoRepository _carrinhoRepository;

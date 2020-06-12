@@ -80,6 +80,15 @@ namespace BackECommerce.Models
 		[BsonElement("dataPedidoFinalizado")]
 		public DateTime DataPedidoFinalizado { get; set; }
 
+		[BsonElement("statusEmTransporte")]
+		public bool StatusEmTransporte { get; set; }
+
+		[BsonElement("statusCancelado")]
+		public bool StatusCancelado { get; set; }
+
+		[BsonElement("statusFinalizado")]
+		public bool StatusFinalizado { get; set; }
+
 		[BsonElement("__v")]
 		[BsonRepresentation(BsonType.Int32)]
 		public Int32 version { get; set; }
