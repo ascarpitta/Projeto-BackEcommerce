@@ -58,9 +58,7 @@ namespace BackECommerce.Repository.Repositories
                 pedido.Complemento = endereco.Complemento;
                 pedido.Produtos = carrinho.Produtos;
                 pedido.DataPedidoRealizado = DateTime.Now;
-
-                pedido.DataPagamentoConfirmado = DateTime.Now.AddDays(-1);
-                pedido.DataPedidoFinalizado = DateTime.Now.AddDays(-1);
+                pedido.StatusFinalizado = false;
 
                 venda.BairroCompra = pedido.Bairro;
                 venda.CepCompra = pedido.Cep;
@@ -102,14 +100,16 @@ namespace BackECommerce.Repository.Repositories
                     produtoCarrinho.IdUserVenda = prod.IdUserVenda;
                     produtoCarrinho.IdProduto = prod.IdProduto;
                     produtoCarrinho.Frete = prod.Frete;
-                    produtoCarrinho.DataNfEmitida = DateTime.Now.AddDays(-1);
-                    produtoCarrinho.DataItemEmTransporte = DateTime.Now.AddDays(-1);
-                    produtoCarrinho.DataItemEntregue = DateTime.Now.AddDays(-1);
-                    produtoCarrinho.DataItemCancelado = DateTime.Now.AddDays(-1);
+                    produtoCarrinho.StatusCancelado = false;
+                    produtoCarrinho.StatusEmTransporte = false;
+                    produtoCarrinho.StatusEntregue = false;
                     pedido.Produtos.Add(produtoCarrinho);
 
                     //criar pedido de venda
                     venda.DataPedidoRealizadoCompra = DateTime.Now;
+                    venda.StatusCancelado = false;
+                    venda.StatusEmTransporte = false;
+                    venda.StatusFinalizado = false;
                     venda.IdProdutoCompra = produto.Id;
                     venda.UserIdVenda = produto.User;
                     venda.VlFinalCompra = prod.Preco * prod.Quantidade;
@@ -128,7 +128,7 @@ namespace BackECommerce.Repository.Repositories
                     products = products + "\n" + prod.NameProduto;
                 }
                 _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Numero} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
-
+                //arrumar numero do email, (esse numero é o do endereco)
                 return _pedidoService.CreatePedido(pedido);
             }
             return null;
@@ -168,36 +168,37 @@ namespace BackECommerce.Repository.Repositories
             var pedido = BuscarPedidoPorUsuario(userId, pedidoId);
             if (pedido != null)
             {
-                if (pedido.DataPedidoRealizado > pedido.DataPedidoFinalizado) { //se o pedido ainda não foi finalizado
+                if (!pedido.StatusFinalizado) { //se o pedido ainda não foi finalizado
                     foreach (ProdutosCarrinho item in pedido.Produtos)
                     {
                         if (item.IdProduto == produtoId)
                         {
-                            if (item.DataItemEntregue < pedido.DataPedidoRealizado)
+                            var pedidoVenda = BuscarVendaPorUsuario(item.IdUserVenda, pedido.Id);
+                            finalizado = false;
+
+                            if (tipo == 0) //item cancelado
                             {
-                                var pedidoVenda = BuscarVendaPorUsuario(item.IdUserVenda, pedido.Id);
-                                finalizado = false;
-
-                                if (tipo == 0 && item.DataItemCancelado < pedido.DataPedidoRealizado) //item cancelado
+                                if (!item.StatusEntregue && !item.StatusEmTransporte && !item.StatusCancelado)//item não saiu para entrega, não foi entregue e nem cancelado
                                 {
-                                    if (item.DataItemEmTransporte != null && item.DataItemEmTransporte.Year < 2020 && item.DataItemEmTransporte > pedido.DataPedidoRealizado) //item não saiu para entrega
-                                    {
-                                        item.DataItemCancelado = DateTime.Now;
-                                        pedidoVenda.DataCancelamentoCompra = DateTime.Now;
+                                    item.DataItemCancelado = DateTime.Now;
+                                    item.StatusCancelado = true;
+                                    pedidoVenda.DataCancelamentoCompra = DateTime.Now;
+                                    pedidoVenda.StatusCancelado = true;
 
-                                        _vendaService.UpdateSale(pedidoVenda, pedidoVenda.Id);
-                                    }
-                                }
-                                else if (tipo == 1 && item.DataItemCancelado < pedido.DataPedidoRealizado) //item recebido
-                                {
-                                    if (item.DataItemEmTransporte != null && item.DataItemEmTransporte >= item.DataNfEmitida && item.DataItemEmTransporte > pedido.DataPedidoRealizado) //item enviado e com nf
-                                    {
-                                        item.DataItemEntregue = DateTime.Now;
-                                        pedidoVenda.DataPedidoRealizadoCompra = DateTime.Now;
-                                        _vendaService.UpdateSale(pedidoVenda, pedidoVenda.Id);
-                                    }
+                                    _vendaService.UpdateSale(pedidoVenda, pedidoVenda.Id);
                                 }
                             }
+                            else if (tipo == 1) //item recebido
+                            {
+                                if (!item.StatusCancelado && !item.StatusEmTransporte && !item.StatusEntregue) //item enviado e com nf
+                                {
+                                    item.DataItemEntregue = DateTime.Now;
+                                    item.StatusEntregue = true;
+                                    pedidoVenda.DataPedidoFinalizado = DateTime.Now;
+                                    pedidoVenda.StatusFinalizado = true;
+                                    _vendaService.UpdateSale(pedidoVenda, pedidoVenda.Id);
+                                }
+                            }                            
                         }
                     }
                 }
@@ -279,24 +280,28 @@ namespace BackECommerce.Repository.Repositories
                 if (venda != null)
                 {
                     var pedido = BuscarPedido(venda.PedidoIdCompra);
-                    if (pedido != null)
+                    if (pedido != null && !pedido.StatusFinalizado)
                     {
                         foreach (ProdutosCarrinho item in pedido.Produtos)
                         {
                             if (item.IdUserVenda == userId && venda.IdProdutoCompra == item.IdProduto)
                             {
-                                if (tipo == 1 && item.DataItemEmTransporte < pedido.DataPedidoRealizado && item.DataItemCancelado < pedido.DataPedidoRealizado && item.DataItemCancelado < pedido.DataPedidoRealizado)
+                                if (tipo == 1 && !item.StatusEntregue && !item.StatusEmTransporte && !item.StatusCancelado)
                                 {
                                     item.DataItemEmTransporte = DateTime.Now;
+                                    item.StatusEmTransporte = true;
                                     venda.DataEmTransporteCompra = DateTime.Now;
+                                    venda.StatusEmTransporte = true;
 
                                     _vendaService.UpdateSale(venda, venda.Id);
                                     AtualizarPedido(pedido, pedido.Id);
                                 }
-                                else if (tipo == 0 && item.DataItemEmTransporte < pedido.DataPedidoRealizado && item.DataItemCancelado < pedido.DataPedidoRealizado && item.DataItemCancelado < pedido.DataPedidoRealizado)
+                                else if (tipo == 0 && !item.StatusEntregue && !item.StatusEmTransporte && !item.StatusCancelado)
                                 {
                                     item.DataItemCancelado = DateTime.Now;
+                                    item.StatusCancelado = true;
                                     venda.DataCancelamentoCompra = DateTime.Now;
+                                    venda.StatusCancelado = true;
 
                                     _vendaService.UpdateSale(venda, venda.Id);
                                     AtualizarPedido(pedido, pedido.Id);

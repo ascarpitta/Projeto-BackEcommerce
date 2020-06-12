@@ -55,7 +55,7 @@ namespace BackECommerce.Service.Services
 
         public List<Pedido> GetPedidosAndamentoByUser(string id)
         {
-            return _pedido.Find<Pedido>(pedido => pedido.Id == id && pedido.DataPedidoFinalizado < pedido.DataPedidoRealizado).ToList();
+            return _pedido.Find<Pedido>(pedido => pedido.Id == id && !pedido.StatusFinalizado).ToList();
         }
     }
 }
