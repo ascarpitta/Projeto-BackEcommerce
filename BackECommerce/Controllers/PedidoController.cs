@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BackECommerce.Controllers
 {
-    [Route("api/Pedido")]
+    [Route("api/Pedidos")]
     [ApiController]
     public class PedidoController : ControllerBase
     {
