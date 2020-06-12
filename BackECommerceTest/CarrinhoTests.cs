@@ -111,30 +111,24 @@ namespace BackECommerceTest
         [Test]
         public void AddEnderecoErro()
         {
-            try
+            
+            Carrinho carrinho = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+
+            Endereco enderecoTest = _enderecoRepository.BuscarEndereco(carrinho.UserId);
+
+            if (enderecoTest != null)
             {
-                Carrinho carrinho = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
-
-                Endereco enderecoTest = _enderecoRepository.BuscarEndereco("5e8fa9c6d776493a38eb4cf");
-
                 Carrinho carrinhoResult = _carrinhoRepository.AddEndereco(_usuarioTeste.Id, enderecoTest.Id);
 
                 if (carrinhoResult.EnderecoId != null)
                 {
                     Assert.Fail();
-                }
-
-                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
+                }                
             }
-            catch(Exception e)
-            {
-                //Assert.Fail();
-            }
-
-
+            _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
         }
 
-        [Test]
+        [Test] //Teste 
         public void AumentarQuantProdutoSucesso()
         {
             Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");

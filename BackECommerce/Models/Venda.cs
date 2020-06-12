@@ -77,6 +77,9 @@ namespace BackECommerce.Models
 		[BsonElement("dataCancelamentoCompra")]
 		public DateTime DataCancelamentoCompra { get; set; }
 
+		[BsonElement("dataPedidoFinalizado")]
+		public DateTime DataPedidoFinalizado { get; set; }
+
 		[BsonElement("__v")]
 		[BsonRepresentation(BsonType.Int32)]
 		public Int32 version { get; set; }

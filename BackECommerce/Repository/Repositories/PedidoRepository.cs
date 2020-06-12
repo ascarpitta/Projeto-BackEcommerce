@@ -110,6 +110,10 @@ namespace BackECommerce.Repository.Repositories
 
                     //criar pedido de venda
                     venda.DataPedidoRealizadoCompra = DateTime.Now;
+                    venda.DataCancelamentoCompra = DateTime.Now.AddDays(-1);
+                    venda.DataEmTransporteCompra = DateTime.Now.AddDays(-1);
+                    venda.DataPagamentoConfirmadoCompra = DateTime.Now.AddDays(-1);
+                    venda.DataPedidoFinalizado = DateTime.Now.AddDays(-1);
                     venda.IdProdutoCompra = produto.Id;
                     venda.UserIdVenda = produto.User;
                     venda.VlFinalCompra = prod.Preco * prod.Quantidade;
@@ -128,7 +132,7 @@ namespace BackECommerce.Repository.Repositories
                     products = products + "\n" + prod.NameProduto;
                 }
                 _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Numero} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
-
+                //arrumar numero do email, (esse numero é o do endereco)
                 return _pedidoService.CreatePedido(pedido);
             }
             return null;
@@ -193,7 +197,7 @@ namespace BackECommerce.Repository.Repositories
                                     if (item.DataItemEmTransporte != null && item.DataItemEmTransporte >= item.DataNfEmitida && item.DataItemEmTransporte > pedido.DataPedidoRealizado) //item enviado e com nf
                                     {
                                         item.DataItemEntregue = DateTime.Now;
-                                        pedidoVenda.DataPedidoRealizadoCompra = DateTime.Now;
+                                        pedidoVenda.DataPedidoFinalizado = DateTime.Now;
                                         _vendaService.UpdateSale(pedidoVenda, pedidoVenda.Id);
                                     }
                                 }
