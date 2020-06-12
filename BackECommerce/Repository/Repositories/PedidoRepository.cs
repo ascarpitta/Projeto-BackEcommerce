@@ -11,15 +11,16 @@ namespace BackECommerce.Repository.Repositories
 {
     public class PedidoRepository : IPedidoRepository
     {
-        private readonly IPedidoService _pedidoService;
-        //private readonly IVendaRepository _vendaRepository = new VendaRepository();
-        private readonly IProdutoRepository _produtoRepository = new ProdutoRepository();
-        private readonly IUsuarioRepository _usuarioRepository = new UsuarioRepository();
-        private readonly IEnderecoRepository _enderecoRepository = new EnderecoRepository();
-        private EmailRepository _emailRepository = new EmailRepository();
+        private readonly PedidoService _pedidoService;
+        private readonly ProdutoRepository _produtoRepository;
+        private readonly UsuarioRepository _usuarioRepository;
+        private readonly EnderecoRepository _enderecoRepository;
         public PedidoRepository()
         {
             _pedidoService = new PedidoService();
+            _produtoRepository = new ProdutoRepository();
+            _usuarioRepository = new UsuarioRepository();
+            _enderecoRepository = new EnderecoRepository();
         }
 
         public void AtualizarPedido(Pedido pedidoNovo, string id)
@@ -115,7 +116,7 @@ namespace BackECommerce.Repository.Repositories
                 {
                     products = products + "\n" + prod.NameProduto;
                 }
-                _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Numero} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
+                //_emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Numero} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
 
                 return _pedidoService.CreatePedido(pedido);
             }
