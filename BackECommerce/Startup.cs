@@ -2,7 +2,6 @@ using BackECommerce.Repository.Interfaces;
 using BackECommerce.Repository.Repositories;
 using BackECommerce.Repository;
 using BackECommerce.Service;
-using BackECommerce.Service.Interfaces;
 using BackECommerce.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,26 +23,12 @@ namespace BackECommerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            services.AddSingleton<IUsuarioService, UsuarioService>();
             services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
-
-            services.AddSingleton<IProdutoService, ProdutoService>();
             services.AddSingleton<IProdutoRepository, ProdutoRepository>();
-
-            services.AddSingleton<IEnderecoService, EnderecoService>();
             services.AddSingleton<IEnderecoRepository, EnderecoRepository>();
-
-            services.AddSingleton<ICarrinhoService, CarrinhoService>();
             services.AddSingleton<ICarrinhoRepository, CarrinhoRepository>();
-
-            services.AddSingleton<IPedidoService, PedidoService>();
             services.AddSingleton<IPedidoRepository, PedidoRepository>();
-
             services.AddSingleton<IEmailRepository, EmailRepository>();
-
-            //services.AddSingleton<IVendaService, VendaService>();
-            //services.AddSingleton<IVendaRepository, VendaRepository>();
 
             services.AddCors();
 

@@ -9,16 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BackECommerce.Controllers
 {
-    [Route("api/Pedido")]
+    [Route("api/Pedidos")]
     [ApiController]
     public class PedidoController : ControllerBase
     {
         private readonly IPedidoRepository _pedidoRepository;
-        //private readonly IVendaRepository _vendaRepository;
         public PedidoController(IPedidoRepository pedidoRepository)
         {
             _pedidoRepository = pedidoRepository;
-            //_vendaRepository = vendaRepository;
         }
 
         [HttpGet]
@@ -57,28 +55,40 @@ namespace BackECommerce.Controllers
             return _pedidoRepository.AtualizarStatusPedidoCompra(userId, pedidoId, produtoId, 1);
         }
 
-        //[HttpGet("CancelarItemPedidoVenda/{userId}/{pedidoId}/{produtoId}")]
-        //public ActionResult<Venda> CancelarItemPedidoVenda(string userId, string pedidoId)
-        //{
-        //    return _vendaRepository.AtualizarStatusPedido(userId, pedidoId, 0);
-        //}
+        [HttpGet("CancelarItemPedidoVenda/{userId}/{pedidoId}/{produtoId}")]
+        public ActionResult<Venda> CancelarItemPedidoVenda(string userId, string pedidoId)
+        {
+            return _pedidoRepository.AtualizarStatusPedido(userId, pedidoId, 0);
+        }
 
-        //[HttpGet("ItemEmTransportePedidoVenda/{userId}/{pedidoId}/{produtoId}")]
-        //public ActionResult<Venda> ItemEmTransportePedidoVenda(string userId, string pedidoId)
-        //{
-        //    return _vendaRepository.AtualizarStatusPedido(userId, pedidoId, 1);
-        //}
+        [HttpGet("ItemEmTransportePedidoVenda/{userId}/{pedidoId}/{produtoId}")]
+        public ActionResult<Venda> ItemEmTransportePedidoVenda(string userId, string pedidoId)
+        {
+            return _pedidoRepository.AtualizarStatusPedido(userId, pedidoId, 1);
+        }
 
         //[HttpGet("ExibirPedidosVenda/{userId}")]
         //public ActionResult<List<Venda>> GetExibirPedidosVenda(string userId)
         //{
-        //    return _vendaRepository.BuscarVendasPorUsuario(userId);
+        //    return _pedidoRepository.BuscarVendasPorUsuario(userId);
         //}
 
-        //[HttpGet("ExibirPedidoVenda/{userId}/{pedidoId}")]
-        //public ActionResult<Venda> GetExibirPedidoVenda(string userId, string pedidoId)
-        //{
-        //    return _vendaRepository.BuscarVendaPorUsuario(userId, pedidoId);
-        //}
+        [HttpGet("ExibirPedidoVenda/{userId}/{pedidoId}")]
+        public ActionResult<Venda> GetExibirPedidoVenda(string userId, string pedidoId)
+        {
+            return _pedidoRepository.BuscarVendaPorUsuario(userId, pedidoId);
+        }
+
+        [HttpGet("GetExibirAndamentoVenda/{userId}")]
+        public ActionResult<List<Venda>> GetExibirAndamentoVenda(string userId)
+        {
+            return _pedidoRepository.PedidosVendaEmAndamento(userId);
+        }
+
+        [HttpGet("GetExibirAndamentoCompra/{userId}")]
+        public ActionResult<List<Pedido>> GetExibirAndamentoCompra(string userId)
+        {
+            return _pedidoRepository.PedidosCompraEmAndamento(userId);
+        }
     }
 }

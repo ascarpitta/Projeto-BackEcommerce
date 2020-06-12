@@ -10,8 +10,6 @@ namespace BackECommerce.Repository.Repositories
 {
     public class EmailRepository : IEmailRepository
     {
-        public EmailRepository() { }
-
         public void EnviarEmail(string para, string assunto, string conteudo, string caminhoAnexo = null)
         {
             string de = "suporte@ecommerce.com.br";

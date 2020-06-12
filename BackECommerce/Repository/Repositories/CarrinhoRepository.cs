@@ -15,9 +15,7 @@ namespace BackECommerce.Repository.Repositories
         private readonly IUsuarioRepository _usuarioRepository = new UsuarioRepository();
         private readonly IPedidoRepository _pedidoRepository = new PedidoRepository();
         private readonly IEmailRepository _emailRepository = new EmailRepository();
-        public CarrinhoRepository()
-        {
-        }
+        
         public Carrinho BuscarCarrinhoPorUsuario(string id)
         {
             return _carrinhoService.GetCarrinhoByUser(id);

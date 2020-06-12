@@ -17,5 +17,14 @@ namespace BackECommerce.Repository.Interfaces
         Pedido AtualizarStatusPedidoCompra(string userId, string pedidoId, string produtoId, int tipo);
         void AtualizarPedido(Pedido pedidoNovo, string id);
         void DeletarPedidoPorUsuario(string userId);
+        List<Pedido> PedidosCompraEmAndamento(string userId);
+
+        //Venda
+        List<Venda> BuscarVendas();
+        List<Venda> BuscarVendasPorUsuario(string id);
+        Venda BuscarVendaPorUsuario(string userId, string vendaId);
+        Venda CriarVenda(Venda venda);
+        Venda AtualizarStatusPedido(string userId, string vendaId, int tipo);
+        List<Venda> PedidosVendaEmAndamento(string userId);
     }
 }

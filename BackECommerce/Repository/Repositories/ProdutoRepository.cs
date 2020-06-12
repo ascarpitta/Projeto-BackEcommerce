@@ -1,6 +1,5 @@
 ﻿using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
-using BackECommerce.Service.Interfaces;
 using BackECommerce.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -11,12 +10,8 @@ namespace BackECommerce.Repository.Repositories
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        private readonly ProdutoService _produtoService;
-        public ProdutoRepository()
-        {
-            _produtoService = new ProdutoService();
-        }
-
+        private readonly ProdutoService _produtoService = new ProdutoService();
+        
         public Produto BuscarProduto(string id)
         {
             return _produtoService.GetProdutoById(id);
@@ -29,7 +24,6 @@ namespace BackECommerce.Repository.Repositories
 
         public List<Produto> BuscarProdutos()
         {
-            //ProdutoService 
             return _produtoService.GetProduto();
         }
 

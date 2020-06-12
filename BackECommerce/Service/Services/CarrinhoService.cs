@@ -1,5 +1,4 @@
 ﻿using BackECommerce.Models;
-using BackECommerce.Service.Interfaces;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BackECommerce.Service.Services
 {
-    public class CarrinhoService : ICarrinhoService
+    public class CarrinhoService
     {
         public static DateTime Today { get; }
 

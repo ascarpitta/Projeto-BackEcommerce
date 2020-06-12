@@ -25,5 +25,6 @@ namespace BackECommerce.Repository.Interfaces
         void RemoverListaDesejo(string idUsuario, string idProduto);
         Usuario AtivarUsuario(string userId);
         Usuario InativarUsuario(string userId);
+        void RecuperarSenha(string email, long cpf);
     }
 }
