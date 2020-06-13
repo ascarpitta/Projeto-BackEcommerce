@@ -9,6 +9,7 @@ namespace BackECommerce.Repository.Interfaces
     public interface ICarrinhoRepository
     {
         List<Carrinho> BuscarCarrinhos();
+        Carrinho BuscarCarrinho(string carrinhoId);
         Carrinho BuscarCarrinhoPorUsuario(string id);
         Carrinho CriarCarrinho(string produtoId);
         Carrinho AddProduto(string userId, string produtoId);

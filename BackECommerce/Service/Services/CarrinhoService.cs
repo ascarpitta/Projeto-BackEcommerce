@@ -50,6 +50,10 @@ namespace BackECommerce.Service.Services
         {
             return _carrinho.Find<Carrinho>(carrinho => carrinho.UserId == id).FirstOrDefault();
         }
-        
+
+        public Carrinho GetCarrinhoById(string id)
+        {
+            return _carrinho.Find<Carrinho>(carrinho => carrinho.Id == id).FirstOrDefault();
+        }
     }
 }

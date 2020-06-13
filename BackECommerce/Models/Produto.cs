@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
+using System.Collections.Generic;
 
 namespace BackECommerce.Models
 {
@@ -51,5 +52,9 @@ namespace BackECommerce.Models
         [BsonElement("ativo")]
         [BsonRepresentation(BsonType.Boolean)]
         public bool Ativo { get; set; }
+
+
+        [BsonElement("carrinho")]
+        public List<String> Carrinhos { get; set; }
     }
 }

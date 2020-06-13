@@ -216,5 +216,14 @@ namespace BackECommerce.Repository.Repositories
             }
             return null;
         }
+
+        public Carrinho BuscarCarrinho(string carrinhoId)
+        {
+            if (carrinhoId.Length == 24)
+            {
+                return _carrinhoService.GetCarrinhoById(carrinhoId);
+            }
+            return null;
+        }
     }
 }

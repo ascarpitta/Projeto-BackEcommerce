@@ -11,6 +11,7 @@ namespace BackECommerce.Repository.Repositories
     public class ProdutoRepository : IProdutoRepository
     {
         private readonly ProdutoService _produtoService = new ProdutoService();
+        private readonly ICarrinhoRepository _carrinhoRepository = new CarrinhoRepository();
         
         public Produto BuscarProduto(string id)
         {
@@ -70,6 +71,15 @@ namespace BackECommerce.Repository.Repositories
             {
                 if (prod.User == userId)
                 {
+                    if (produtoNovo.Quantity == 0)
+                    {
+                        foreach (string carrinhoId in prod.Carrinhos)
+                        {
+                            var car = _carrinhoRepository.BuscarCarrinho(carrinhoId);
+                            _carrinhoRepository.RemoverProduto(car.UserId, produtoId);
+                        }
+                        produtoNovo.Carrinhos = null;
+                    }
                     _produtoService.UpdateProduto(produtoId, produtoNovo);
                     return BuscarProduto(produtoId);
                 }
@@ -99,6 +109,13 @@ namespace BackECommerce.Repository.Repositories
                 if (prod.User == userId)
                 {
                     prod.Ativo = false;
+
+                    foreach(string carrinhoId in prod.Carrinhos)
+                    {
+                        var car = _carrinhoRepository.BuscarCarrinho(carrinhoId);
+                        _carrinhoRepository.RemoverProduto(car.UserId, produtoId);
+                    }
+                    prod.Carrinhos = null;
                     return AtualizarProduto(userId, produtoId, prod);
                 }
             }
