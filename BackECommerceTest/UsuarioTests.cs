@@ -128,8 +128,10 @@ namespace BackECommerceTest
             {
                 Assert.Fail();
             }
-
-            _usuarioRepository.DeletarUsuarioPorId(usuarioresult.Id);
+            else
+            {
+                _usuarioRepository.DeletarUsuarioPorId(usuarioresult.Id);
+            }            
         }
 
         [Test] //com senha incorreta
@@ -150,8 +152,10 @@ namespace BackECommerceTest
             {
                 Assert.Fail();
             }
-
-            _usuarioRepository.DeletarUsuarioPorId(usuarioEmailresult.Id);
+            else
+            {
+                _usuarioRepository.DeletarUsuarioPorId(usuarioEmailresult.Id);
+            }            
         }
     }
 }

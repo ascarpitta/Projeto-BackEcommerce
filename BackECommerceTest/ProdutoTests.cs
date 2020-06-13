@@ -42,21 +42,23 @@ namespace ProdutoTeste.Tests
                 {
                     Assert.Fail();
                 }
-
-                foreach (Produto item in lista)
+                else
                 {
-                    Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
-
-                    if (encontrado != null)
+                    foreach (Produto item in lista)
                     {
-                        ok = true;
-                    }
-                }
+                        Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
 
-                if (!ok)
-                {
-                    Assert.Fail();
-                }
+                        if (encontrado != null)
+                        {
+                            ok = true;
+                        }
+                    }
+
+                    if (!ok)
+                    {
+                        Assert.Fail();
+                    }
+                }                
             }
             catch (System.Exception ex)
             {
@@ -85,21 +87,23 @@ namespace ProdutoTeste.Tests
                 {
                     Assert.Fail();
                 }
-
-                foreach (Produto item in lista)
+                else
                 {
-                    Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
-
-                    if (encontrado != null)
+                    foreach (Produto item in lista)
                     {
-                        ok = true;
-                    }
-                }
+                        Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
 
-                if (!ok)
-                {
-                    Assert.Fail();
-                }
+                        if (encontrado != null)
+                        {
+                            ok = true;
+                        }
+                    }
+
+                    if (!ok)
+                    {
+                        Assert.Fail();
+                    }
+                }                
             }
             catch (System.Exception ex)
             {
@@ -128,20 +132,22 @@ namespace ProdutoTeste.Tests
                 {
                     Assert.Fail();
                 }
-
-                foreach (Produto item in lista)
+                else
                 {
-                    Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
-
-                    if (encontrado != null)
+                    foreach (Produto item in lista)
                     {
-                        ok = true;
-                    }
-                }
+                        Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
 
-                if (!ok)
-                {
-                    Assert.Fail();
+                        if (encontrado != null)
+                        {
+                            ok = true;
+                        }
+                    }
+
+                    if (!ok)
+                    {
+                        Assert.Fail();
+                    }
                 }
             }
             catch (System.Exception ex)
@@ -171,7 +177,8 @@ namespace ProdutoTeste.Tests
                 if (lista == null)
                 {
                     Assert.Fail();
-                } else
+                } 
+                else
                 {
                     foreach (Produto item in lista)
                     {
@@ -210,11 +217,13 @@ namespace ProdutoTeste.Tests
                 {
                     Assert.Fail();
                 }
-
-                if (prod.Name != att.Name)
+                else
                 {
-                    Assert.Fail();
-                }
+                    if (prod.Name != att.Name)
+                    {
+                        Assert.Fail();
+                    }
+                }                
             }
             catch (System.Exception ex)
             {
@@ -236,11 +245,13 @@ namespace ProdutoTeste.Tests
                 {
                     Assert.Fail();
                 }
-
-                if (prod.Quantity != att.Quantity)
+                else
                 {
-                    Assert.Fail();
-                }
+                    if (prod.Quantity != att.Quantity)
+                    {
+                        Assert.Fail();
+                    }
+                }                
             }
             catch (System.Exception ex)
             {

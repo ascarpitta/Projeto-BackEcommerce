@@ -46,8 +46,10 @@ namespace EnderecoTeste.Tests
                 {
                     Assert.Fail();
                 }
-
-                _enderecoRepository.RemoverEndereco(teste.Id);
+                else
+                {
+                    _enderecoRepository.RemoverEndereco(teste.Id);
+                }                
             }
             catch (System.Exception ex)
             {
@@ -69,11 +71,13 @@ namespace EnderecoTeste.Tests
                 {
                     Assert.Fail();
                 }
-
-                if (alterar.Rua != alterado.Rua)
+                else
                 {
-                    Assert.Fail();
-                }
+                    if (alterar.Rua != alterado.Rua)
+                    {
+                        Assert.Fail();
+                    }
+                }                
             }
             catch (System.Exception ex)
             {
@@ -166,11 +170,14 @@ namespace EnderecoTeste.Tests
                 {
                     Assert.Fail();
                 }
-                var rua = " Rua Manuel de Almeida";
-                if (teste.Rua != rua)
+                else
                 {
-                    Assert.Fail();
-                }
+                    var rua = " Rua Manuel de Almeida";
+                    if (teste.Rua != rua)
+                    {
+                        Assert.Fail();
+                    }
+                }                
             }
             catch (System.Exception ex)
             {
