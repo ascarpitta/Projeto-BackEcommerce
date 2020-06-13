@@ -147,7 +147,7 @@ namespace BackECommerceTest
         {
             Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");
 
-            Carrinho carrinhoResult1 = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
 
             Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, prod.Id, 1);
 
