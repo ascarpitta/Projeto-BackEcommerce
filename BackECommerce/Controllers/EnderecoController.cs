@@ -92,5 +92,20 @@ namespace BackECommerce.Controllers
 
             return Ok();
         }
+
+        [HttpGet("ExcluirEndereco/{userId}/{id}")]
+        public IActionResult GetExcluirEndereco(string userId, string id)
+        {
+            var endereco = _enderecoRepository.BuscarEndereco(id);
+
+            if (endereco == null)
+            {
+                return NotFound();
+            }
+
+            _enderecoRepository.RemoverEndereco(id);
+
+            return Ok();
+        }
     }
 }

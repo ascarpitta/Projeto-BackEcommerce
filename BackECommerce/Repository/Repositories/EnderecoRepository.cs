@@ -14,6 +14,7 @@ namespace BackECommerce.Repository.Repositories
     public class EnderecoRepository : IEnderecoRepository
     {
         private readonly EnderecoService _enderecoService = new EnderecoService();
+        private readonly ICarrinhoRepository _carrinhoRepository = new CarrinhoRepository();
         
         public Endereco AtualizarEndereco(string userId, string idEndereco, Endereco enderecoNovo)
         {
@@ -120,7 +121,20 @@ namespace BackECommerce.Repository.Repositories
 
         public void RemoverEndereco(string idEndereco)
         {
-            _enderecoService.RemoveEndereco(idEndereco);
+            if (idEndereco.Length == 24)
+            {
+                _enderecoService.RemoveEndereco(idEndereco);
+
+                List<Carrinho> carrinhos = _carrinhoRepository.BuscarCarrinhos();
+                foreach (Carrinho carrinho in carrinhos)
+                {
+                    if (carrinho.EnderecoId == idEndereco)
+                    {
+                        _carrinhoRepository.AddEndereco(carrinho.UserId, null);
+                    }
+                }
+            }
+            
         }
     }
 }
