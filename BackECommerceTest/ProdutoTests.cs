@@ -171,21 +171,22 @@ namespace ProdutoTeste.Tests
                 if (lista == null)
                 {
                     Assert.Fail();
-                }
-
-                foreach (Produto item in lista)
+                } else
                 {
-                    Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
-
-                    if (encontrado != null)
+                    foreach (Produto item in lista)
                     {
-                        ok = true;
-                    }
-                }
+                        Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
 
-                if (!ok)
-                {
-                    Assert.Fail();
+                        if (encontrado != null)
+                        {
+                            ok = true;
+                        }
+                    }
+
+                    if (!ok)
+                    {
+                        Assert.Fail();
+                    }
                 }
             }
             catch (System.Exception ex)
