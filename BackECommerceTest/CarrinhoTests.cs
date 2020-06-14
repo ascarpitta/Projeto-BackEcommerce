@@ -113,9 +113,9 @@ namespace BackECommerceTest
 
             Endereco enderecoTest = _enderecoRepository.BuscarEndereco("5e8fa9c6d776493a38eb4cf");
 
-            Carrinho carrinhoResult = _carrinhoRepository.AddEndereco(_usuarioTeste.Id, enderecoTest.Id);
+            var carrinhoResult = _carrinhoRepository.AddEndereco(_usuarioTeste.Id, "5e8fa9c6d776493a38eb4cf");
 
-            if (carrinhoResult.EnderecoId != null)
+            if (carrinhoResult != null)
             {
                 Assert.Fail();
             }

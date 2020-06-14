@@ -28,10 +28,14 @@ namespace BackECommerce.Repository.Repositories
 
         public Carrinho AddEndereco(string userId, string enderecoId)
         {
-            var carrinho = _carrinhoService.GetCarrinhoByUser(userId);
-            carrinho.EnderecoId = enderecoId;
-            _carrinhoService.UpdateCarrinho(carrinho, userId);
-            return _carrinhoService.GetCarrinhoByUser(userId);
+            if (userId.Length == 24 && enderecoId.Length == 24)
+            {
+                var carrinho = _carrinhoService.GetCarrinhoByUser(userId);
+                carrinho.EnderecoId = enderecoId;
+                _carrinhoService.UpdateCarrinho(carrinho, userId);
+                return _carrinhoService.GetCarrinhoByUser(userId);
+            }
+            return null;
         }
 
         public Carrinho AddProduto(string userId, string produtoId)

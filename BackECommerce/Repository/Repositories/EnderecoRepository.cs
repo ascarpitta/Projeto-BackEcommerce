@@ -37,7 +37,11 @@ namespace BackECommerce.Repository.Repositories
 
         public Endereco BuscarEndereco(string id)
         {
-            return _enderecoService.GetEnderecoById(id);
+            if (id.Length == 24)
+            {
+                return _enderecoService.GetEnderecoById(id);
+            }
+            return null;
         }
 
         public EnderecoViaCep BuscarEnderecoPorCep(string cep)
