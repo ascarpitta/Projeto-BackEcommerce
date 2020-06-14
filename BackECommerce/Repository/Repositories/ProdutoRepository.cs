@@ -11,7 +11,7 @@ namespace BackECommerce.Repository.Repositories
     public class ProdutoRepository : IProdutoRepository
     {
         private readonly ProdutoService _produtoService = new ProdutoService();
-        private readonly ICarrinhoRepository _carrinhoRepository = new CarrinhoRepository();
+        private readonly CarrinhoService _carrinhoService = new CarrinhoService();
         
         public Produto BuscarProduto(string id)
         {
@@ -73,10 +73,11 @@ namespace BackECommerce.Repository.Repositories
                 {
                     if (produtoNovo.Quantity == 0)
                     {
-                        foreach (string carrinhoId in prod.Carrinhos)
+                        foreach (string carrinhoId in prod.Carrinhos) //Remover produto dos carrinhos
                         {
-                            var car = _carrinhoRepository.BuscarCarrinho(carrinhoId);
-                            _carrinhoRepository.RemoverProduto(car.UserId, produtoId);
+                            var car = _carrinhoService.GetCarrinhoById(carrinhoId);
+                            car.Produtos.RemoveAll(c => c.IdProduto == produtoId);
+                            _carrinhoService.UpdateCarrinho(car, car.UserId);
                         }
                         produtoNovo.Carrinhos = null;
                     }
@@ -110,10 +111,11 @@ namespace BackECommerce.Repository.Repositories
                 {
                     prod.Ativo = false;
 
-                    foreach(string carrinhoId in prod.Carrinhos)
+                    foreach (string carrinhoId in prod.Carrinhos)
                     {
-                        var car = _carrinhoRepository.BuscarCarrinho(carrinhoId);
-                        _carrinhoRepository.RemoverProduto(car.UserId, produtoId);
+                        var car = _carrinhoService.GetCarrinhoById(carrinhoId);
+                        car.Produtos.RemoveAll(c => c.IdProduto == produtoId);
+                        _carrinhoService.UpdateCarrinho(car, car.UserId);
                     }
                     prod.Carrinhos = null;
                     return AtualizarProduto(userId, produtoId, prod);
