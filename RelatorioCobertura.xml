@@ -1,93 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SolutionRoot CoveredStatements="1133" TotalStatements="2551" CoveragePercent="44" ReportType="Xml" DotCoverVersion="2020.1.3">
-  <Project Name="BackECommerce" CoveredStatements="568" TotalStatements="1596" CoveragePercent="36">
-    <Namespace Name="BackECommerce" CoveredStatements="568" TotalStatements="1596" CoveragePercent="36">
-      <Namespace Name="Configs" CoveredStatements="0" TotalStatements="9" CoveragePercent="0">
-        <Type Name="CloudinaryConfig" CoveredStatements="0" TotalStatements="9" CoveragePercent="0">
-          <Property Name="ApiKey:string" CoveredStatements="0" TotalStatements="3" CoveragePercent="0">
-            <PropertyGetter CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+<SolutionRoot CoveredStatements="779" TotalStatements="1689" CoveragePercent="46" ReportType="Xml" DotCoverVersion="2020.1.3">
+  <Project Name="BackECommerce" CoveredStatements="349" TotalStatements="1084" CoveragePercent="32">
+    <Namespace Name="BackECommerce" CoveredStatements="349" TotalStatements="1084" CoveragePercent="32">
+      <Namespace Name="Configs" CoveredStatements="0" TotalStatements="3" CoveragePercent="0">
+        <Type Name="CloudinaryConfig" CoveredStatements="0" TotalStatements="3" CoveragePercent="0">
+          <Property Name="ApiKey:string" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+            <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
           </Property>
-          <Property Name="ApiSecret:string" CoveredStatements="0" TotalStatements="3" CoveragePercent="0">
-            <PropertyGetter CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Property Name="ApiSecret:string" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+            <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
           </Property>
-          <Property Name="Cloud:string" CoveredStatements="0" TotalStatements="3" CoveragePercent="0">
-            <PropertyGetter CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Property Name="Cloud:string" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+            <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
           </Property>
         </Type>
       </Namespace>
-      <Namespace Name="Controllers" CoveredStatements="0" TotalStatements="347" CoveragePercent="0">
-        <Type Name="CarrinhoController" CoveredStatements="0" TotalStatements="59" CoveragePercent="0">
-          <Constructor Name="CarrinhoController(ICarrinhoRepository)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
-          <Method Name="Delete(string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetCarrinho():ActionResult&lt;List&lt;Carrinho&gt;&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetCarrinhoByUserId(string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="PutAddEndereco(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="PutAddProduto(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="PutAlterarQtd(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="PutDiminuirQtd(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="PutFinalizarCarrinho(string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="PutRemoverProduto(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
+      <Namespace Name="Controllers" CoveredStatements="0" TotalStatements="206" CoveragePercent="0">
+        <Type Name="CarrinhoController" CoveredStatements="0" TotalStatements="34" CoveragePercent="0">
+          <Constructor Name="CarrinhoController(ICarrinhoRepository)" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="Delete(string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+          <Method Name="GetCarrinho():ActionResult&lt;List&lt;Carrinho&gt;&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetCarrinhoByUserId(string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="PutAddEndereco(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="PutAddProduto(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="PutAlterarQtd(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="PutDiminuirQtd(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="PutFinalizarCarrinho(string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="PutRemoverProduto(string,string):ActionResult&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
         </Type>
-        <Type Name="EnderecoController" CoveredStatements="0" TotalStatements="49" CoveragePercent="0">
-          <Constructor Name="EnderecoController(IEnderecoRepository)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
-          <Method Name="GetEndereco():ActionResult&lt;List&lt;Endereco&gt;&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetEnderecoById(string):ActionResult&lt;Endereco&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetEnderecosByCep(string):ActionResult&lt;EnderecoViaCep&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetEnderecosByUserId(string):ActionResult&lt;List&lt;Endereco&gt;&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="PostEndereco(string,string,string,string,string,string,string,int,string):ActionResult&lt;Endereco&gt;" CoveredStatements="0" TotalStatements="14" CoveragePercent="0" />
-          <Method Name="Put(string,string,Endereco):IActionResult" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
+        <Type Name="EnderecoController" CoveredStatements="0" TotalStatements="37" CoveragePercent="0">
+          <Constructor Name="EnderecoController(IEnderecoRepository)" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="GetEndereco():ActionResult&lt;List&lt;Endereco&gt;&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetEnderecoById(string):ActionResult&lt;Endereco&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetEnderecosByCep(string):ActionResult&lt;EnderecoViaCep&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetEnderecosByUserId(string):ActionResult&lt;List&lt;Endereco&gt;&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetExcluirEndereco(string,string):IActionResult" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+          <Method Name="PostEndereco(string,string,string,string,string,string,string,int,string):ActionResult&lt;Endereco&gt;" CoveredStatements="0" TotalStatements="12" CoveragePercent="0" />
+          <Method Name="Put(string,string,Endereco):IActionResult" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
         </Type>
-        <Type Name="PedidoController" CoveredStatements="0" TotalStatements="37" CoveragePercent="0">
-          <Constructor Name="PedidoController(IPedidoRepository)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
-          <Method Name="CancelarItemPedidoVenda(string,string):ActionResult&lt;Venda&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetCancelarItemPedido(string,string,string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetExibirAndamentoCompra(string):ActionResult&lt;List&lt;Pedido&gt;&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetExibirAndamentoVenda(string):ActionResult&lt;List&lt;Venda&gt;&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetExibirPedidoVenda(string,string):ActionResult&lt;Venda&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetPagarPedido(string,string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetPedido():ActionResult&lt;List&lt;Pedido&gt;&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetPedidoPorUsuario(string,string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetPedidosPorUsuario(string):ActionResult&lt;List&lt;Pedido&gt;&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetReceberItemPedido(string,string,string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="ItemEmTransportePedidoVenda(string,string):ActionResult&lt;Venda&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Type Name="PedidoController" CoveredStatements="0" TotalStatements="14" CoveragePercent="0">
+          <Constructor Name="PedidoController(IPedidoRepository)" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="CancelarItemPedidoVenda(string,string):ActionResult&lt;Venda&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetCancelarItemPedido(string,string,string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetExibirAndamentoCompra(string):ActionResult&lt;List&lt;Pedido&gt;&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetExibirAndamentoVenda(string):ActionResult&lt;List&lt;Venda&gt;&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetExibirPedidoVenda(string,string):ActionResult&lt;Venda&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetPagarPedido(string,string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetPedido():ActionResult&lt;List&lt;Pedido&gt;&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetPedidoPorUsuario(string,string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetPedidosPorUsuario(string):ActionResult&lt;List&lt;Pedido&gt;&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetReceberItemPedido(string,string,string):ActionResult&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="ItemEmTransportePedidoVenda(string,string):ActionResult&lt;Venda&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
         </Type>
-        <Type Name="ProdutoController" CoveredStatements="0" TotalStatements="89" CoveragePercent="0">
-          <Constructor Name="ProdutoController(IProdutoRepository)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
-          <Method Name="AtivarProduto(string,string):IActionResult" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetProduto():ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetProdutoById(string):ActionResult&lt;Produto&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetProdutoByName(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetProdutoByOrder1(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetProdutoByOrder2(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetProdutoByOrder3(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetProdutoByOrder4(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetProdutoByUser(string,string):ActionResult&lt;Produto&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetProdutosByUser(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="InativarProduto(string,string):IActionResult" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="PostProduto(string,string,string,double,double,int,string,string):ActionResult&lt;Produto&gt;" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
-          <Method Name="Put(string,string,Produto):IActionResult" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
+        <Type Name="ProdutoController" CoveredStatements="0" TotalStatements="51" CoveragePercent="0">
+          <Constructor Name="ProdutoController(IProdutoRepository)" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="AtivarProduto(string,string):IActionResult" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetProduto():ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetProdutoById(string):ActionResult&lt;Produto&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetProdutoByName(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetProdutoByOrder1(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetProdutoByOrder2(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetProdutoByOrder3(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetProdutoByOrder4(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetProdutoByUser(string,string):ActionResult&lt;Produto&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetProdutosByUser(string):ActionResult&lt;List&lt;Produto&gt;&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="InativarProduto(string,string):IActionResult" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="PostProduto(string,string,string,double,double,int,string,string):ActionResult&lt;Produto&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="Put(string,string,Produto):IActionResult" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
         </Type>
-        <Type Name="UsuariosController" CoveredStatements="0" TotalStatements="113" CoveragePercent="0">
-          <Constructor Name="UsuariosController(IUsuarioRepository)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
-          <Method Name="AddListaDesejo(string,string):IActionResult" CoveredStatements="0" TotalStatements="8" CoveragePercent="0" />
-          <Method Name="AlterarSenha(string,string,string):IActionResult" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="AtivarUsuario(string):IActionResult" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="DeleteUserByEmail(string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="DeleteUserById(string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="DesativarUsuario(string):IActionResult" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetRecuperacao(string,long):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="10" CoveragePercent="0" />
-          <Method Name="GetUser():ActionResult&lt;List&lt;Usuario&gt;&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetUserByCpf(long):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetUserByEmail(string):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetUserById(string):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="GetUserByLogin(string,string):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="ListaDesejo(string):ActionResult&lt;List&lt;ListaDesejo&gt;&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="PostUsuario(string,long,string,string):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="10" CoveragePercent="0" />
-          <Method Name="Put(string,Usuario):IActionResult" CoveredStatements="0" TotalStatements="8" CoveragePercent="0" />
-          <Method Name="RemoverListaDesejo(string,string):IActionResult" CoveredStatements="0" TotalStatements="8" CoveragePercent="0" />
+        <Type Name="UsuariosController" CoveredStatements="0" TotalStatements="70" CoveragePercent="0">
+          <Constructor Name="UsuariosController(IUsuarioRepository)" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="AddListaDesejo(string,string):IActionResult" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+          <Method Name="AlterarSenha(string,string,string):IActionResult" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="AtivarUsuario(string):IActionResult" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="DeleteUserByEmail(string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+          <Method Name="DeleteUserById(string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+          <Method Name="DesativarUsuario(string):IActionResult" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetRecuperacao(string,long):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
+          <Method Name="GetUser():ActionResult&lt;List&lt;Usuario&gt;&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetUserByCpf(long):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetUserByEmail(string):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetUserById(string):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="GetUserByLogin(string,string):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="ListaDesejo(string):ActionResult&lt;List&lt;ListaDesejo&gt;&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="PostUsuario(string,long,string,string):ActionResult&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="8" CoveragePercent="0" />
+          <Method Name="Put(string,Usuario):IActionResult" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+          <Method Name="RemoverListaDesejo(string,string):IActionResult" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
         </Type>
       </Namespace>
-      <Namespace Name="Models" CoveredStatements="105" TotalStatements="217" CoveragePercent="48">
+      <Namespace Name="Models" CoveredStatements="103" TotalStatements="217" CoveragePercent="47">
         <Type Name="Carrinho" CoveredStatements="12" TotalStatements="12" CoveragePercent="100">
           <AutoProperty Name="CreatedAt:DateTime" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
             <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
@@ -190,8 +191,8 @@
             <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
           </AutoProperty>
         </Type>
-        <Type Name="ListaDesejo" CoveredStatements="0" TotalStatements="9" CoveragePercent="0">
-          <Constructor Name="ListaDesejo(string,string)" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+        <Type Name="ListaDesejo" CoveredStatements="0" TotalStatements="8" CoveragePercent="0">
+          <Constructor Name="ListaDesejo(string,string)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
           <AutoProperty Name="IdProduto:string" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
             <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
             <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
@@ -279,10 +280,14 @@
             <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
           </AutoProperty>
         </Type>
-        <Type Name="Produto" CoveredStatements="24" TotalStatements="24" CoveragePercent="100">
+        <Type Name="Produto" CoveredStatements="24" TotalStatements="26" CoveragePercent="92">
           <AutoProperty Name="Ativo:bool" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
             <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
             <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          </AutoProperty>
+          <AutoProperty Name="Carrinhos:List&lt;string&gt;" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+            <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
           </AutoProperty>
           <AutoProperty Name="Category:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
             <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
@@ -329,14 +334,14 @@
             <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
           </AutoProperty>
         </Type>
-        <Type Name="ProdutosCarrinho" CoveredStatements="20" TotalStatements="26" CoveragePercent="77">
+        <Type Name="ProdutosCarrinho" CoveredStatements="18" TotalStatements="26" CoveragePercent="69">
           <AutoProperty Name="DataItemCancelado:DateTime" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
             <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
             <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
           </AutoProperty>
-          <AutoProperty Name="DataItemEmTransporte:DateTime" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
-            <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
-            <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <AutoProperty Name="DataItemEmTransporte:DateTime" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+            <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
           </AutoProperty>
           <AutoProperty Name="DataItemEntregue:DateTime" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
             <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
@@ -383,8 +388,8 @@
             <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
           </AutoProperty>
         </Type>
-        <Type Name="ProdutoVenda" CoveredStatements="0" TotalStatements="6" CoveragePercent="0">
-          <Constructor Name="ProdutoVenda(string)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+        <Type Name="ProdutoVenda" CoveredStatements="0" TotalStatements="5" CoveragePercent="0">
+          <Constructor Name="ProdutoVenda(string)" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
           <AutoProperty Name="IdProdutoVenda:string" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
             <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
             <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
@@ -527,296 +532,304 @@
           </AutoProperty>
         </Type>
       </Namespace>
-      <Namespace Name="Repository.Repositories" CoveredStatements="332" TotalStatements="748" CoveragePercent="44">
-        <Type Name="CarrinhoRepository" CoveredStatements="124" TotalStatements="168" CoveragePercent="74">
-          <Constructor Name="CarrinhoRepository()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
-          <Method Name="AddEndereco(string,string):Carrinho" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
-          <Method Name="AddProduto(string,string):Carrinho" CoveredStatements="52" TotalStatements="54" CoveragePercent="96" />
-          <Method Name="AlterarQuantProduto(string,string,int):Carrinho" CoveredStatements="38" TotalStatements="50" CoveragePercent="76" />
-          <Method Name="BuscarCarrinhoPorUsuario(string):Carrinho" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="BuscarCarrinhos():List&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="CriarCarrinho(string):Carrinho" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
-          <Method Name="FinalizarCarrinho(string):Pedido" CoveredStatements="0" TotalStatements="20" CoveragePercent="0" />
-          <Method Name="RemoverCarrinhoPorUsuario(string):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="RemoverProduto(string,string):Carrinho" CoveredStatements="17" TotalStatements="19" CoveragePercent="89">
-            <OwnCoverage CoveredStatements="16" TotalStatements="18" CoveragePercent="89" />
+      <Namespace Name="Repository.Repositories" CoveredStatements="169" TotalStatements="491" CoveragePercent="34">
+        <Type Name="CarrinhoRepository" CoveredStatements="73" TotalStatements="109" CoveragePercent="67">
+          <Constructor Name="CarrinhoRepository()" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+          <Method Name="AddEndereco(string,string):Carrinho" CoveredStatements="0" TotalStatements="6" CoveragePercent="0" />
+          <Method Name="AddProduto(string,string):Carrinho" CoveredStatements="35" TotalStatements="36" CoveragePercent="97" />
+          <Method Name="AlterarQuantProduto(string,string,int):Carrinho" CoveredStatements="24" TotalStatements="29" CoveragePercent="83" />
+          <Method Name="BuscarCarrinho(string):Carrinho" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="BuscarCarrinhoPorUsuario(string):Carrinho" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="BuscarCarrinhos():List&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="CriarCarrinho(string):Carrinho" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="FinalizarCarrinho(string):Pedido" CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+          <Method Name="RemoverCarrinhoPorUsuario(string):void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
+          <Method Name="RemoverProduto(string,string):Carrinho" CoveredStatements="11" TotalStatements="12" CoveragePercent="92">
+            <OwnCoverage CoveredStatements="10" TotalStatements="11" CoveragePercent="91" />
             <AnonymousMethod Name="(ProdutosCarrinho):bool" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
           </Method>
         </Type>
-        <Type Name="EmailRepository" CoveredStatements="7" TotalStatements="10" CoveragePercent="70">
-          <Method Name="EnviarEmail(string,string,string,string):void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
+        <Type Name="EmailRepository" CoveredStatements="0" TotalStatements="7" CoveragePercent="0">
+          <Method Name="EnviarEmail(string,string,string,string):void" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
         </Type>
-        <Type Name="EnderecoRepository" CoveredStatements="83" TotalStatements="85" CoveragePercent="98">
-          <Constructor Name="EnderecoRepository()" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
-          <Method Name="AtualizarEndereco(string,string,Endereco):Endereco" CoveredStatements="13" TotalStatements="13" CoveragePercent="100" />
-          <Method Name="BuscarEndereco(string):Endereco" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="BuscarEnderecoPorCep(string):EnderecoViaCep" CoveredStatements="51" TotalStatements="53" CoveragePercent="96" />
-          <Method Name="BuscarEnderecoPorNome(string):List&lt;Endereco&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="BuscarEnderecoPorUsuario(string):List&lt;Endereco&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="BuscarEnderecos():List&lt;Endereco&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="CadastroEndereco(Endereco):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="RemoverEndereco(string):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Type Name="EnderecoRepository" CoveredStatements="45" TotalStatements="60" CoveragePercent="75">
+          <Constructor Name="EnderecoRepository()" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+          <Method Name="AtualizarEndereco(string,string,Endereco):Endereco" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+          <Method Name="BuscarEndereco(string):Endereco" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="BuscarEnderecoPorCep(string):EnderecoViaCep" CoveredStatements="32" TotalStatements="33" CoveragePercent="97" />
+          <Method Name="BuscarEnderecoPorNome(string):List&lt;Endereco&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="BuscarEnderecoPorUsuario(string):List&lt;Endereco&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="BuscarEnderecos():List&lt;Endereco&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="CadastroEndereco(Endereco):void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
+          <Method Name="RemoverEndereco(string):void" CoveredStatements="1" TotalStatements="10" CoveragePercent="10" />
         </Type>
-        <Type Name="PedidoRepository" CoveredStatements="6" TotalStatements="262" CoveragePercent="2">
-          <Constructor Name="PedidoRepository()" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
-          <Method Name="AtualizarPedido(Pedido,string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="AtualizarStatusPedido(string,string,int):Venda" CoveredStatements="0" TotalStatements="41" CoveragePercent="0" />
-          <Method Name="AtualizarStatusPedidoCompra(string,string,string,int):Pedido" CoveredStatements="0" TotalStatements="49" CoveragePercent="0" />
-          <Method Name="BuscarPedido(string):Pedido" CoveredStatements="0" TotalStatements="6" CoveragePercent="0" />
-          <Method Name="BuscarPedidoPorUsuario(string,string):Pedido" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="BuscarPedidos():List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="BuscarPedidosPorUsuario(string):List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="BuscarVendaPorUsuario(string,string):Venda" CoveredStatements="0" TotalStatements="10" CoveragePercent="0" />
-          <Method Name="BuscarVendas():List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="BuscarVendasPorUsuario(string):List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="10" CoveragePercent="0" />
-          <Method Name="CriarPedido(string,Carrinho):Pedido" CoveredStatements="0" TotalStatements="83" CoveragePercent="0" />
-          <Method Name="CriarVenda(Venda):Venda" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="DeletarPedidoPorUsuario(string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="PagarPedido(string,string):Pedido" CoveredStatements="0" TotalStatements="18" CoveragePercent="0" />
-          <Method Name="PedidosCompraEmAndamento(string):List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="9" CoveragePercent="0" />
-          <Method Name="PedidosVendaEmAndamento(string):List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="9" CoveragePercent="0" />
+        <Type Name="PedidoRepository" CoveredStatements="0" TotalStatements="176" CoveragePercent="0">
+          <Constructor Name="PedidoRepository()" CoveredStatements="0" TotalStatements="6" CoveragePercent="0" />
+          <Method Name="AtualizarPedido(Pedido,string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+          <Method Name="AtualizarStatusPedido(string,string,int):Venda" CoveredStatements="0" TotalStatements="27" CoveragePercent="0" />
+          <Method Name="AtualizarStatusPedidoCompra(string,string,string,int):Pedido" CoveredStatements="0" TotalStatements="30" CoveragePercent="0" />
+          <Method Name="BuscarPedido(string):Pedido" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="BuscarPedidoPorUsuario(string,string):Pedido" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="BuscarPedidos():List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="BuscarPedidosPorUsuario(string):List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="BuscarVendaPorUsuario(string,string):Venda" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+          <Method Name="BuscarVendas():List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="BuscarVendasPorUsuario(string):List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+          <Method Name="CriarPedido(string,Carrinho):Pedido" CoveredStatements="0" TotalStatements="71" CoveragePercent="0" />
+          <Method Name="CriarVenda(Venda):Venda" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="DeletarPedidoPorUsuario(string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+          <Method Name="PagarPedido(string,string):Pedido" CoveredStatements="0" TotalStatements="12" CoveragePercent="0" />
+          <Method Name="PedidosCompraEmAndamento(string):List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <Method Name="PedidosVendaEmAndamento(string):List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
         </Type>
-        <Type Name="ProdutoRepository" CoveredStatements="51" TotalStatements="65" CoveragePercent="78">
-          <Constructor Name="ProdutoRepository()" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
-          <Method Name="AtivaProduto(string,string):Produto" CoveredStatements="11" TotalStatements="11" CoveragePercent="100" />
-          <Method Name="AtualizarProduto(string,string,Produto):Produto" CoveredStatements="9" TotalStatements="11" CoveragePercent="82" />
-          <Method Name="BuscarProduto(string):Produto" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="BuscarProdutoPorNomeOrdemAbc(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="BuscarProdutoPorNomeOrdemMaiorPreco(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="BuscarProdutoPorNomeOrdemMenorPreco(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="BuscarProdutoPorNomeOrdemZyx(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="BuscarProdutoPorUsuario(string,string):Produto" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="BuscarProdutos():List&lt;Produto&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="BuscarProdutosPorNome(string):List&lt;Produto&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="BuscarProdutosPorUsuario(string):List&lt;Produto&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="CadastroProduto(Produto):void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
-          <Method Name="InativaProduto(string,string):Produto" CoveredStatements="11" TotalStatements="11" CoveragePercent="100" />
+        <Type Name="ProdutoRepository" CoveredStatements="24" TotalStatements="49" CoveragePercent="49">
+          <Constructor Name="ProdutoRepository()" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+          <Method Name="AtivaProduto(string,string):Produto" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+          <Method Name="AtualizarProduto(string,string,Produto):Produto" CoveredStatements="5" TotalStatements="15" CoveragePercent="33">
+            <OwnCoverage CoveredStatements="5" TotalStatements="14" CoveragePercent="36" />
+            <AnonymousMethod Name="(ProdutosCarrinho):bool" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          </Method>
+          <Method Name="BuscarProduto(string):Produto" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="BuscarProdutoPorNomeOrdemAbc(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="BuscarProdutoPorNomeOrdemMaiorPreco(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="BuscarProdutoPorNomeOrdemMenorPreco(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="BuscarProdutoPorNomeOrdemZyx(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="BuscarProdutoPorUsuario(string,string):Produto" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="BuscarProdutos():List&lt;Produto&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="BuscarProdutosPorNome(string):List&lt;Produto&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="BuscarProdutosPorUsuario(string):List&lt;Produto&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="CadastroProduto(Produto):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <Method Name="InativaProduto(string,string):Produto" CoveredStatements="5" TotalStatements="14" CoveragePercent="36">
+            <OwnCoverage CoveredStatements="5" TotalStatements="13" CoveragePercent="38" />
+            <AnonymousMethod Name="(ProdutosCarrinho):bool" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          </Method>
         </Type>
-        <Type Name="UsuarioRepository" CoveredStatements="61" TotalStatements="158" CoveragePercent="39">
-          <Constructor Name="UsuarioRepository()" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="AdicionarListaDesejo(string,string):void" CoveredStatements="0" TotalStatements="31" CoveragePercent="0" />
-          <Method Name="AlterarSenha(string,string,string):Usuario" CoveredStatements="13" TotalStatements="16" CoveragePercent="81" />
-          <Method Name="AtivarUsuario(string):Usuario" CoveredStatements="0" TotalStatements="12" CoveragePercent="0" />
-          <Method Name="AtualizarUsuario(string,Usuario):void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
-          <Method Name="BuscarUsuario(string):Usuario" CoveredStatements="5" TotalStatements="6" CoveragePercent="83" />
-          <Method Name="BuscarUsuarioPorEmail(string):Usuario" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="BuscarUsuarios():List&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="CadastroUsuario(Usuario):void" CoveredStatements="11" TotalStatements="11" CoveragePercent="100" />
-          <Method Name="CriptografarSenha(string):string" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
-          <Method Name="DeletarUsuarioPorEmail(string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="DeletarUsuarioPorId(string):void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
-          <Method Name="GenerateHash():string" CoveredStatements="0" TotalStatements="13" CoveragePercent="0" />
-          <Method Name="InativarUsuario(string):Usuario" CoveredStatements="0" TotalStatements="12" CoveragePercent="0" />
-          <Method Name="RecuperarSenha(string,long):void" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
-          <Method Name="RemoverListaDesejo(string,string):void" CoveredStatements="0" TotalStatements="12" CoveragePercent="0">
-            <OwnCoverage CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+        <Type Name="UsuarioRepository" CoveredStatements="27" TotalStatements="90" CoveragePercent="30">
+          <Constructor Name="UsuarioRepository()" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Method Name="AdicionarListaDesejo(string,string):void" CoveredStatements="0" TotalStatements="17" CoveragePercent="0" />
+          <Method Name="AlterarSenha(string,string,string):Usuario" CoveredStatements="7" TotalStatements="9" CoveragePercent="78" />
+          <Method Name="AtivarUsuario(string):Usuario" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
+          <Method Name="AtualizarUsuario(string,Usuario):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <Method Name="BuscarUsuario(string):Usuario" CoveredStatements="2" TotalStatements="3" CoveragePercent="67" />
+          <Method Name="BuscarUsuarioPorEmail(string):Usuario" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="BuscarUsuarios():List&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="CadastroUsuario(Usuario):void" CoveredStatements="5" TotalStatements="6" CoveragePercent="83" />
+          <Method Name="CriptografarSenha(string):string" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <Method Name="DeletarUsuarioPorEmail(string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+          <Method Name="DeletarUsuarioPorId(string):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <Method Name="GenerateHash():string" CoveredStatements="0" TotalStatements="9" CoveragePercent="0" />
+          <Method Name="InativarUsuario(string):Usuario" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
+          <Method Name="RecuperarSenha(string,long):void" CoveredStatements="0" TotalStatements="6" CoveragePercent="0" />
+          <Method Name="RemoverListaDesejo(string,string):void" CoveredStatements="0" TotalStatements="7" CoveragePercent="0">
+            <OwnCoverage CoveredStatements="0" TotalStatements="6" CoveragePercent="0" />
             <AnonymousMethod Name="(ListaDesejo):bool" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
           </Method>
-          <Method Name="VerificarCpf(long):Usuario" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="VerificarEmail(string):Usuario" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="VerificarLogin(string,string):Usuario" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <Method Name="VerificarCpf(long):Usuario" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="VerificarEmail(string):Usuario" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="VerificarLogin(string,string):Usuario" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
         </Type>
       </Namespace>
-      <Namespace Name="Service" CoveredStatements="131" TotalStatements="237" CoveragePercent="55">
-        <Namespace Name="Services" CoveredStatements="90" TotalStatements="188" CoveragePercent="48">
-          <Type Name="CarrinhoService" CoveredStatements="20" TotalStatements="27" CoveragePercent="74">
-            <Constructor Name="CarrinhoService()" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+      <Namespace Name="Service" CoveredStatements="77" TotalStatements="137" CoveragePercent="56">
+        <Namespace Name="Services" CoveredStatements="55" TotalStatements="110" CoveragePercent="50">
+          <Type Name="CarrinhoService" CoveredStatements="14" TotalStatements="18" CoveragePercent="78">
+            <Constructor Name="CarrinhoService()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
             <AutoProperty Name="Today:DateTime" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
               <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
             </AutoProperty>
-            <Method Name="CreateCarrinho(Carrinho):Carrinho" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
-            <Method Name="EndCarrinhoByUser(string):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="EndCarrinhos():void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetCarrinho():List&lt;Carrinho&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetCarrinhoByUser(string):Carrinho" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="UpdateCarrinho(Carrinho,string):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+            <Method Name="CreateCarrinho(Carrinho):Carrinho" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+            <Method Name="EndCarrinhoByUser(string):void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
+            <Method Name="EndCarrinhos():void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+            <Method Name="GetCarrinho():List&lt;Carrinho&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="GetCarrinhoById(string):Carrinho" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="GetCarrinhoByUser(string):Carrinho" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="UpdateCarrinho(Carrinho,string):void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
           </Type>
-          <Type Name="DocumentoService" CoveredStatements="0" TotalStatements="15" CoveragePercent="0">
+          <Type Name="DocumentoService" CoveredStatements="0" TotalStatements="11" CoveragePercent="0">
             <Constructor Name="DocumentoService()" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="CarregarImagem(string):string" CoveredStatements="0" TotalStatements="6" CoveragePercent="0" />
-            <Method Name="CarregarNFe(string):string" CoveredStatements="0" TotalStatements="6" CoveragePercent="0" />
+            <Method Name="CarregarImagem(string):string" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+            <Method Name="CarregarNFe(string):string" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
           </Type>
-          <Type Name="EnderecoService" CoveredStatements="29" TotalStatements="29" CoveragePercent="100">
-            <Constructor Name="EnderecoService()" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
-            <Method Name="CreateEndereco(Endereco):Endereco" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
-            <Method Name="GetEndereco():List&lt;Endereco&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="GetEnderecoById(string):Endereco" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="GetEnderecoByName(string):List&lt;Endereco&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="GetEnderecoByUser(string):List&lt;Endereco&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="RemoveEndereco(string):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="UpdateEndereco(string,Endereco):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <Type Name="EnderecoService" CoveredStatements="16" TotalStatements="16" CoveragePercent="100">
+            <Constructor Name="EnderecoService()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+            <Method Name="CreateEndereco(Endereco):Endereco" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+            <Method Name="GetEndereco():List&lt;Endereco&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="GetEnderecoById(string):Endereco" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="GetEnderecoByName(string):List&lt;Endereco&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="GetEnderecoByUser(string):List&lt;Endereco&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="RemoveEndereco(string):void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
+            <Method Name="UpdateEndereco(string,Endereco):void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
           </Type>
-          <Type Name="PedidoService" CoveredStatements="6" TotalStatements="32" CoveragePercent="19">
-            <Constructor Name="PedidoService()" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
-            <Method Name="CreatePedido(Pedido):Pedido" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
-            <Method Name="EndPedidoByUser(string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetPedido(string):Pedido" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetPedidoByUser(string,string):Pedido" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetPedidos():List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetPedidosAndamentoByUser(string):List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetPedidosByUser(string):List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="UpdatePedido(Pedido,string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <Type Name="PedidoService" CoveredStatements="5" TotalStatements="17" CoveragePercent="29">
+            <Constructor Name="PedidoService()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+            <Method Name="CreatePedido(Pedido):Pedido" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+            <Method Name="EndPedidoByUser(string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+            <Method Name="GetPedido(string):Pedido" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="GetPedidoByUser(string,string):Pedido" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="GetPedidos():List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="GetPedidosAndamentoByUser(string):List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="GetPedidosByUser(string):List&lt;Pedido&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="UpdatePedido(Pedido,string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
           </Type>
-          <Type Name="ProdutoService" CoveredStatements="29" TotalStatements="53" CoveragePercent="55">
-            <Constructor Name="ProdutoService()" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
-            <Method Name="CreateProduto(Produto):Produto" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
-            <Method Name="GetProduto():List&lt;Produto&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="GetProdutoById(string):Produto" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="GetProdutoByUser(string,string):Produto" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="GetProdutosByName(string):List&lt;Produto&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="GetProdutosByNameAsc(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="6" CoveragePercent="0">
-              <OwnCoverage CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+          <Type Name="ProdutoService" CoveredStatements="15" TotalStatements="31" CoveragePercent="48">
+            <Constructor Name="ProdutoService()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+            <Method Name="CreateProduto(Produto):Produto" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+            <Method Name="GetProduto():List&lt;Produto&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="GetProdutoById(string):Produto" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="GetProdutoByUser(string,string):Produto" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="GetProdutosByName(string):List&lt;Produto&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="GetProdutosByNameAsc(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0">
+              <OwnCoverage CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
               <AnonymousMethod Name="(Produto):string" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
             </Method>
-            <Method Name="GetProdutosByNameDesc(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="6" CoveragePercent="0">
-              <OwnCoverage CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+            <Method Name="GetProdutosByNameDesc(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0">
+              <OwnCoverage CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
               <AnonymousMethod Name="(Produto):string" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
             </Method>
-            <Method Name="GetProdutosByNameOrderByPrice(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="6" CoveragePercent="0">
-              <OwnCoverage CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+            <Method Name="GetProdutosByNameOrderByPrice(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0">
+              <OwnCoverage CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
               <AnonymousMethod Name="(Produto):double" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
             </Method>
-            <Method Name="GetProdutosByNameOrderByPriceDesc(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="6" CoveragePercent="0">
-              <OwnCoverage CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+            <Method Name="GetProdutosByNameOrderByPriceDesc(string):List&lt;Produto&gt;" CoveredStatements="0" TotalStatements="4" CoveragePercent="0">
+              <OwnCoverage CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
               <AnonymousMethod Name="(Produto):double" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
             </Method>
-            <Method Name="GetProdutosByUser(string):List&lt;Produto&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-            <Method Name="UpdateProduto(string,Produto):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+            <Method Name="GetProdutosByUser(string):List&lt;Produto&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+            <Method Name="UpdateProduto(string,Produto):void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
           </Type>
-          <Type Name="VendaService" CoveredStatements="6" TotalStatements="32" CoveragePercent="19">
-            <Constructor Name="VendaService()" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+          <Type Name="VendaService" CoveredStatements="5" TotalStatements="17" CoveragePercent="29">
+            <Constructor Name="VendaService()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
             <AutoProperty Name="Today:DateTime" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
               <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
             </AutoProperty>
-            <Method Name="CreateSale(Venda):Venda" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
-            <Method Name="EndSaleByUser(string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetSale(string):Venda" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetSaleByUser(string,string):Venda" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetSales():List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetSalesAndamentoByUser(string):List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="GetSalesByUser(string):List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-            <Method Name="UpdateSale(Venda,string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+            <Method Name="CreateSale(Venda):Venda" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+            <Method Name="EndSaleByUser(string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+            <Method Name="GetSale(string):Venda" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="GetSaleByUser(string,string):Venda" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="GetSales():List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="GetSalesAndamentoByUser(string):List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="GetSalesByUser(string):List&lt;Venda&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+            <Method Name="UpdateSale(Venda,string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
           </Type>
         </Namespace>
-        <Type Name="UsuarioService" CoveredStatements="41" TotalStatements="49" CoveragePercent="84">
-          <Constructor Name="UsuarioService()" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
-          <Method Name="CreateUsuario(Usuario):Usuario" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
-          <Method Name="DeleteUsuarioByEmail(string):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="DeleteUsuarioById(string):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="GetUsuario():List&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
-          <Method Name="GetUsuarioByCpf(long):Usuario" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="GetUsuarioByEmail(string):Usuario" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="GetUsuarioById(string):Usuario" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="UpdateUsuario(string,Usuario):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <Method Name="VerificarCpf(long):bool" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
-          <Method Name="VerificarEmail(string):bool" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
-          <Method Name="VerificarLogin(string,string):Usuario" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Type Name="UsuarioService" CoveredStatements="22" TotalStatements="27" CoveragePercent="81">
+          <Constructor Name="UsuarioService()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+          <Method Name="CreateUsuario(Usuario):Usuario" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <Method Name="DeleteUsuarioByEmail(string):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+          <Method Name="DeleteUsuarioById(string):void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
+          <Method Name="GetUsuario():List&lt;Usuario&gt;" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <Method Name="GetUsuarioByCpf(long):Usuario" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="GetUsuarioByEmail(string):Usuario" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="GetUsuarioById(string):Usuario" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <Method Name="UpdateUsuario(string,Usuario):void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
+          <Method Name="VerificarCpf(long):bool" CoveredStatements="3" TotalStatements="4" CoveragePercent="75" />
+          <Method Name="VerificarEmail(string):bool" CoveredStatements="3" TotalStatements="4" CoveragePercent="75" />
+          <Method Name="VerificarLogin(string,string):Usuario" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
         </Type>
       </Namespace>
-      <Type Name="Program" CoveredStatements="0" TotalStatements="7" CoveragePercent="0">
-        <Method Name="CreateHostBuilder(string[]):IHostBuilder" CoveredStatements="0" TotalStatements="4" CoveragePercent="0">
+      <Type Name="Program" CoveredStatements="0" TotalStatements="5" CoveragePercent="0">
+        <Method Name="CreateHostBuilder(string[]):IHostBuilder" CoveredStatements="0" TotalStatements="3" CoveragePercent="0">
           <OwnCoverage CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
-          <AnonymousMethod Name="(IWebHostBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(IWebHostBuilder):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
         </Method>
-        <Method Name="Main(string[]):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Method Name="Main(string[]):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
       </Type>
-      <Type Name="Startup" CoveredStatements="0" TotalStatements="31" CoveragePercent="0">
-        <Constructor Name="Startup(IConfiguration)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+      <Type Name="Startup" CoveredStatements="0" TotalStatements="25" CoveragePercent="0">
+        <Constructor Name="Startup(IConfiguration)" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
         <AutoProperty Name="Configuration:IConfiguration" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
           <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
         </AutoProperty>
-        <Method Name="Configure(IApplicationBuilder,IWebHostEnvironment):void" CoveredStatements="0" TotalStatements="15" CoveragePercent="0">
-          <OwnCoverage CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+        <Method Name="Configure(IApplicationBuilder,IWebHostEnvironment):void" CoveredStatements="0" TotalStatements="11" CoveragePercent="0">
+          <OwnCoverage CoveredStatements="0" TotalStatements="8" CoveragePercent="0" />
           <AnonymousMethod Name="(CorsPolicyBuilder):void" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
-          <AnonymousMethod Name="(IEndpointRouteBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(IEndpointRouteBuilder):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
         </Method>
-        <Method Name="ConfigureServices(IServiceCollection):void" CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+        <Method Name="ConfigureServices(IServiceCollection):void" CoveredStatements="0" TotalStatements="10" CoveragePercent="0" />
       </Type>
     </Namespace>
   </Project>
-  <Project Name="BackECommerceTest" CoveredStatements="565" TotalStatements="955" CoveragePercent="59">
-    <Namespace Name="BackECommerceTest" CoveredStatements="193" TotalStatements="257" CoveragePercent="75">
-      <Type Name="CarrinhoTest" CoveredStatements="125" TotalStatements="180" CoveragePercent="69">
-        <Constructor Name="CarrinhoTest()" CoveredStatements="9" TotalStatements="9" CoveragePercent="100" />
-        <Method Name="AddEnderecoErro():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="AddEnderecoSucesso():void" CoveredStatements="16" TotalStatements="19" CoveragePercent="84" />
-        <Method Name="AddProdutoInativo():void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
-        <Method Name="AddProdutoProprioUser():void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
-        <Method Name="AddProdutoRepedito():void" CoveredStatements="6" TotalStatements="9" CoveragePercent="67" />
-        <Method Name="AddProdutoSemEstoque():void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
-        <Method Name="AddProdutoSucesso():void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
-        <Method Name="AumentarQuantProdutoErro():void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
-        <Method Name="AumentarQuantProdutoSucesso():void" CoveredStatements="6" TotalStatements="9" CoveragePercent="67" />
-        <Method Name="CriaCarrinhoErro():void" CoveredStatements="5" TotalStatements="8" CoveragePercent="63" />
-        <Method Name="CriaCarrinhoProdutoSemEstoque():void" CoveredStatements="5" TotalStatements="8" CoveragePercent="63" />
-        <Method Name="CriaCarrinhoSucesso():void" CoveredStatements="5" TotalStatements="8" CoveragePercent="63" />
-        <Method Name="DiminuirQuantProdutoSemEstoqueSucesso():void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
-        <Method Name="DiminuirQuantProdutoSucesso():void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
-        <Method Name="RemoveProdutoSemCarrinhoSucesso():void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
-        <Method Name="RemoveProdutosSucesso():void" CoveredStatements="7" TotalStatements="10" CoveragePercent="70" />
-        <Method Name="RemoveProdutoSucesso():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+  <Project Name="BackECommerceTest" CoveredStatements="430" TotalStatements="605" CoveragePercent="71">
+    <Namespace Name="BackECommerceTest" CoveredStatements="169" TotalStatements="194" CoveragePercent="87">
+      <Type Name="CarrinhoTest" CoveredStatements="110" TotalStatements="130" CoveragePercent="85">
+        <Constructor Name="CarrinhoTest()" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="AddEnderecoErro():void" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
+        <Method Name="AddEnderecoSucesso():void" CoveredStatements="16" TotalStatements="17" CoveragePercent="94" />
+        <Method Name="AddProdutoInativo():void" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
+        <Method Name="AddProdutoProprioUser():void" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
+        <Method Name="AddProdutoRepedito():void" CoveredStatements="5" TotalStatements="6" CoveragePercent="83" />
+        <Method Name="AddProdutoSemEstoque():void" CoveredStatements="4" TotalStatements="8" CoveragePercent="50" />
+        <Method Name="AddProdutoSucesso():void" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
+        <Method Name="AumentarQuantProdutoErro():void" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
+        <Method Name="AumentarQuantProdutoSucesso():void" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
+        <Method Name="CriaCarrinhoErro():void" CoveredStatements="4" TotalStatements="5" CoveragePercent="80" />
+        <Method Name="CriaCarrinhoProdutoSemEstoque():void" CoveredStatements="4" TotalStatements="5" CoveragePercent="80" />
+        <Method Name="CriaCarrinhoSucesso():void" CoveredStatements="4" TotalStatements="5" CoveragePercent="80" />
+        <Method Name="DiminuirQuantProdutoSemEstoqueSucesso():void" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
+        <Method Name="DiminuirQuantProdutoSucesso():void" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
+        <Method Name="RemoveProdutoSemCarrinhoSucesso():void" CoveredStatements="6" TotalStatements="7" CoveragePercent="86" />
+        <Method Name="RemoveProdutosSucesso():void" CoveredStatements="7" TotalStatements="8" CoveragePercent="88" />
+        <Method Name="RemoveProdutoSucesso():void" CoveredStatements="4" TotalStatements="5" CoveragePercent="80" />
       </Type>
-      <Type Name="UsuarioTests" CoveredStatements="68" TotalStatements="77" CoveragePercent="88">
-        <Constructor Name="UsuarioTests()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
-        <Method Name="AlterarUsuarioSucesso():void" CoveredStatements="13" TotalStatements="13" CoveragePercent="100" />
-        <Method Name="BuscaUsuarioCpfErro():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
-        <Method Name="BuscaUsuarioCpfSucesso():void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
-        <Method Name="BuscaUsuarioEmailErro():void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
-        <Method Name="BuscaUsuarioEmailSucesso():void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
-        <Method Name="CadastroUsuarioTest():void" CoveredStatements="11" TotalStatements="11" CoveragePercent="100" />
-        <Method Name="VerficaLoginSenhaErro():void" CoveredStatements="12" TotalStatements="15" CoveragePercent="80" />
-        <Method Name="VerificaLoginSucesso():void" CoveredStatements="11" TotalStatements="14" CoveragePercent="79" />
-      </Type>
-    </Namespace>
-    <Namespace Name="EnderecoTeste.Tests" CoveredStatements="95" TotalStatements="185" CoveragePercent="51">
-      <Type Name="EnderecoTests" CoveredStatements="95" TotalStatements="185" CoveragePercent="51">
-        <Constructor Name="EnderecoTests()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
-        <Method Name="AtualizarEnderecoTest():void" CoveredStatements="9" TotalStatements="19" CoveragePercent="47" />
-        <Method Name="AtualizarEnderecoTest_EnderecoInexistente():void" CoveredStatements="8" TotalStatements="15" CoveragePercent="53" />
-        <Method Name="AtualizarEnderecoTest_UserDiferente():void" CoveredStatements="8" TotalStatements="15" CoveragePercent="53" />
-        <Method Name="BuscarEnderecoPorCepTest():void" CoveredStatements="8" TotalStatements="18" CoveragePercent="44" />
-        <Method Name="BuscarEnderecoPorNomeTest():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="BuscarEnderecoPorNomeTest_EnderecoInexistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarEnderecoPorUsuarioTest():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="BuscarEnderecoPorUsuarioTest_UserInexistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarEnderecosTest():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="BuscarEnderecoTest():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="BuscarEnderecoTest_EnderecoInexistente():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="CadastroEnderecoTest():void" CoveredStatements="20" TotalStatements="27" CoveragePercent="74" />
+      <Type Name="UsuarioTests" CoveredStatements="59" TotalStatements="64" CoveragePercent="92">
+        <Constructor Name="UsuarioTests()" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="AlterarUsuarioSucesso():void" CoveredStatements="12" TotalStatements="12" CoveragePercent="100" />
+        <Method Name="BuscaUsuarioCpfErro():void" CoveredStatements="3" TotalStatements="4" CoveragePercent="75" />
+        <Method Name="BuscaUsuarioCpfSucesso():void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="BuscaUsuarioEmailErro():void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="BuscaUsuarioEmailSucesso():void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="CadastroUsuarioTest():void" CoveredStatements="10" TotalStatements="10" CoveragePercent="100" />
+        <Method Name="VerficaLoginSenhaErro():void" CoveredStatements="11" TotalStatements="13" CoveragePercent="85" />
+        <Method Name="VerificaLoginSucesso():void" CoveredStatements="10" TotalStatements="12" CoveragePercent="83" />
       </Type>
     </Namespace>
-    <Namespace Name="ProdutoTeste.Tests" CoveredStatements="277" TotalStatements="513" CoveragePercent="54">
-      <Type Name="ProdutoTests" CoveredStatements="277" TotalStatements="513" CoveragePercent="54">
-        <Constructor Name="ProdutoTests()" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
-        <Method Name="AtivaProdutoTest():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="AtivaProdutoTest_Outro():void" CoveredStatements="10" TotalStatements="24" CoveragePercent="42" />
-        <Method Name="AtualizarProdutoTest():void" CoveredStatements="9" TotalStatements="19" CoveragePercent="47" />
-        <Method Name="AtualizarProdutoTest_AlterarEstoque():void" CoveredStatements="9" TotalStatements="19" CoveragePercent="47" />
-        <Method Name="BuscarProdutoPorNomeOrdemAbcTest():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorNomeOrdemAbcTest_ProdutoInexistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorNomeOrdemMaiorPrecoTest():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorNomeOrdemMaiorPrecoTest_ProdutoInexistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorNomeOrdemMenorPrecoTest():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorNomeOrdemMenorPrecoTest_ProdutoInexistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorNomeOrdemZyxTest():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorNomeOrdemZyxTest_ProdutoInexistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorUsuarioTest():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorUsuarioTest_UserExistente_ProdutoInexistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorUsuarioTest_UserInexistente_ProdutoExistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutoPorUsuarioTest_UserInexistente_ProdutoInexistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutosPorNomeTest():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutosPorNomeTest_ProdutoInexistente():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="BuscarProdutosPorUsuarioTest():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="BuscarProdutosPorUsuarioTest_UserInexistente():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="BuscarProdutosTest():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="BuscarProdutoTest():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="BuscarProdutoTest_ProdInexistente():void" CoveredStatements="5" TotalStatements="12" CoveragePercent="42" />
-        <Method Name="CadastroProdutoTest():void" CoveredStatements="29" TotalStatements="39" CoveragePercent="74" />
-        <Method Name="CadastroProdutoTest_SemFrete():void" CoveredStatements="29" TotalStatements="39" CoveragePercent="74" />
-        <Method Name="CadastroProdutoTest_SemPreco():void" CoveredStatements="28" TotalStatements="38" CoveragePercent="74" />
-        <Method Name="CadastroProdutoTest_SemQtde():void" CoveredStatements="28" TotalStatements="38" CoveragePercent="74" />
-        <Method Name="InativaProdutoTest():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
-        <Method Name="InativaProdutoTest_Outro():void" CoveredStatements="9" TotalStatements="24" CoveragePercent="38" />
+    <Namespace Name="EnderecoTeste.Tests" CoveredStatements="68" TotalStatements="109" CoveragePercent="62">
+      <Type Name="EnderecoTests" CoveredStatements="68" TotalStatements="109" CoveragePercent="62">
+        <Constructor Name="EnderecoTests()" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="AtualizarEnderecoTest():void" CoveredStatements="7" TotalStatements="12" CoveragePercent="58" />
+        <Method Name="AtualizarEnderecoTest_EnderecoInexistente():void" CoveredStatements="6" TotalStatements="9" CoveragePercent="67" />
+        <Method Name="AtualizarEnderecoTest_UserDiferente():void" CoveredStatements="6" TotalStatements="9" CoveragePercent="67" />
+        <Method Name="BuscarEnderecoPorCepTest():void" CoveredStatements="6" TotalStatements="11" CoveragePercent="55" />
+        <Method Name="BuscarEnderecoPorNomeTest():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="BuscarEnderecoPorNomeTest_EnderecoInexistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarEnderecoPorUsuarioTest():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="BuscarEnderecoPorUsuarioTest_UserInexistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarEnderecosTest():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="BuscarEnderecoTest():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="BuscarEnderecoTest_EnderecoInexistente():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="CadastroEnderecoTest():void" CoveredStatements="16" TotalStatements="20" CoveragePercent="80" />
+      </Type>
+    </Namespace>
+    <Namespace Name="ProdutoTeste.Tests" CoveredStatements="193" TotalStatements="302" CoveragePercent="64">
+      <Type Name="ProdutoTests" CoveredStatements="193" TotalStatements="302" CoveragePercent="64">
+        <Constructor Name="ProdutoTests()" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="AtivaProdutoTest():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="AtivaProdutoTest_Outro():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
+        <Method Name="AtualizarProdutoTest():void" CoveredStatements="7" TotalStatements="12" CoveragePercent="58" />
+        <Method Name="AtualizarProdutoTest_AlterarEstoque():void" CoveredStatements="7" TotalStatements="12" CoveragePercent="58" />
+        <Method Name="BuscarProdutoPorNomeOrdemAbcTest():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorNomeOrdemAbcTest_ProdutoInexistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorNomeOrdemMaiorPrecoTest():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorNomeOrdemMaiorPrecoTest_ProdutoInexistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorNomeOrdemMenorPrecoTest():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorNomeOrdemMenorPrecoTest_ProdutoInexistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorNomeOrdemZyxTest():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorNomeOrdemZyxTest_ProdutoInexistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorUsuarioTest():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorUsuarioTest_UserExistente_ProdutoInexistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorUsuarioTest_UserInexistente_ProdutoExistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutoPorUsuarioTest_UserInexistente_ProdutoInexistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutosPorNomeTest():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutosPorNomeTest_ProdutoInexistente():void" CoveredStatements="4" TotalStatements="7" CoveragePercent="57" />
+        <Method Name="BuscarProdutosPorUsuarioTest():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="BuscarProdutosPorUsuarioTest_UserInexistente():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="BuscarProdutosTest():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="BuscarProdutoTest():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="BuscarProdutoTest_ProdInexistente():void" CoveredStatements="3" TotalStatements="6" CoveragePercent="50" />
+        <Method Name="CadastroProdutoTest():void" CoveredStatements="22" TotalStatements="27" CoveragePercent="81" />
+        <Method Name="CadastroProdutoTest_SemFrete():void" CoveredStatements="22" TotalStatements="27" CoveragePercent="81" />
+        <Method Name="CadastroProdutoTest_SemPreco():void" CoveredStatements="21" TotalStatements="26" CoveragePercent="81" />
+        <Method Name="CadastroProdutoTest_SemQtde():void" CoveredStatements="21" TotalStatements="26" CoveragePercent="81" />
+        <Method Name="InativaProdutoTest():void" CoveredStatements="2" TotalStatements="7" CoveragePercent="29" />
+        <Method Name="InativaProdutoTest_Outro():void" CoveredStatements="6" TotalStatements="13" CoveragePercent="46" />
       </Type>
     </Namespace>
   </Project>
