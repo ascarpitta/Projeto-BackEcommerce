@@ -34,6 +34,9 @@ namespace BackECommerce.Models
         [BsonRequired]
         public string Category { get; set; }
 
+        [BsonElement("url_imagem")]
+        public string url_imagem { get; set; }
+
         [BsonElement("marca")]
         public string Marca { get; set; }
 

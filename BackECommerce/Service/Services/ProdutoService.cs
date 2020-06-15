@@ -40,6 +40,11 @@ namespace BackECommerce.Service.Services
             _produtos.ReplaceOne(usuario => usuario.Id == id, produtoNovo);
         }
 
+        public void UpdateProdutoById(string id, Produto produtoNovo)
+        {
+            _produtos.ReplaceOne(produto => produto.Id == id, produtoNovo);
+        }
+
         public List<Produto> GetProdutosByName(string nome)
         {
             return _produtos.Find<Produto>(produto => produto.Name.Contains(nome)).ToList();

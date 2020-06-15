@@ -1,11 +1,14 @@
-﻿using System;
+﻿using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BackECommerce.Models;
-using BackECommerce.Repository.Interfaces;
 using Microsoft.AspNetCore.Http;
+using BackECommerce.Repository.Interfaces;
+using BackECommerce.Service.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using HttpMultipartParser;
 
 namespace BackECommerce.Controllers
 {
@@ -59,6 +62,45 @@ namespace BackECommerce.Controllers
                 return NotFound();
             }
             return produto;
+        }
+
+        [HttpPost("Imagem/Armazenar/{id}")]
+        public ActionResult<Produto> StoreProductImage(string id)
+        {
+            DocumentoService documentoService = new DocumentoService();
+            var image = Request.Form.Files.First();
+            string filePath = string.Empty;
+
+            if (image.Length <= 0)
+            {
+                return NotFound();
+            }
+
+            using (var target = new MemoryStream())
+            {
+                image.CopyTo(target);
+                byte[] imageBytes = target.ToArray();
+                using (var fs = new FileStream(image.FileName, FileMode.Create, FileAccess.Write))
+                {
+                    fs.Write(imageBytes, 0, imageBytes.Length);
+                    filePath = fs.Name;
+                }
+            }
+            string public_url = documentoService.CarregarImagem(filePath);
+
+            if (filePath != string.Empty)
+            {
+                System.IO.File.Delete(filePath);
+            }
+
+            var product = _produtoRepository.BuscarProduto(id);
+
+            Produto produto = new Produto();
+
+            produto = product;
+            produto.url_imagem = public_url;
+
+            return _produtoRepository.AtualizarDadosProduto(id, produto);           
         }
 
         [HttpGet("Busca/{busca}")]

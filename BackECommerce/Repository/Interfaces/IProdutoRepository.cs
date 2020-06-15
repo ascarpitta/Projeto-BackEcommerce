@@ -19,6 +19,7 @@ namespace BackECommerce.Repository.Interfaces
         List<Produto> BuscarProdutoPorNomeOrdemAbc(string nome); //No plano de teste
         List<Produto> BuscarProdutoPorNomeOrdemZyx(string nome); //No plano de teste
         Produto AtualizarProduto(string userId, string produtoid, Produto produtoNovo); //No plano de teste
+        Produto AtualizarDadosProduto(string produtoid, Produto produtoNovo);
         Produto AtivaProduto(string userId, string produtoId); //No plano de teste
         Produto InativaProduto(string userId, string produtoId); //No plano de teste
     }
