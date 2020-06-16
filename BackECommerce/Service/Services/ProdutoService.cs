@@ -37,7 +37,7 @@ namespace BackECommerce.Service.Services
         
         public void UpdateProduto(string id, Produto produtoNovo)
         {
-            _produtos.ReplaceOne(usuario => usuario.Id == id, produtoNovo);
+            _produtos.ReplaceOne(produto => produto.Id == id, produtoNovo);
         }
 
         public List<Produto> GetProdutosByName(string nome)
