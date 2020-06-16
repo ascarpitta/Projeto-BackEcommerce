@@ -101,7 +101,7 @@ namespace BackECommerce.Controllers
             return NotFound();
         }
 
-        [HttpPost("CadastroUsuario/{email}/{cpf}/{nome}/{senha}")]
+        [HttpGet("CadastroUsuario/{email}/{cpf}/{nome}/{senha}")]
         public ActionResult<Usuario> PostUsuario(string email, long cpf, string nome, string senha)
         {
             Usuario usuario = new Usuario();

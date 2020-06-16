@@ -121,7 +121,7 @@ namespace BackECommerce.Controllers
             return NotFound();
         }
 
-        [HttpPost("CadastroProduto/{idUsuario}/{nome}/{descricao}/{preco}/{frete}/{quantidade}/{categoria}/{marca}")]
+        [HttpGet("CadastroProduto/{idUsuario}/{nome}/{descricao}/{preco}/{frete}/{quantidade}/{categoria}/{marca}")]
         public ActionResult<Produto> PostProduto(string idUsuario, string nome, string descricao, double preco, double frete, int quantidade, string categoria, string marca)
         {
             Produto produto = new Produto

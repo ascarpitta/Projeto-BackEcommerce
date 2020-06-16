@@ -61,7 +61,7 @@ namespace BackECommerce.Controllers
             return endereco;
         }
 
-        [HttpPost("CadastroEndereco/{idUsuario}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}/{complemento}")]
+        [HttpGet("CadastroEndereco/{idUsuario}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}/{complemento}")]
         public ActionResult<Endereco> PostEndereco(string idUsuario, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero, string complemento)
         {
             //string bairro, string rua, int numero, string complemento, string obs
