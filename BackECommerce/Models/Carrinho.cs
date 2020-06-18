@@ -48,6 +48,9 @@ namespace BackECommerce.Models
         [BsonElement("preco")]
         public double Preco { get; set; }
 
+        [BsonElement("url_imagem")]
+        public string url_imagem { get; set; }
+
         [BsonElement("frete")]
         public double Frete { get; set; }
 
