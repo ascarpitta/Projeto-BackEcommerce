@@ -93,7 +93,7 @@ namespace BackECommerce.Repository.Repositories
             var prod = BuscarProduto(produtoId);
             if (prod != null)
             {
-                _produtoService.UpdateProdutoById(produtoId, produtoNovo);
+                _produtoService.UpdateProduto(produtoId, produtoNovo);
                 return BuscarProduto(produtoId);
             }
             return null;

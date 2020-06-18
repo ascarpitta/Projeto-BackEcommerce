@@ -95,12 +95,9 @@ namespace BackECommerce.Controllers
 
             var product = _produtoRepository.BuscarProduto(id);
 
-            Produto produto = new Produto();
+            product.url_imagem = public_url;
 
-            produto = product;
-            produto.url_imagem = public_url;
-
-            return _produtoRepository.AtualizarDadosProduto(id, produto);           
+            return _produtoRepository.AtualizarDadosProduto(id, product);           
         }
 
         [HttpGet("Busca/{busca}")]
