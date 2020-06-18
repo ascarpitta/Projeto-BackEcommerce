@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http.Features;
 using System;
+using Microsoft.AspNetCore.Authentication.Certificate;
 
 namespace BackECommerce
 {
@@ -38,7 +39,7 @@ namespace BackECommerce
             });
 
             services.AddCors();
-
+            services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
             services.AddControllers();
             services.AddScoped<UsuarioService>();
             
@@ -57,6 +58,8 @@ namespace BackECommerce
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseCors(option => option.AllowAnyOrigin());
 
