@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http.Features;
+using System;
 
 namespace BackECommerce
 {
@@ -29,6 +31,11 @@ namespace BackECommerce
             services.AddSingleton<ICarrinhoRepository, CarrinhoRepository>();
             services.AddSingleton<IPedidoRepository, PedidoRepository>();
             services.AddSingleton<IEmailRepository, EmailRepository>();
+
+            services.Configure<FormOptions>(options =>
+            {
+                options.MemoryBufferThreshold = Int32.MaxValue;
+            });
 
             services.AddCors();
 
