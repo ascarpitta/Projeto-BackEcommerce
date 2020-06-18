@@ -179,5 +179,18 @@ namespace BackECommerce.Controllers
 
             return Ok();
         }
+
+        [HttpGet("Filtro/{categoria}")]
+        public ActionResult<List<Produto>> Filtro(string categoria)
+        {
+            var produto = _produtoRepository.Filtro(categoria);
+
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
     }
 }

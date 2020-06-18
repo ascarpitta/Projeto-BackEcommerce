@@ -82,5 +82,10 @@ namespace BackECommerce.Service.Services
             var listaOrdenada = from s in lista orderby s.Name descending select s;
             return listaOrdenada.ToList();
         }
+
+        public List<Produto> GetProdutosByCategory(string categoria)
+        {
+            return _produtos.Find<Produto>(prod => prod.Category == categoria).ToList();
+        }
     }
 }

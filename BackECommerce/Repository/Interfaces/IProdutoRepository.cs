@@ -21,5 +21,6 @@ namespace BackECommerce.Repository.Interfaces
         Produto AtualizarProduto(string userId, string produtoid, Produto produtoNovo); //No plano de teste
         Produto AtivaProduto(string userId, string produtoId); //No plano de teste
         Produto InativaProduto(string userId, string produtoId); //No plano de teste
+        List<Produto> Filtro(string categoria);
     }
 }

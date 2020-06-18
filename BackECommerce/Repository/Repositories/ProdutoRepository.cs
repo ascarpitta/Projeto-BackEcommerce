@@ -123,5 +123,10 @@ namespace BackECommerce.Repository.Repositories
             }
             return null;
         }
+
+        public List<Produto> Filtro(string categoria)
+        {
+            return _produtoService.GetProdutosByCategory(categoria);
+        }
     }
 }
