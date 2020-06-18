@@ -99,6 +99,7 @@ namespace BackECommerce.Repository.Repositories
                     produtoCarrinho.NameProduto = prod.NameProduto;
                     produtoCarrinho.IdUserVenda = prod.IdUserVenda;
                     produtoCarrinho.IdProduto = prod.IdProduto;
+                    produtoCarrinho.url_imagem = prod.url_imagem;
                     produtoCarrinho.Frete = prod.Frete;
                     produtoCarrinho.StatusCancelado = false;
                     produtoCarrinho.StatusEmTransporte = false;
@@ -127,7 +128,7 @@ namespace BackECommerce.Repository.Repositories
                 {
                     products = products + "\n" + prod.NameProduto;
                 }
-                _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Numero} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
+                _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Id} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
                 //arrumar numero do email, (esse numero é o do endereco)
                 return _pedidoService.CreatePedido(pedido);
             }
