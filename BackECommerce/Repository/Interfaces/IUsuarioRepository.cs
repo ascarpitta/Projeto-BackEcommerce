@@ -23,7 +23,7 @@ namespace BackECommerce.Repository.Interfaces
         void DeletarUsuarioPorEmail(string email);
         void AdicionarListaDesejo(string idUsuario, string idProduto);
         void RemoverListaDesejo(string idUsuario, string idProduto);
-        Usuario AtivarUsuario(string userId);
+        Usuario AtivarUsuario(string email, long cpf);
         Usuario InativarUsuario(string userId);
         void RecuperarSenha(string email, long cpf);
     }

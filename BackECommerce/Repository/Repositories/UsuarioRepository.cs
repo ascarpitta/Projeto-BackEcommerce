@@ -162,19 +162,20 @@ namespace BackECommerce.Repository.Repositories
             }
         }
 
-        public Usuario AtivarUsuario(string userId)
+        public Usuario AtivarUsuario(string email, long cpf)
         {
-            if (userId.Length == 24)
-            {
-                var usuario = BuscarUsuario(userId);
+            var user = BuscarUsuarioPorEmail(email);
 
-                if (usuario != null)
+            if (user != null)
+            {
+                if (user.Cpf == cpf)
                 {
-                    usuario.Ativo = true;
-                    AtualizarUsuario(userId, usuario);
-                    return usuario;
+                    user.Ativo = true;
+                    AtualizarUsuario(user.Id, user);
+                    return user;
                 }
             }
+
             return null;
         }
 

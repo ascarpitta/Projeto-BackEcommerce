@@ -140,10 +140,10 @@ namespace BackECommerce.Controllers
             return NotFound();
         }
 
-        [HttpGet("Ativar/{id}")]
-        public IActionResult AtivarUsuario(string id)
+        [HttpGet("Ativar/{email}/{cpf}")]
+        public IActionResult AtivarUsuario(string email, long cpf)
         {
-            var usuario = _usuarioRepository.AtivarUsuario(id);
+            var usuario = _usuarioRepository.AtivarUsuario(email, cpf);
 
             if (usuario != null)
             {
