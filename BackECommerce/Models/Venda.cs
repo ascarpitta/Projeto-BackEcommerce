@@ -56,6 +56,12 @@ namespace BackECommerce.Models
 		[BsonElement("IdProdutoCompra")]
 		public string IdProdutoCompra { get; set; }
 
+		[BsonElement("NomeProduto")]
+		public string NomeProduto { get; set; }
+
+		[BsonElement("url_imagem")]
+		public string Url_imagem { get; set; }
+
 		[BsonElement("vlFinalCompra")]
 		public double VlFinalCompra { get; set; }
 

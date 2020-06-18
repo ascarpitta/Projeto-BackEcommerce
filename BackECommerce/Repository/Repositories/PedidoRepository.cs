@@ -116,6 +116,8 @@ namespace BackECommerce.Repository.Repositories
                     venda.VlFinalCompra = prod.Preco * prod.Quantidade;
                     venda.VlFreteCompra = prod.Frete;
                     venda.VlTotalCompra = venda.VlFinalCompra + venda.VlFreteCompra;
+                    venda.NomeProduto = prod.NameProduto;
+                    venda.Url_imagem = prod.url_imagem;
                     CriarVenda(venda);
                 }
 
