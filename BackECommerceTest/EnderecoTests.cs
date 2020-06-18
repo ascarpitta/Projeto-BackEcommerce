@@ -18,7 +18,7 @@ namespace EnderecoTeste.Tests
         public EnderecoTests()
         {
             _enderecoRepository = new EnderecoRepository();
-            _enderecoTeste = _enderecoRepository.BuscarEndereco("5e8fa9c6d776493a38eb4cfc");
+            _enderecoTeste = _enderecoRepository.BuscarEndereco("5ee8d82a14128a00042a1b0a");
         }
 //Cadastrar endereço
         [Test]

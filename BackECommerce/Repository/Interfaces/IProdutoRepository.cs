@@ -23,5 +23,6 @@ namespace BackECommerce.Repository.Interfaces
         Produto AtivaProduto(string userId, string produtoId); //No plano de teste
         Produto InativaProduto(string userId, string produtoId); //No plano de teste
         List<Produto> Filtro(string categoria);
+        void RemoverProdutoPorId(string id);
     }
 }

@@ -87,5 +87,10 @@ namespace BackECommerce.Service.Services
         {
             return _produtos.Find<Produto>(prod => prod.Category == categoria).ToList();
         }
+
+        public void EndProdutoById(string id)
+        {
+            _produtos.DeleteOne<Produto>(p => p.Id == id);
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace BackECommerce.Repository.Repositories
                 if (_usuarioService.VerificarCpf(usuario.Cpf))
                 {
                     usuario.Password = CriptografarSenha(usuario.Password);
+                    usuario.Ativo = true;
                     _usuarioService.CreateUsuario(usuario);
                     _emailRepository.EnviarEmail(usuario.Email, "Cadastro realizado com sucesso!", $"Olá {usuario.Name}, seja bem vindo(a)");
                 }                

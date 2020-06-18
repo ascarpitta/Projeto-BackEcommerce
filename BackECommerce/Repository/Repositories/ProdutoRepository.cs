@@ -139,5 +139,10 @@ namespace BackECommerce.Repository.Repositories
         {
             return _produtoService.GetProdutosByCategory(categoria);
         }
+
+        public void RemoverProdutoPorId(string id)
+        {
+            _produtoService.EndProdutoById(id);
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace ProdutoTeste.Tests
         public ProdutoTests()
         {
             _produtoRepository = new ProdutoRepository();
-            _produtoTeste = _produtoRepository.BuscarProduto("5ebcb414e06d5752dc873d54");
+            _produtoTeste = _produtoRepository.BuscarProduto("5e8cf9ae5f105c62587dda48");
         }
 //Cadastrar Produto
         [Test] //produto com todas as informações
@@ -51,13 +51,14 @@ namespace ProdutoTeste.Tests
                         if (encontrado != null)
                         {
                             ok = true;
+                            _produtoRepository.RemoverProdutoPorId(encontrado.Id);
                         }
                     }
 
                     if (!ok)
                     {
                         Assert.Fail();
-                    }
+                    }                    
                 }                
             }
             catch (System.Exception ex)
@@ -96,6 +97,7 @@ namespace ProdutoTeste.Tests
                         if (encontrado != null)
                         {
                             ok = true;
+                            _produtoRepository.RemoverProdutoPorId(encontrado.Id);
                         }
                     }
 
@@ -141,6 +143,7 @@ namespace ProdutoTeste.Tests
                         if (encontrado != null)
                         {
                             ok = true;
+                            _produtoRepository.RemoverProdutoPorId(encontrado.Id);
                         }
                     }
 
@@ -187,6 +190,7 @@ namespace ProdutoTeste.Tests
                         if (encontrado != null)
                         {
                             ok = true;
+                            _produtoRepository.RemoverProdutoPorId(encontrado.Id);
                         }
                     }
 
@@ -282,11 +286,14 @@ namespace ProdutoTeste.Tests
         {
             try
             {
-                var teste = _produtoRepository.InativaProduto(_produtoTeste.User, _produtoTeste.Id);
-                if (teste == null || teste.Ativo)
+                if (_produtoTeste.Ativo)
                 {
-                    Assert.Fail();
-                }
+                    var teste = _produtoRepository.InativaProduto(_produtoTeste.User, _produtoTeste.Id);
+                    if (teste == null || teste.Ativo)
+                    {
+                        Assert.Fail();
+                    }
+                }                
 
             }
             catch (System.Exception ex)
