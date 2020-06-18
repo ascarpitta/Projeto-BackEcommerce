@@ -58,6 +58,7 @@ namespace BackECommerce.Repository.Repositories
                         novoProduto.Preco = produto.Price;
                         novoProduto.Frete = produto.Frete;
                         novoProduto.IdUserVenda = produto.User;
+                        novoProduto.url_imagem = produto.url_imagem;
                         if (carrinho == null)
                         {
                             Carrinho novoCarrinho = new Carrinho();
