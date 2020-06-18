@@ -33,7 +33,16 @@ namespace BackECommerce.Repository.Repositories
 
         public Usuario VerificarLogin(string email, string senha)
         {
-            return _usuarioService.VerificarLogin(email, CriptografarSenha(senha));
+            var user = _usuarioService.VerificarLogin(email, CriptografarSenha(senha));
+
+            if (user != null)
+            {
+                if (user.Ativo)
+                {
+                    return user;
+                }
+            }
+            return null;
         }
 
         public string CriptografarSenha(string senha)

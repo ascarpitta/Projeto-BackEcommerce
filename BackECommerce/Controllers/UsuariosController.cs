@@ -40,16 +40,16 @@ namespace BackECommerce.Controllers
         [HttpGet("Recuperacao/{email}/{cpf}")]
         public ActionResult<Usuario> GetRecuperacao(string email, long cpf)
         {
-            var cpfOk = _usuarioRepository.VerificarCpf(cpf);
-            var emailOk = _usuarioRepository.VerificarEmail(email);
-
             var user = _usuarioRepository.BuscarUsuarioPorEmail(email);
-
-            if (cpfOk != null && emailOk != null && user != null)
+            if (user != null)
             {
-                _usuarioRepository.RecuperarSenha(email, cpf);
-                return Ok();
+                if (user.Cpf == cpf)
+                {
+                    _usuarioRepository.RecuperarSenha(email, cpf);
+                    return Ok();
+                }
             }
+            
             return NotFound();
             
         }
