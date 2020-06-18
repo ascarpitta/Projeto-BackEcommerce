@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http.Features;
 using System;
 using Microsoft.AspNetCore.Authentication.Certificate;
+using System.Net;
 
 namespace BackECommerce
 {
@@ -38,6 +39,7 @@ namespace BackECommerce
                 options.MemoryBufferThreshold = Int32.MaxValue;
             });
 
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             services.AddCors();
             services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
             services.AddControllers();
