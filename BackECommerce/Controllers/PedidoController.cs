@@ -67,11 +67,11 @@ namespace BackECommerce.Controllers
             return _pedidoRepository.AtualizarStatusPedido(userId, pedidoId, 1);
         }
 
-        //[HttpGet("ExibirPedidosVenda/{userId}")]
-        //public ActionResult<List<Venda>> GetExibirPedidosVenda(string userId)
-        //{
-        //    return _pedidoRepository.BuscarVendasPorUsuario(userId);
-        //}
+        [HttpGet("ExibirPedidosVenda/{userId}")]
+        public ActionResult<List<Venda>> GetExibirPedidosVenda(string userId)
+        {
+            return _pedidoRepository.BuscarVendasPorUsuario(userId);
+        }
 
         [HttpGet("ExibirPedidoVenda/{userId}/{pedidoId}")]
         public ActionResult<Venda> GetExibirPedidoVenda(string userId, string pedidoId)
