@@ -102,7 +102,6 @@ namespace BackECommerce.Repository.Repositories
                     pedido.Produtos.Add(produtoCarrinho);
 
                     //criar pedido de venda
-                    //venda.PedidoIdCompra = 
                     venda.BairroCompra = pedido.Bairro;
                     venda.CepCompra = pedido.Cep;
                     venda.CidadeCompra = pedido.Cidade;
@@ -139,7 +138,6 @@ namespace BackECommerce.Repository.Repositories
                     products = products + "\n" + prod.NameProduto;
                 }
                 _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Id} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
-                //arrumar numero do email, (esse numero é o do endereco)
                 Pedido pedidoFinal = _pedidoService.CreatePedido(pedido);
                 foreach (Venda v in listaVenda)
                 {
@@ -164,7 +162,7 @@ namespace BackECommerce.Repository.Repositories
                 pedido.DataPagamentoConfirmado = DateTime.Now;
                 AtualizarPedido(pedido, pedido.Id);
 
-                //_gerarRecibo.gerarReciboCompra(pedido);
+                //gerar recibo de compra
 
                 foreach(ProdutosCarrinho itens in pedido.Produtos)
                 {
@@ -172,7 +170,7 @@ namespace BackECommerce.Repository.Repositories
                     venda.DataPagamentoConfirmadoCompra = DateTime.Now;
                     _vendaService.UpdateSale(venda, venda.Id);
 
-                    //_gerarRecibo.gerarReciboVenda(venda);
+                    //gerar recibo de venda
                 }
                 return pedido;
             }//pedido não encontrado

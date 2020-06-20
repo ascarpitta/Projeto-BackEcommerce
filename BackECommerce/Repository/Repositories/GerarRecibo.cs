@@ -31,7 +31,7 @@ namespace BackECommerce.Repository.Repositories
             doc.AddCreationDate(); //adicionando as configuracoes
 
             string caminho = @"C:\Users\Scarpitta\" + "ReciboCompra.pdf";
-            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
+            PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
 
             doc.Open();
 
