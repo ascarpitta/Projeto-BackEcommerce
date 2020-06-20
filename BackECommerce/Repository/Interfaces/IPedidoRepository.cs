@@ -23,8 +23,10 @@ namespace BackECommerce.Repository.Interfaces
         List<Venda> BuscarVendas();
         List<Venda> BuscarVendasPorUsuario(string id);
         Venda BuscarVendaPorUsuario(string userId, string vendaId);
+        Venda BuscarVendaPorUsuarioPorPedido(string userId, string pedidoCompraId);
         Venda CriarVenda(Venda venda);
         Venda AtualizarStatusPedido(string userId, string vendaId, int tipo);
         List<Venda> PedidosVendaEmAndamento(string userId);
+        void GerarReciboProduto(string userId, string pedidoId, string produtoId);
     }
 }

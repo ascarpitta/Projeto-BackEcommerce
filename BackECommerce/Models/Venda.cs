@@ -59,6 +59,9 @@ namespace BackECommerce.Models
 		[BsonElement("NomeProduto")]
 		public string NomeProduto { get; set; }
 
+		[BsonElement("Quandidade")]
+		public int Quandidade { get; set; }
+
 		[BsonElement("url_imagem")]
 		public string Url_imagem { get; set; }
 

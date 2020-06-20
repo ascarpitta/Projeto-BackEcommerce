@@ -50,6 +50,11 @@ namespace BackECommerce.Service.Services
             return _venda.Find<Venda>(v => v.UserIdVenda == userId && v.Id == vendaId).FirstOrDefault();
         }
 
+        public Venda GetSaleByUserByOrder(string userId, string pedidoCompraId)
+        {
+            return _venda.Find<Venda>(v => v.UserIdVenda == userId && v.PedidoIdCompra == pedidoCompraId).FirstOrDefault();
+        }
+
         public Venda GetSale(string vendaId)
         {
             return _venda.Find<Venda>(v => v.Id == vendaId).FirstOrDefault();

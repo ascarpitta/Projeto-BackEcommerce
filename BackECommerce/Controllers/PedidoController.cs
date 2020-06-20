@@ -90,5 +90,12 @@ namespace BackECommerce.Controllers
         {
             return _pedidoRepository.PedidosCompraEmAndamento(userId);
         }
+
+        [HttpGet("GerarRecibo/{userId}/{pedidoId}/{produtoId}")]
+        public ActionResult<List<Pedido>> GerarRecibo(string userId, string pedidoId, string produtoId)
+        {
+            _pedidoRepository.GerarReciboProduto(userId, pedidoId, produtoId);
+            return Ok();
+        }
     }
 }

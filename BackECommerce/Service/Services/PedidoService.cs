@@ -40,7 +40,7 @@ namespace BackECommerce.Service.Services
 
         public Pedido GetPedidoByUser(string userId, string pedidoId)
         {
-            return _pedido.Find<Pedido>(pedido => pedido.Id == userId && pedido.Id == pedidoId).FirstOrDefault();
+            return _pedido.Find<Pedido>(pedido => pedido.UserId == userId && pedido.Id == pedidoId).FirstOrDefault();
         }
 
         public void UpdatePedido(Pedido pedidoNovo, string id)

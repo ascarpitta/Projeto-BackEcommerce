@@ -16,6 +16,7 @@ namespace BackECommerce.Repository.Repositories
         private readonly IUsuarioRepository _usuarioRepository = new UsuarioRepository();
         private readonly IEnderecoRepository _enderecoRepository = new EnderecoRepository();
         private readonly EmailRepository _emailRepository = new EmailRepository();
+        private readonly GerarRecibo _gerarRecibo = new GerarRecibo();
         
         public void AtualizarPedido(Pedido pedidoNovo, string id)
         {
@@ -44,8 +45,8 @@ namespace BackECommerce.Repository.Repositories
                 var endereco = _enderecoRepository.BuscarEndereco(carrinho.EnderecoId);
 
                 Pedido pedido = new Pedido();
-                Venda venda = new Venda();
-                ProdutosCarrinho produtoCarrinho = new ProdutosCarrinho();
+                
+                pedido.Produtos = new List<ProdutosCarrinho>();
 
                 pedido.UserId = userId;
                 pedido.NomeEndereco = endereco.NomeEndereco;
@@ -56,19 +57,8 @@ namespace BackECommerce.Repository.Repositories
                 pedido.Rua = endereco.Rua;
                 pedido.Numero = endereco.Numero;
                 pedido.Complemento = endereco.Complemento;
-                pedido.Produtos = carrinho.Produtos;
                 pedido.DataPedidoRealizado = DateTime.Now;
-                pedido.StatusFinalizado = false;
-
-                venda.BairroCompra = pedido.Bairro;
-                venda.CepCompra = pedido.Cep;
-                venda.CidadeCompra = pedido.Cidade;
-                venda.Complemento = pedido.Complemento;
-                venda.NomeEnderecoCompra = pedido.NomeEndereco;
-                venda.NumeroCompra = pedido.Numero;
-                venda.PedidoIdCompra = pedido.Id;
-                venda.RuaCompra = pedido.Rua;
-                venda.UfCompra = pedido.Uf;
+                pedido.StatusFinalizado = false;                
 
                 //Verificar se todos os produtos estão ativos e com estoque
                 foreach (ProdutosCarrinho prod in carrinho.Produtos)
@@ -84,6 +74,8 @@ namespace BackECommerce.Repository.Repositories
                 //Somar preços e atualizar estoque dos produtos
                 foreach (ProdutosCarrinho prod in carrinho.Produtos)
                 {
+                    ProdutosCarrinho produtoCarrinho = new ProdutosCarrinho();
+                    Venda venda = new Venda();
                     var produto = _produtoRepository.BuscarProduto(prod.IdProduto);
 
                     pedido.VlFinal += (prod.Preco * prod.Quantidade);
@@ -104,9 +96,20 @@ namespace BackECommerce.Repository.Repositories
                     produtoCarrinho.StatusCancelado = false;
                     produtoCarrinho.StatusEmTransporte = false;
                     produtoCarrinho.StatusEntregue = false;
+
                     pedido.Produtos.Add(produtoCarrinho);
 
                     //criar pedido de venda
+                    venda.BairroCompra = pedido.Bairro;
+                    venda.CepCompra = pedido.Cep;
+                    venda.CidadeCompra = pedido.Cidade;
+                    venda.Complemento = pedido.Complemento;
+                    venda.NomeEnderecoCompra = pedido.NomeEndereco;
+                    venda.NumeroCompra = pedido.Numero;
+                    venda.PedidoIdCompra = pedido.Id;
+                    venda.RuaCompra = pedido.Rua;
+                    venda.UfCompra = pedido.Uf;
+
                     venda.DataPedidoRealizadoCompra = DateTime.Now;
                     venda.StatusCancelado = false;
                     venda.StatusEmTransporte = false;
@@ -118,6 +121,7 @@ namespace BackECommerce.Repository.Repositories
                     venda.VlTotalCompra = venda.VlFinalCompra + venda.VlFreteCompra;
                     venda.NomeProduto = prod.NameProduto;
                     venda.Url_imagem = prod.url_imagem;
+                    venda.Quandidade = prod.Quantidade;
                     CriarVenda(venda);
                 }
 
@@ -150,15 +154,15 @@ namespace BackECommerce.Repository.Repositories
                 pedido.DataPagamentoConfirmado = DateTime.Now;
                 AtualizarPedido(pedido, pedido.Id);
 
-                //gerar recibo compra
+                //_gerarRecibo.gerarReciboCompra(pedido);
 
                 foreach(ProdutosCarrinho itens in pedido.Produtos)
                 {
-                    var venda = BuscarVendaPorUsuario(itens.IdUserVenda, pedido.Id);
+                    var venda = BuscarVendaPorUsuarioPorPedido(itens.IdUserVenda, pedido.Id);
                     venda.DataPagamentoConfirmadoCompra = DateTime.Now;
                     _vendaService.UpdateSale(venda, venda.Id);
 
-                    //gerar recibo venda
+                    //_gerarRecibo.gerarReciboVenda(venda);
                 }
                 return pedido;
             }//pedido não encontrado
@@ -237,6 +241,25 @@ namespace BackECommerce.Repository.Repositories
             return null;
         }
 
+        public void GerarReciboProduto(string userId, string pedidoId, string produtoId)
+        {
+            if (userId.Length == 24 && pedidoId.Length == 24 && produtoId.Length == 24)
+            {
+                var pedido = BuscarPedido(pedidoId);
+                if (pedido != null)
+                {
+                    foreach(ProdutosCarrinho item in pedido.Produtos)
+                    {
+                        if (item.IdProduto == produtoId)
+                        {
+                            var venda = BuscarVendaPorUsuarioPorPedido(item.IdUserVenda, pedidoId);
+
+                            _gerarRecibo.gerarReciboCompraProduto(pedido, venda);
+                        }
+                    }
+                }
+            }
+        }
 
         //VENDA
         public Venda BuscarVendaPorUsuario(string userId, string vendaId)
@@ -247,6 +270,19 @@ namespace BackECommerce.Repository.Repositories
                 if (usuario != null)
                 {
                     return _vendaService.GetSaleByUser(usuario.Id, vendaId);
+                }
+            }
+            return null;
+        }
+
+        public Venda BuscarVendaPorUsuarioPorPedido(string userId, string pedidoCompraId)
+        {
+            if (userId.Length == 24 && pedidoCompraId.Length == 24)
+            {
+                var usuario = _usuarioRepository.BuscarUsuario(userId);
+                if (usuario != null)
+                {
+                    return _vendaService.GetSaleByUser(usuario.Id, pedidoCompraId);
                 }
             }
             return null;
