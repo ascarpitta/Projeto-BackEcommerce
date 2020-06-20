@@ -17,13 +17,12 @@ namespace ProdutoTeste.Tests
         public ProdutoTests()
         {
             _produtoRepository = new ProdutoRepository();
-            _produtoTeste = _produtoRepository.BuscarProduto("5e8cf9ae5f105c62587dda48");
+            _produtoTeste = _produtoRepository.BuscarProduto("5eee43682677f2362887051c");
         }
 //Cadastrar Produto
         [Test] //produto com todas as informações
         public void CadastroProdutoTest()
         {
-            bool ok = false;
             Produto prod = new Produto();
             prod.User = _produtoTeste.User;
             prod.Ativo = true;
@@ -34,43 +33,22 @@ namespace ProdutoTeste.Tests
             prod.Price = 50;
             prod.Quantity = 2;
 
-            try
+            _produtoRepository.CadastroProduto(prod);
+            Produto proutoNovo = _produtoRepository.BuscarProdutoPorUsuario(prod.User, prod.Id);
+            if (proutoNovo == null)
             {
-                _produtoRepository.CadastroProduto(prod);
-                List<Produto> lista = _produtoRepository.BuscarProdutosPorUsuario(prod.User);
-                if (lista == null)
-                {
-                    Assert.Fail();
-                }
-                else
-                {
-                    foreach (Produto item in lista)
-                    {
-                        Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
-
-                        if (encontrado != null)
-                        {
-                            ok = true;
-                            _produtoRepository.RemoverProdutoPorId(encontrado.Id);
-                        }
-                    }
-
-                    if (!ok)
-                    {
-                        Assert.Fail();
-                    }                    
-                }                
+                Assert.Fail();
             }
-            catch (System.Exception ex)
+            else
             {
-                Assert.Fail(ex.Message);
-            }
+                _produtoRepository.RemoverProdutoPorId(proutoNovo.Id);
+            }                
+           
         }
 
         [Test] //produto sem quantidade
         public void CadastroProdutoTest_SemQtde()
         {
-            bool ok = false;
             Produto prod = new Produto();
             prod.User = _produtoTeste.User;
             prod.Ativo = true;
@@ -83,29 +61,15 @@ namespace ProdutoTeste.Tests
             try
             {
                 _produtoRepository.CadastroProduto(prod);
-                List<Produto> lista = _produtoRepository.BuscarProdutosPorUsuario(prod.User);
-                if (lista == null)
+                Produto proutoNovo = _produtoRepository.BuscarProdutoPorUsuario(prod.User, prod.Id);
+                if (proutoNovo == null)
                 {
                     Assert.Fail();
                 }
                 else
                 {
-                    foreach (Produto item in lista)
-                    {
-                        Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
-
-                        if (encontrado != null)
-                        {
-                            ok = true;
-                            _produtoRepository.RemoverProdutoPorId(encontrado.Id);
-                        }
-                    }
-
-                    if (!ok)
-                    {
-                        Assert.Fail();
-                    }
-                }                
+                    _produtoRepository.RemoverProdutoPorId(proutoNovo.Id);
+                }
             }
             catch (System.Exception ex)
             {
@@ -116,7 +80,6 @@ namespace ProdutoTeste.Tests
         [Test] //produto sem preco
         public void CadastroProdutoTest_SemPreco()
         {
-            bool ok = false;
             Produto prod = new Produto();
             prod.User = _produtoTeste.User;
             prod.Ativo = true;
@@ -129,28 +92,14 @@ namespace ProdutoTeste.Tests
             try
             {
                 _produtoRepository.CadastroProduto(prod);
-                List<Produto> lista = _produtoRepository.BuscarProdutosPorUsuario(prod.User);
-                if (lista == null)
+                Produto proutoNovo = _produtoRepository.BuscarProdutoPorUsuario(prod.User, prod.Id);
+                if (proutoNovo == null)
                 {
                     Assert.Fail();
                 }
                 else
                 {
-                    foreach (Produto item in lista)
-                    {
-                        Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
-
-                        if (encontrado != null)
-                        {
-                            ok = true;
-                            _produtoRepository.RemoverProdutoPorId(encontrado.Id);
-                        }
-                    }
-
-                    if (!ok)
-                    {
-                        Assert.Fail();
-                    }
+                    _produtoRepository.RemoverProdutoPorId(proutoNovo.Id);
                 }
             }
             catch (System.Exception ex)
@@ -162,7 +111,6 @@ namespace ProdutoTeste.Tests
         [Test] //produto sem frete
         public void CadastroProdutoTest_SemFrete()
         {
-            bool ok = false;
             Produto prod = new Produto();
             prod.User = _produtoTeste.User;
             prod.Ativo = true;
@@ -176,28 +124,14 @@ namespace ProdutoTeste.Tests
             try
             {
                 _produtoRepository.CadastroProduto(prod);
-                List<Produto> lista = _produtoRepository.BuscarProdutosPorUsuario(prod.User);
-                if (lista == null)
+                Produto proutoNovo = _produtoRepository.BuscarProdutoPorUsuario(prod.User, prod.Id);
+                if (proutoNovo == null)
                 {
                     Assert.Fail();
-                } 
+                }
                 else
                 {
-                    foreach (Produto item in lista)
-                    {
-                        Produto encontrado = _produtoRepository.BuscarProdutoPorUsuario(prod.User, item.Id);
-
-                        if (encontrado != null)
-                        {
-                            ok = true;
-                            _produtoRepository.RemoverProdutoPorId(encontrado.Id);
-                        }
-                    }
-
-                    if (!ok)
-                    {
-                        Assert.Fail();
-                    }
+                    _produtoRepository.RemoverProdutoPorId(proutoNovo.Id);
                 }
             }
             catch (System.Exception ex)
@@ -266,45 +200,40 @@ namespace ProdutoTeste.Tests
         [Test] //ativar produto
         public void AtivaProdutoTest()
         {
-            try
+            _produtoTeste.Ativo = false;
+            _produtoTeste.Quantity = 1;
+            _produtoRepository.AtualizarProduto(_produtoTeste.User, _produtoTeste.Id, _produtoTeste);
+            var teste = _produtoRepository.AtivaProduto(_produtoTeste.User, _produtoTeste.Id);
+            if (teste == null || !teste.Ativo)
             {
-                var teste = _produtoRepository.AtivaProduto(_produtoTeste.User, _produtoTeste.Id);
-                if (teste == null || !teste.Ativo)
-                {
-                    Assert.Fail();
-                }
-
-            }
-            catch (System.Exception ex)
-            {
-                Assert.Fail(ex.Message);
+                Assert.Fail();
             }
         }
 
         [Test] //inativar produto
         public void InativaProdutoTest()
         {
-            try
-            {
-                if (_produtoTeste.Ativo)
-                {
-                    var teste = _produtoRepository.InativaProduto(_produtoTeste.User, _produtoTeste.Id);
-                    if (teste == null || teste.Ativo)
-                    {
-                        Assert.Fail();
-                    }
-                }                
+            _produtoTeste.Ativo = true;
+            _produtoTeste.Quantity = 1;
+            _produtoRepository.AtualizarProduto(_produtoTeste.User, _produtoTeste.Id, _produtoTeste);
 
-            }
-            catch (System.Exception ex)
+            if (_produtoTeste.Ativo)
             {
-                Assert.Fail(ex.Message);
-            }
+                var teste = _produtoRepository.InativaProduto(_produtoTeste.User, _produtoTeste.Id);
+                if (teste == null || teste.Ativo)
+                {
+                    Assert.Fail();
+                }
+            }        
         }
 
         [Test] //ativar produto de outro usuário
         public void AtivaProdutoTest_Outro()
         {
+            _produtoTeste.Ativo = true;
+            _produtoTeste.Quantity = 1;
+            _produtoRepository.AtualizarProduto(_produtoTeste.User, _produtoTeste.Id, _produtoTeste);
+
             try
             {
                 if (_produtoTeste.Ativo)
@@ -334,30 +263,30 @@ namespace ProdutoTeste.Tests
         [Test] //inativar produto de outro usuário
         public void InativaProdutoTest_Outro()
         {
-            try
+            _produtoTeste.Ativo = true;
+            _produtoTeste.Quantity = 1;
+            _produtoRepository.AtualizarProduto(_produtoTeste.User, _produtoTeste.Id, _produtoTeste);
+
+            if (_produtoTeste.Ativo)
             {
-                if (_produtoTeste.Ativo)
+                var prod = _produtoRepository.BuscarProduto(_produtoTeste.Id);
+                var teste = _produtoRepository.InativaProduto(_produtoTeste.Id, _produtoTeste.Id);
+                if (teste != null)
                 {
-                    var prod = _produtoRepository.BuscarProduto(_produtoTeste.Id);
-                    var teste = _produtoRepository.InativaProduto(_produtoTeste.Id, _produtoTeste.Id);
-                    if (teste != null || prod.Ativo == _produtoTeste.Ativo)
-                    {
-                        Assert.Fail();
-                    }
-                }
-                else
-                {
-                    var teste = _produtoRepository.InativaProduto(_produtoTeste.Id, _produtoTeste.Id);
-                    if (teste != null)
+                    if (teste.Ativo != _produtoTeste.Ativo)
                     {
                         Assert.Fail();
                     }
                 }
             }
-            catch (System.Exception ex)
+            else
             {
-                Assert.Fail(ex.Message);
-            }
+                var teste = _produtoRepository.InativaProduto(_produtoTeste.Id, _produtoTeste.Id);
+                if (teste != null)
+                {
+                    Assert.Fail();
+                }
+            }            
         }
 
 //Buscar Produto

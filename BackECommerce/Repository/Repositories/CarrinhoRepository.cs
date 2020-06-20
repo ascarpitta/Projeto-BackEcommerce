@@ -15,6 +15,7 @@ namespace BackECommerce.Repository.Repositories
         private readonly IUsuarioRepository _usuarioRepository = new UsuarioRepository();
         private readonly IPedidoRepository _pedidoRepository = new PedidoRepository();
         private readonly IEmailRepository _emailRepository = new EmailRepository();
+        private readonly IEnderecoRepository _enderecoRepository = new EnderecoRepository();
         
         public Carrinho BuscarCarrinhoPorUsuario(string id)
         {
@@ -31,9 +32,17 @@ namespace BackECommerce.Repository.Repositories
             if (userId.Length == 24 && enderecoId.Length == 24)
             {
                 var carrinho = _carrinhoService.GetCarrinhoByUser(userId);
-                carrinho.EnderecoId = enderecoId;
-                _carrinhoService.UpdateCarrinho(carrinho, userId);
-                return _carrinhoService.GetCarrinhoByUser(userId);
+                var endereco = _enderecoRepository.BuscarEndereco(enderecoId);
+                if (endereco != null)
+                {
+                    if (endereco.User == userId)
+                    {
+                        carrinho.EnderecoId = enderecoId;
+                        _carrinhoService.UpdateCarrinho(carrinho, userId);
+                        return _carrinhoService.GetCarrinhoByUser(userId);
+                    }
+                }
+                           
             }
             return null;
         }
@@ -43,66 +52,70 @@ namespace BackECommerce.Repository.Repositories
             var usuario = _usuarioRepository.BuscarUsuario(userId);
 
             if (usuario != null)
-            {
-                var carrinho = _carrinhoService.GetCarrinhoByUser(usuario.Id);
+            {                
                 var produto = _produtoRepository.BuscarProduto(produtoId);
                 if (produto != null)
                 {
-                    if (produto.Quantity > 0 && produto.Ativo)
+                    if (produto.User != userId)
                     {
-                        ProdutosCarrinho novoProduto = new ProdutosCarrinho();
-
-                        novoProduto.IdProduto = produtoId;
-                        novoProduto.NameProduto = produto.Name;
-                        novoProduto.Quantidade = 1;
-                        novoProduto.Preco = produto.Price;
-                        novoProduto.Frete = produto.Frete;
-                        novoProduto.IdUserVenda = produto.User;
-                        novoProduto.url_imagem = produto.url_imagem;
-                        if (carrinho == null)
+                        if (produto.Quantity > 0 && produto.Ativo)
                         {
-                            Carrinho novoCarrinho = new Carrinho();
-                            novoCarrinho.UserId = userId;
-                            novoCarrinho.Produtos = new List<ProdutosCarrinho>();
-                            novoCarrinho.Produtos.Add(novoProduto);
+                            ProdutosCarrinho novoProduto = new ProdutosCarrinho();
 
-                            carrinho = _carrinhoService.CreateCarrinho(novoCarrinho);
-                        }
-                        else
-                        {
-                            bool existe = false;
+                            novoProduto.IdProduto = produtoId;
+                            novoProduto.NameProduto = produto.Name;
+                            novoProduto.Quantidade = 1;
+                            novoProduto.Preco = produto.Price;
+                            novoProduto.Frete = produto.Frete;
+                            novoProduto.IdUserVenda = produto.User;
+                            novoProduto.url_imagem = produto.url_imagem;
 
-                            foreach (ProdutosCarrinho prod in carrinho.Produtos)
+                            var carrinho = _carrinhoService.GetCarrinhoByUser(usuario.Id);
+                            if (carrinho == null)
                             {
-                                if (prod.IdProduto == produtoId)
+                                Carrinho novoCarrinho = new Carrinho();
+                                novoCarrinho.UserId = userId;
+                                novoCarrinho.Produtos = new List<ProdutosCarrinho>();
+                                novoCarrinho.Produtos.Add(novoProduto);
+
+                                carrinho = _carrinhoService.CreateCarrinho(novoCarrinho);
+                            }
+                            else
+                            {
+                                bool existe = false;
+
+                                foreach (ProdutosCarrinho prod in carrinho.Produtos)
                                 {
-                                    existe = true;
-                                    if (prod.Quantidade + 1 <= produto.Quantity)
+                                    if (prod.IdProduto == produtoId)
                                     {
-                                        prod.Quantidade += 1;
-                                    }
-                                    else
-                                    {
-                                        return null;
+                                        existe = true;
+                                        if (prod.Quantidade + 1 <= produto.Quantity)
+                                        {
+                                            prod.Quantidade += 1;
+                                        }
+                                        else
+                                        {
+                                            return null;
+                                        }
                                     }
                                 }
-                            }
 
-                            if (!existe)
+                                if (!existe)
+                                {
+                                    carrinho.Produtos.Add(novoProduto);
+                                }
+
+                                _carrinhoService.UpdateCarrinho(carrinho, userId);
+                            }
+                            if (produto.Carrinhos == null)
                             {
-                                carrinho.Produtos.Add(novoProduto);                                
+                                produto.Carrinhos = new List<string>();
                             }
-                            
-                            _carrinhoService.UpdateCarrinho(carrinho, userId);                            
-                        }
-                        if (produto.Carrinhos == null)
-                        {
-                            produto.Carrinhos = new List<string>();
-                        }
 
-                        produto.Carrinhos.Add(carrinho.Id);
-                        _produtoRepository.AtualizarProduto(produto.User, produto.Id, produto);
-                        return _carrinhoService.GetCarrinhoByUser(userId);
+                            produto.Carrinhos.Add(carrinho.Id);
+                            _produtoRepository.AtualizarProduto(produto.User, produto.Id, produto);
+                            return _carrinhoService.GetCarrinhoByUser(userId);
+                        }
                     }
                 }
             }
@@ -185,17 +198,24 @@ namespace BackECommerce.Repository.Repositories
 
                 if (carrinho != null && produto != null)
                 {
-                    carrinho.Produtos.RemoveAll(c => c.IdProduto == produtoId);
-                    _carrinhoService.UpdateCarrinho(carrinho, userId);
-
-                    produto.Carrinhos.Remove(carrinho.Id);
-                    _produtoRepository.AtualizarProduto(produto.User, produto.Id, produto);
-
-                    if (carrinho.Produtos.Count() == 0)
+                    foreach(ProdutosCarrinho p in carrinho.Produtos)
                     {
-                        RemoverCarrinhoPorUsuario(userId);
-                    }
-                    return carrinho;
+                        if (p.IdProduto == produtoId)
+                        {
+                            carrinho.Produtos.Remove(p);
+
+                            _carrinhoService.UpdateCarrinho(carrinho, userId);
+
+                            produto.Carrinhos.Remove(carrinho.Id);
+                            _produtoRepository.AtualizarProduto(produto.User, produto.Id, produto);
+
+                            if (carrinho.Produtos.Count() == 0)
+                            {
+                                RemoverCarrinhoPorUsuario(userId);
+                            }
+                            return carrinho;
+                        }
+                    }                    
                 }
             }
             return null;

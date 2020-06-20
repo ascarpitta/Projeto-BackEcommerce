@@ -74,11 +74,26 @@ namespace BackECommerce.Repository.Repositories
                 {
                     if (produtoNovo.Quantity == 0)
                     {
-                        foreach (string carrinhoId in prod.Carrinhos) //Remover produto dos carrinhos
+                        if (prod.Carrinhos != null)
                         {
-                            var car = _carrinhoService.GetCarrinhoById(carrinhoId);
-                            car.Produtos.RemoveAll(c => c.IdProduto == produtoId);
-                            _carrinhoService.UpdateCarrinho(car, car.UserId);
+                            foreach (string carrinhoId in prod.Carrinhos) //Remover produto dos carrinhos
+                            {
+                                var car = _carrinhoService.GetCarrinhoById(carrinhoId);
+                                if (car != null)
+                                {
+                                    foreach (ProdutosCarrinho p in car.Produtos)
+                                    {
+                                        if (p.IdProduto == produtoId)
+                                        {
+                                            car.Produtos.Remove(p);
+                                            _carrinhoService.UpdateCarrinho(car, car.UserId);
+                                            produtoNovo.Carrinhos = null;
+                                            _produtoService.UpdateProduto(produtoId, produtoNovo);
+                                            return BuscarProduto(produtoId);
+                                        }
+                                    }
+                                }
+                            }
                         }
                         produtoNovo.Carrinhos = null;
                     }
@@ -112,11 +127,23 @@ namespace BackECommerce.Repository.Repositories
                 {
                     prod.Ativo = false;
 
-                    foreach (string carrinhoId in prod.Carrinhos)
+                    if (prod.Carrinhos != null)
                     {
-                        var car = _carrinhoService.GetCarrinhoById(carrinhoId);
-                        car.Produtos.RemoveAll(c => c.IdProduto == produtoId);
-                        _carrinhoService.UpdateCarrinho(car, car.UserId);
+                        foreach (string carrinhoId in prod.Carrinhos)
+                        {
+                            var car = _carrinhoService.GetCarrinhoById(carrinhoId);
+                            if (car != null)
+                            {
+                                foreach (ProdutosCarrinho p in car.Produtos)
+                                {
+                                    if (p.IdProduto == produtoId)
+                                    {
+                                        car.Produtos.Remove(p);
+                                        _carrinhoService.UpdateCarrinho(car, car.UserId);
+                                    }
+                                }
+                            }
+                        }
                     }
                     prod.Carrinhos = null;
                     return AtualizarProduto(userId, produtoId, prod);

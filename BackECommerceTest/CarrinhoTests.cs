@@ -16,34 +16,43 @@ namespace BackECommerceTest
         private readonly CarrinhoRepository _carrinhoRepository;
 
         private readonly ProdutoRepository _produtoRepository;
-        private readonly Produto _produtoTeste;
+        private readonly Produto _produtoTeste1;
+        private readonly Produto _produtoTeste2;
 
         private readonly UsuarioRepository _usuarioRepository;
         private readonly Usuario _usuarioTeste;
 
         private readonly EnderecoRepository _enderecoRepository;
+        private readonly Endereco _enderecoTeste;
 
         public CarrinhoTest()
         {
             _carrinhoRepository = new CarrinhoRepository();
 
             _produtoRepository = new ProdutoRepository();
-            _produtoTeste = _produtoRepository.BuscarProduto("5ebf258583ca2c72ec89c760");
+            _produtoTeste1 = _produtoRepository.BuscarProduto("5eee43682677f2362887051c");
+            _produtoTeste2 = _produtoRepository.BuscarProduto("5eee5b117373bcd310902b22");
 
             _usuarioRepository = new UsuarioRepository();
-            _usuarioTeste = _usuarioRepository.BuscarUsuarioPorEmail("teste@hotmail.com");
+            _usuarioTeste = _usuarioRepository.BuscarUsuario("5eed8d19f7cf570004d6f68f");
 
             _enderecoRepository = new EnderecoRepository();
+            _enderecoTeste = _enderecoRepository.BuscarEndereco("5ee8d82a14128a00042a1b0a");
+            
         }
 
         [Test]
         public void CriaCarrinhoSucesso()
         {
+            _produtoTeste1.Quantity = 1;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
             if (carrinhoResult == null)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
 
@@ -53,12 +62,15 @@ namespace BackECommerceTest
         [Test]
         public void CriaCarrinhoErro()
         {
-            Produto prod = _produtoRepository.BuscarProduto("5eda993a1049d145c4a686be");
+            _produtoTeste1.Ativo = false;
+            _produtoTeste1.Quantity = 1;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
             if (carrinhoResult != null)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
         }
@@ -67,12 +79,15 @@ namespace BackECommerceTest
         [Test]
         public void CriaCarrinhoProdutoSemEstoque()
         {
-            Produto prod = _produtoRepository.BuscarProduto("5ebd72407f288a429408e5f9");
+            _produtoTeste1.Quantity = 0;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
             if (carrinhoResult != null)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
         }
@@ -80,26 +95,13 @@ namespace BackECommerceTest
         [Test]
         public void AddEnderecoSucesso()
         {
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
-
-            Endereco novo = new Endereco();
-            novo.Bairro = "Vila Paiva";
-            novo.Cep = "02075040";
-            novo.Cidade = "São Paulo";
-            novo.Uf = "SP";
-            novo.User = _usuarioTeste.Id;
-            novo.NomeEndereco = "Teste unitário";
-            novo.Numero = 396;
-            novo.Rua = "Manuel de Almeida";
-
-            _enderecoRepository.CadastroEndereco(novo);
-
-            var teste = _enderecoRepository.BuscarEnderecoPorNome(novo.NomeEndereco).FirstOrDefault();
-
-            Carrinho carrinhoResult = _carrinhoRepository.AddEndereco(_usuarioTeste.Id, teste.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
+                        
+            Carrinho carrinhoResult = _carrinhoRepository.AddEndereco(_usuarioTeste.Id, _enderecoTeste.Id);
 
             if (carrinhoResult.EnderecoId == null)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
 
@@ -109,14 +111,17 @@ namespace BackECommerceTest
         [Test]
         public void AddEnderecoErro()
         {
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            _produtoTeste1.Quantity = 1;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            Endereco enderecoTest = _enderecoRepository.BuscarEndereco("5e8fa9c6d776493a38eb4cf");
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            var carrinhoResult = _carrinhoRepository.AddEndereco(_usuarioTeste.Id, "5e8fa9c6d776493a38eb4cf");
+            var carrinhoResult = _carrinhoRepository.AddEndereco(_usuarioTeste.Id, _enderecoTeste.User);
 
             if (carrinhoResult != null)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
 
@@ -127,14 +132,17 @@ namespace BackECommerceTest
         [Test]
         public void AumentarQuantProdutoSucesso()
         {
-            Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");
+            _produtoTeste2.Quantity = 5;
+            _produtoTeste2.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste2.User, _produtoTeste2.Id, _produtoTeste2);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste2.Id);
 
-            Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, prod.Id, 1);
+            Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, _produtoTeste2.Id, 1);
 
             if (carrinhoResult2.Produtos[0].Quantidade != 2)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
 
@@ -145,14 +153,17 @@ namespace BackECommerceTest
         [Test]
         public void AumentarQuantProdutoErro()
         {
-            Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");
+            _produtoTeste2.Quantity = 1;
+            _produtoTeste2.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste2.User, _produtoTeste2.Id, _produtoTeste2);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste2.Id);
 
-            Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, prod.Id, 1);
+            Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, _produtoTeste2.Id, 1);
 
-            if (carrinhoResult2.Produtos[0].Quantidade <= 1)
+            if (carrinhoResult2 != null)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
 
@@ -163,14 +174,20 @@ namespace BackECommerceTest
         [Test]
         public void AddProdutoSucesso()
         {
+            _produtoTeste2.Quantity = 1;
+            _produtoTeste2.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste2.User, _produtoTeste2.Id, _produtoTeste2);
 
-            Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");
+            _produtoTeste1.Quantity = 1;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste2.Id);
             if (carrinhoResult.Produtos.Count != 2)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
 
@@ -180,12 +197,16 @@ namespace BackECommerceTest
         [Test]
         public void AddProdutoRepedito()
         {
+            _produtoTeste1.Quantity = 5;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
             if (carrinhoResult.Produtos.Count == 2)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
 
@@ -195,14 +216,14 @@ namespace BackECommerceTest
         [Test]
         public void AddProdutoInativo()
         {
+            _produtoTeste1.Quantity = 1;
+            _produtoTeste1.Ativo = false;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
-
-            Produto prod = _produtoRepository.BuscarProduto("5eda993a1049d145c4a686be");
-
-            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
             if (carrinhoResult != null)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
 
@@ -212,14 +233,14 @@ namespace BackECommerceTest
         [Test]
         public void AddProdutoSemEstoque()
         {
+            _produtoTeste1.Quantity = 0;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
-
-            Produto prod = _produtoRepository.BuscarProduto("5ebd72407f288a429408e5f9");
-
-            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
             if (carrinhoResult != null)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
             else
@@ -231,82 +252,110 @@ namespace BackECommerceTest
         [Test]
         public void AddProdutoProprioUser()
         {
+            Produto prod = new Produto();
+            prod.User = _usuarioTeste.Id;
+            prod.Ativo = true;
+            prod.Description = "Teste unitário";
+            prod.Frete = 10;
+            prod.Marca = "Teste unitário";
+            prod.Name = "Teste unitário - mesmo user";
+            prod.Price = 50;
+            prod.Quantity = 2;
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
-
-            Produto prod = _produtoRepository.BuscarProduto("5ebf258583ca2c72ec89c760");
-
-            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
-            if (carrinhoResult.Produtos.Count != 1)
+            _produtoRepository.CadastroProduto(prod);
+            Produto produtoNovo = _produtoRepository.BuscarProdutoPorUsuario(prod.User, prod.Id);
+            if (produtoNovo == null)
             {
                 Assert.Fail();
             }
 
+            _produtoTeste1.Quantity = 1;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
+
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);            
+
+            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, produtoNovo.Id);
+            if (carrinhoResult != null)
+            {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
+                _produtoRepository.RemoverProdutoPorId(produtoNovo.Id);
+                Assert.Fail();
+            }
+
             _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
+            _produtoRepository.RemoverProdutoPorId(produtoNovo.Id);
         }
 
         [Test]
         public void RemoveProdutoSucesso()
         {
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
             if (carrinhoResult.Produtos.Count != 0)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
-
+            _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
         }
 
         [Test]
         public void RemoveProdutosSucesso()
         {
-            Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");
+            _produtoTeste1.Quantity = 2;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, _produtoTeste.Id);
-
-            if (carrinhoResult.Produtos.Count != 1)
+            if (carrinhoResult.Produtos.Count > 0)
             {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
                 Assert.Fail();
             }
 
-            _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, prod.Id);
+            _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
 
         }
 
         [Test]
         public void RemoveProdutoSemCarrinhoSucesso()
         {
-            Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");
+            _produtoTeste1.Quantity = 2;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, prod.Id);
+            Carrinho carrinhoResult = _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, _produtoTeste2.Id);
 
-            if (carrinhoResult.Produtos.Count != 1)
+            if (carrinhoResult != null)
             {
                 Assert.Fail();
             }
 
-            _carrinhoRepository.RemoverProduto(_usuarioTeste.Id, prod.Id);
+            _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
 
         }
 
         [Test]
         public void DiminuirQuantProdutoSucesso()
         {
-            Produto prod = _produtoRepository.BuscarProduto("5ebd99f50ec51c52381a046d");
+            _produtoTeste1.Quantity = 2;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, prod.Id, 2);
+            Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, _produtoTeste1.Id, 2);
 
             if (carrinhoResult2.Produtos.Count != 0)
             {
@@ -320,11 +369,16 @@ namespace BackECommerceTest
         [Test]
         public void DiminuirQuantProdutoSemEstoqueSucesso()
         {
-            Produto prod = _produtoRepository.BuscarProduto("5ebd72407f288a429408e5f9");
+            _produtoTeste1.Quantity = 2;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
 
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, prod.Id);
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
-            Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, prod.Id, 2);
+            _produtoTeste1.Quantity = 0;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
+
+            Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, _produtoTeste1.Id, 2);
 
             if (carrinhoResult2 != null)
             {
