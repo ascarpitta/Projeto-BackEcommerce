@@ -45,6 +45,7 @@ namespace BackECommerce.Repository.Repositories
                 var endereco = _enderecoRepository.BuscarEndereco(carrinho.EnderecoId);
 
                 Pedido pedido = new Pedido();
+                List<Venda> listaVenda = new List<Venda>();
                 
                 pedido.Produtos = new List<ProdutosCarrinho>();
 
@@ -83,6 +84,7 @@ namespace BackECommerce.Repository.Repositories
 
                     //Atualizar estoque
                     produto.Quantity -= prod.Quantidade;
+                    produto.Carrinhos.Remove(carrinho.Id);
                     _produtoRepository.AtualizarProduto(prod.IdUserVenda, prod.IdProduto, produto);
 
                     //Adicionar produto no pedido
@@ -100,6 +102,7 @@ namespace BackECommerce.Repository.Repositories
                     pedido.Produtos.Add(produtoCarrinho);
 
                     //criar pedido de venda
+                    //venda.PedidoIdCompra = 
                     venda.BairroCompra = pedido.Bairro;
                     venda.CepCompra = pedido.Cep;
                     venda.CidadeCompra = pedido.Cidade;
@@ -122,7 +125,8 @@ namespace BackECommerce.Repository.Repositories
                     venda.NomeProduto = prod.NameProduto;
                     venda.Url_imagem = prod.url_imagem;
                     venda.Quandidade = prod.Quantidade;
-                    CriarVenda(venda);
+                    Venda v = CriarVenda(venda);
+                    listaVenda.Add(v);
                 }
 
                 pedido.VlTotal = pedido.VlFinal + pedido.VlFrete;
@@ -136,7 +140,13 @@ namespace BackECommerce.Repository.Repositories
                 }
                 _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Id} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
                 //arrumar numero do email, (esse numero é o do endereco)
-                return _pedidoService.CreatePedido(pedido);
+                Pedido pedidoFinal = _pedidoService.CreatePedido(pedido);
+                foreach (Venda v in listaVenda)
+                {
+                    v.PedidoIdCompra = pedidoFinal.Id;
+                    _vendaService.UpdateSale(v, v.Id);
+                }
+                return pedidoFinal;
             }
             return null;
         }
@@ -282,7 +292,7 @@ namespace BackECommerce.Repository.Repositories
                 var usuario = _usuarioRepository.BuscarUsuario(userId);
                 if (usuario != null)
                 {
-                    return _vendaService.GetSaleByUser(usuario.Id, pedidoCompraId);
+                    return _vendaService.GetSaleByUserByOrder(usuario.Id, pedidoCompraId);
                 }
             }
             return null;

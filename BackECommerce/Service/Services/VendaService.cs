@@ -19,9 +19,9 @@ namespace BackECommerce.Service.Services
             _venda = database.GetCollection<Venda>("Sales");
         }
 
-        public void UpdateSale(Venda vendaAtualizada, string id)
+        public void UpdateSale(Venda vendaAtualizada, string vendaId)
         {
-            _venda.ReplaceOne(v => v.UserIdVenda == id, vendaAtualizada);
+            _venda.ReplaceOne(v => v.Id == vendaId, vendaAtualizada);
         }
 
         public Venda CreateSale(Venda venda)

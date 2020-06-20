@@ -31,6 +31,7 @@ namespace BackECommerce.Repository.Repositories
         public void CadastroProduto(Produto produto)
         {
             produto.Ativo = true;
+            produto.Carrinhos = new List<string>();
             _produtoService.CreateProduto(produto);
         }
 
@@ -84,17 +85,6 @@ namespace BackECommerce.Repository.Repositories
                     _produtoService.UpdateProduto(produtoId, produtoNovo);
                     return BuscarProduto(produtoId);
                 }
-            }
-            return null;
-        }
-
-        public Produto AtualizarDadosProduto(string produtoId, Produto produtoNovo)
-        {
-            var prod = BuscarProduto(produtoId);
-            if (prod != null)
-            {
-                _produtoService.UpdateProduto(produtoId, produtoNovo);
-                return BuscarProduto(produtoId);
             }
             return null;
         }

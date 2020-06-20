@@ -40,7 +40,7 @@ namespace BackECommerce.Repository.Repositories
 
         public Carrinho AddProduto(string userId, string produtoId)
         {
-            var usuario = _usuarioRepository.BuscarUsuario(userId);            
+            var usuario = _usuarioRepository.BuscarUsuario(userId);
 
             if (usuario != null)
             {
@@ -66,7 +66,7 @@ namespace BackECommerce.Repository.Repositories
                             novoCarrinho.Produtos = new List<ProdutosCarrinho>();
                             novoCarrinho.Produtos.Add(novoProduto);
 
-                            _carrinhoService.CreateCarrinho(novoCarrinho);
+                            carrinho = _carrinhoService.CreateCarrinho(novoCarrinho);
                         }
                         else
                         {
@@ -90,11 +90,18 @@ namespace BackECommerce.Repository.Repositories
 
                             if (!existe)
                             {
-                                carrinho.Produtos.Add(novoProduto);
+                                carrinho.Produtos.Add(novoProduto);                                
                             }
                             
-                            _carrinhoService.UpdateCarrinho(carrinho, userId);
+                            _carrinhoService.UpdateCarrinho(carrinho, userId);                            
                         }
+                        if (produto.Carrinhos == null)
+                        {
+                            produto.Carrinhos = new List<string>();
+                        }
+
+                        produto.Carrinhos.Add(carrinho.Id);
+                        _produtoRepository.AtualizarProduto(produto.User, produto.Id, produto);
                         return _carrinhoService.GetCarrinhoByUser(userId);
                     }
                 }
@@ -135,6 +142,8 @@ namespace BackECommerce.Repository.Repositories
                                 {
                                     if (prod.Quantidade - 1 == 0)
                                     {
+                                        produto.Carrinhos.Remove(carrinho.Id);
+                                        _produtoRepository.AtualizarProduto(produto.User, produto.Id, produto);
                                         return RemoverProduto(userId, produtoId);
                                     }
                                     else
@@ -161,13 +170,6 @@ namespace BackECommerce.Repository.Repositories
             return null;
         }        
 
-        public Carrinho CriarCarrinho(string produtoId)
-        {
-            var carrinho = new Carrinho();
-            _carrinhoService.CreateCarrinho(carrinho);
-            return carrinho;
-        }
-
         public void RemoverCarrinhoPorUsuario(string userId)
         {
             _carrinhoService.EndCarrinhoByUser(userId);
@@ -185,6 +187,9 @@ namespace BackECommerce.Repository.Repositories
                 {
                     carrinho.Produtos.RemoveAll(c => c.IdProduto == produtoId);
                     _carrinhoService.UpdateCarrinho(carrinho, userId);
+
+                    produto.Carrinhos.Remove(carrinho.Id);
+                    _produtoRepository.AtualizarProduto(produto.User, produto.Id, produto);
 
                     if (carrinho.Produtos.Count() == 0)
                     {

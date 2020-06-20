@@ -11,7 +11,6 @@ namespace BackECommerce.Repository.Interfaces
         List<Carrinho> BuscarCarrinhos();
         Carrinho BuscarCarrinho(string carrinhoId);
         Carrinho BuscarCarrinhoPorUsuario(string id);
-        Carrinho CriarCarrinho(string produtoId);
         Carrinho AddProduto(string userId, string produtoId);
         Carrinho AddEndereco(string userId, string enderecoId);
         Carrinho AlterarQuantProduto(string userId, string produtoId, int tipo);

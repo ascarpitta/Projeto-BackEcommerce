@@ -97,7 +97,7 @@ namespace BackECommerce.Controllers
 
             product.url_imagem = public_url;
 
-            return _produtoRepository.AtualizarDadosProduto(id, product);           
+            return _produtoRepository.AtualizarProduto(product.User, product.Id, product);         
         }
 
         [HttpGet("Busca/{busca}")]

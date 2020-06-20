@@ -155,23 +155,27 @@ namespace BackECommerce.Repository.Repositories
             PdfPTable tab_produtos = new PdfPTable(5);
 
             var cel_produto = new PdfPCell();
+            var cel_qtd = new PdfPCell();
             var cel_preco = new PdfPCell();
             var cel_frete = new PdfPCell();
             var cel_vl_final = new PdfPCell();
 
             cel_produto.AddElement(new Paragraph("PRODUTO", _fonte));
-            cel_preco.AddElement(new Paragraph("QUANTIDADE", _fonte));
+            cel_qtd.AddElement(new Paragraph("QTD", _fonte));
             cel_preco.AddElement(new Paragraph("PREÇO", _fonte));
             cel_frete.AddElement(new Paragraph("FRETE", _fonte));
             cel_vl_final.AddElement(new Paragraph("VALOR FINAL", _fonte));
 
             tab_produtos.AddCell(cel_produto);
+            tab_produtos.AddCell(cel_qtd);
             tab_produtos.AddCell(cel_preco);
             tab_produtos.AddCell(cel_frete);
             tab_produtos.AddCell(cel_vl_final);
 
             tab_produtos.AddCell(new PdfPCell(new Phrase(venda.NomeProduto)));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(venda.Quandidade)));
+
+            double t = venda.Quandidade;
+            tab_produtos.AddCell(new PdfPCell(new Phrase(t.ToString())));
             tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlTotalCompra.ToString())));
             tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlFreteCompra.ToString())));
             tab_produtos.AddCell(new PdfPCell(new Phrase((venda.VlTotalCompra + venda.VlFreteCompra).ToString())));            
