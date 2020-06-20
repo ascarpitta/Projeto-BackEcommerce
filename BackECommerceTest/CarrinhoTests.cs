@@ -282,9 +282,11 @@ namespace BackECommerceTest
                 _produtoRepository.RemoverProdutoPorId(produtoNovo.Id);
                 Assert.Fail();
             }
-
-            _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
-            _produtoRepository.RemoverProdutoPorId(produtoNovo.Id);
+            else
+            {
+                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
+                _produtoRepository.RemoverProdutoPorId(produtoNovo.Id);
+            }
         }
 
         [Test]

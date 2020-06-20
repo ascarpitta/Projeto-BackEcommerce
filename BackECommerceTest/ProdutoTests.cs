@@ -269,7 +269,6 @@ namespace ProdutoTeste.Tests
 
             if (_produtoTeste.Ativo)
             {
-                var prod = _produtoRepository.BuscarProduto(_produtoTeste.Id);
                 var teste = _produtoRepository.InativaProduto(_produtoTeste.Id, _produtoTeste.Id);
                 if (teste != null)
                 {
