@@ -26,11 +26,11 @@ namespace BackECommerce.Repository.Repositories
         {
             var usuario_compra = _usuarioService.GetUsuarioById(pedCompra.UserId);
             var usuario_venda = _usuarioService.GetUsuarioById(venda.UserIdVenda);
-            Document doc = new Document(PageSize.A4); //criando e estipulando o tipo da folha usada
-            doc.SetMargins(40, 40, 40, 80); //estibulando o espaçamento das margens que queremos
-            doc.AddCreationDate(); //adicionando as configuracoes
+            Document doc = new Document(PageSize.A4); 
+            doc.SetMargins(40, 40, 40, 80); 
+            doc.AddCreationDate();
 
-            string caminho = @"C:\Users\Scarpitta\" + "ReciboCompra.pdf";
+            string caminho = AppDomain.CurrentDomain.BaseDirectory.ToString() + "ReciboCompra.pdf";
             PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
 
             doc.Open();
@@ -60,6 +60,24 @@ namespace BackECommerce.Repository.Repositories
             tab_pedido.AddCell(new PdfPCell(new Phrase(pedCompra.DataPedidoRealizado.ToString())));
             tab_pedido.AddCell(new PdfPCell(new Phrase(DateTime.Now.ToString())));
             tab_pedido.AddCell(new PdfPCell(new Phrase(pedCompra.Id)));
+
+            //Cabeçalho
+            var cel_vl_produto = new PdfPCell();
+            var cel_vl_frete = new PdfPCell();
+            var cel_vl_total = new PdfPCell();
+
+            cel_vl_produto.AddElement(new Paragraph("VALOR COMPRA", _fonte));
+            cel_vl_frete.AddElement(new Paragraph("VALOR FRETE", _fonte));
+            cel_vl_total.AddElement(new Paragraph("VALOR FINAL", _fonte));
+
+            tab_pedido.AddCell(cel_vl_produto);
+            tab_pedido.AddCell(cel_vl_frete);
+            tab_pedido.AddCell(cel_vl_total);
+
+            //Dados
+            tab_pedido.AddCell(new PdfPCell(new Phrase(venda.VlFinalCompra.ToString())));
+            tab_pedido.AddCell(new PdfPCell(new Phrase(venda.VlFreteCompra.ToString())));
+            tab_pedido.AddCell(new PdfPCell(new Phrase(venda.VlTotalCompra.ToString())));
 
             doc.Add(tab_pedido);
             doc.Add(quebraLinha);
@@ -164,7 +182,7 @@ namespace BackECommerce.Repository.Repositories
             cel_qtd.AddElement(new Paragraph("QTD", _fonte));
             cel_preco.AddElement(new Paragraph("PREÇO", _fonte));
             cel_frete.AddElement(new Paragraph("FRETE", _fonte));
-            cel_vl_final.AddElement(new Paragraph("VALOR FINAL", _fonte));
+            cel_vl_final.AddElement(new Paragraph("VALOR", _fonte));
 
             tab_produtos.AddCell(cel_produto);
             tab_produtos.AddCell(cel_qtd);
@@ -176,10 +194,12 @@ namespace BackECommerce.Repository.Repositories
 
             double t = venda.Quandidade;
             tab_produtos.AddCell(new PdfPCell(new Phrase(t.ToString())));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlTotalCompra.ToString())));
+            tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlFinalCompra.ToString())));
             tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlFreteCompra.ToString())));
-            tab_produtos.AddCell(new PdfPCell(new Phrase((venda.VlTotalCompra + venda.VlFreteCompra).ToString())));            
+            tab_produtos.AddCell(new PdfPCell(new Phrase((venda.VlTotalCompra).ToString())));            
 
+            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
+            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
             tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
             tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
             tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));

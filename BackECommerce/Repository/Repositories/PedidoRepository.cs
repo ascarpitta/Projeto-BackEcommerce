@@ -3,6 +3,7 @@ using BackECommerce.Repository.Interfaces;
 using BackECommerce.Service.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -249,7 +250,7 @@ namespace BackECommerce.Repository.Repositories
             return null;
         }
 
-        public void GerarReciboProduto(string userId, string pedidoId, string produtoId)
+        public FileStream GerarReciboProduto(string userId, string pedidoId, string produtoId)
         {
             if (userId.Length == 24 && pedidoId.Length == 24 && produtoId.Length == 24)
             {
@@ -263,10 +264,14 @@ namespace BackECommerce.Repository.Repositories
                             var venda = BuscarVendaPorUsuarioPorPedido(item.IdUserVenda, pedidoId);
 
                             _gerarRecibo.gerarReciboCompraProduto(pedido, venda);
+
+                            FileStream fs = File.OpenRead(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ReciboCompra.pdf");
+                            return fs;                                                        
                         }
                     }
                 }
             }
+            return null;
         }
 
         //VENDA

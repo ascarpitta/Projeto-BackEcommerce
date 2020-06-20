@@ -1,6 +1,7 @@
 ﻿using BackECommerce.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,6 +28,6 @@ namespace BackECommerce.Repository.Interfaces
         Venda CriarVenda(Venda venda);
         Venda AtualizarStatusPedido(string userId, string vendaId, int tipo);
         List<Venda> PedidosVendaEmAndamento(string userId);
-        void GerarReciboProduto(string userId, string pedidoId, string produtoId);
+        FileStream GerarReciboProduto(string userId, string pedidoId, string produtoId);
     }
 }

@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ServiceStack.Host;
 
 namespace BackECommerce.Controllers
 {
     [Route("api/Pedidos")]
     [ApiController]
-    public class PedidoController : ControllerBase
+    public class PedidoController : ControllerBase, IHttpHandler
     {
         private readonly IPedidoRepository _pedidoRepository;
         public PedidoController(IPedidoRepository pedidoRepository)
@@ -92,10 +96,11 @@ namespace BackECommerce.Controllers
         }
 
         [HttpGet("GerarRecibo/{userId}/{pedidoId}/{produtoId}")]
-        public ActionResult<List<Pedido>> GerarRecibo(string userId, string pedidoId, string produtoId)
+        public ActionResult GerarRecibo(string userId, string pedidoId, string produtoId)
         {
-            _pedidoRepository.GerarReciboProduto(userId, pedidoId, produtoId);
-            return Ok();
+            FileStream ms = _pedidoRepository.GerarReciboProduto(userId, pedidoId, produtoId);
+
+            return File(ms, "application/pdf");
         }
     }
 }
