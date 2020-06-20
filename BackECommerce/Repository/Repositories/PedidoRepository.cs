@@ -65,7 +65,7 @@ namespace BackECommerce.Repository.Repositories
                 {
                     var produto = _produtoRepository.BuscarProduto(prod.IdProduto);
 
-                    if (produto.Quantity <= prod.Quantidade || !produto.Ativo)
+                    if (produto.Quantity < prod.Quantidade || !produto.Ativo)
                     {
                         return null;
                     }
