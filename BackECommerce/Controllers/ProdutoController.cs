@@ -64,7 +64,7 @@ namespace BackECommerce.Controllers
             return produto;
         }
 
-        [HttpPost("Imagem/Armazenar/{id}")]
+        [HttpGet("Imagem/Armazenar/{id}")]
         public ActionResult<Produto> StoreProductImage(string id)
         {
             DocumentoService documentoService = new DocumentoService();
