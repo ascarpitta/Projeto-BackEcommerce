@@ -12,18 +12,22 @@ namespace BackECommerce.Repository.Repositories
     {
         public void EnviarEmail(string para, string assunto, string conteudo, string caminhoAnexo = null)
         {
-            string de = "suporte@ecommerce.com.br";
-            var client = new SmtpClient("smtp.mailtrap.io", 2525)
-            {
-                Credentials = new NetworkCredential("scarpittaa@gmail.com", "23071309!As"),
-                EnableSsl = true
-            };
-            MailMessage mailMessage = new MailMessage(de, para, assunto, conteudo);
+            var smtp = new SmtpClient("smtp.gmail.com");
+            smtp.EnableSsl = true;
+            smtp.Port = 587;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.UseDefaultCredentials = false;
+
+            smtp.Credentials = new NetworkCredential("projetos.mack2020@gmail.com", "mackenzista2020");
+            MailMessage mailMessage = new MailMessage("projetos.mack2020@gmail.com", para, assunto, conteudo);
+            
             if (caminhoAnexo != null)
             {
                 mailMessage.Attachments.Add(new Attachment(caminhoAnexo));
             }
-            client.Send(mailMessage);
+            smtp.Send(mailMessage);
+            smtp.Dispose();
+            mailMessage.Dispose();
         }
     }
 }
