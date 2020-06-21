@@ -80,6 +80,24 @@ namespace BackECommerce.Controllers
             return Ok();
         }
 
+        [HttpGet("CadastroEndereco/{idUsuario}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}")]
+        public ActionResult<Endereco> PostEnderecoSemComplemento(string idUsuario, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero)
+        {
+            //string bairro, string rua, int numero, string complemento, string obs
+            Endereco endereco = new Endereco();
+            endereco.User = idUsuario;
+            endereco.NomeEndereco = nome;
+            endereco.Cep = cep;
+            endereco.Uf = uf;
+            endereco.Cidade = cidade;
+            endereco.Bairro = bairro;
+            endereco.Rua = rua;
+            endereco.Numero = numero;
+
+            _enderecoRepository.CadastroEndereco(endereco);
+            return Ok();
+        }
+
         [HttpGet("AlterarEndereco/{userId}/{id}")]
         public IActionResult Put(string userId, string id, Endereco enderecoNovo)
         {
