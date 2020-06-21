@@ -15,7 +15,7 @@ namespace BackECommerce.Repository.Repositories
             string de = "suporte@ecommerce.com.br";
             var client = new SmtpClient("smtp.mailtrap.io", 2525)
             {
-                Credentials = new NetworkCredential("c50fa06de5aace", "019fdd06cb1b43"),
+                Credentials = new NetworkCredential("scarpittaa@gmail.com", "23071309!As"),
                 EnableSsl = true
             };
             MailMessage mailMessage = new MailMessage(de, para, assunto, conteudo);
@@ -23,7 +23,7 @@ namespace BackECommerce.Repository.Repositories
             {
                 mailMessage.Attachments.Add(new Attachment(caminhoAnexo));
             }
-            client.Send(de, para, assunto, conteudo);
+            client.Send(mailMessage);
         }
     }
 }
