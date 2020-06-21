@@ -79,9 +79,6 @@ namespace BackECommerce.Repository.Repositories
                             {
                                 enderecoViaCep.Rua = valor[1];
                             }
-                            if (cont == 3) { 
-                                enderecoViaCep.Complemento = valor[1]; 
-                            }
                             if (cont == 4)
                             {
                                 enderecoViaCep.Bairro = valor[1];
