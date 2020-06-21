@@ -268,24 +268,26 @@ namespace BackECommerceTest
             {
                 Assert.Fail();
             }
-
-            _produtoTeste1.Quantity = 1;
-            _produtoTeste1.Ativo = true;
-            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
-
-            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);            
-
-            Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, produtoNovo.Id);
-            if (carrinhoResult != null)
-            {
-                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
-                _produtoRepository.RemoverProdutoPorId(produtoNovo.Id);
-                Assert.Fail();
-            }
             else
             {
-                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
-                _produtoRepository.RemoverProdutoPorId(produtoNovo.Id);
+                _produtoTeste1.Quantity = 1;
+                _produtoTeste1.Ativo = true;
+                _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
+
+                _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
+
+                Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, produtoNovo.Id);
+                if (carrinhoResult != null)
+                {
+                    _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
+                    _produtoRepository.RemoverProdutoPorId(produtoNovo.Id);
+                    Assert.Fail();
+                }
+                else
+                {
+                    _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
+                    _produtoRepository.RemoverProdutoPorId(produtoNovo.Id);
+                }
             }
         }
 
