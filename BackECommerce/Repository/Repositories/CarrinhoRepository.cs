@@ -166,10 +166,6 @@ namespace BackECommerce.Repository.Repositories
                                     }
                                 }
                             }
-                            else
-                            {
-                                return RemoverProduto(userId, produtoId);
-                            }
                         }
                         if (!existe)
                         {
