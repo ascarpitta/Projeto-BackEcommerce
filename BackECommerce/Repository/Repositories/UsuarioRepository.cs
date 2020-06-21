@@ -182,6 +182,7 @@ namespace BackECommerce.Repository.Repositories
                 {
                     user.Ativo = true;
                     AtualizarUsuario(user.Id, user);
+                    _emailRepository.EnviarEmail(user.Email, "Usuário inativado", $"Caro {user.Name}, seu usuário foi reativado.");
                     return user;
                 }
             }
@@ -199,6 +200,7 @@ namespace BackECommerce.Repository.Repositories
                 {
                     usuario.Ativo = false;
                     AtualizarUsuario(userId, usuario);
+                    _emailRepository.EnviarEmail(usuario.Email, "Usuário inativado", $"Caro {usuario.Name}, seu usuário foi inativado, para reativa-lo favor entrar no site https://proj-front-2020.herokuapp.com/login-usuario.html e selecionar a opção de reativar cadastro.");
                     return usuario;
                 }
             }
