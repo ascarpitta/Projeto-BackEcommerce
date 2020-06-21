@@ -102,5 +102,13 @@ namespace BackECommerce.Controllers
 
             return File(ms, "application/pdf");
         }
+
+        [HttpGet("GerarReciboVenda/{userId}/{vendaId}/{produtoId}")]
+        public ActionResult GerarReciboVenda(string userId, string vendaId, string produtoId)
+        {
+            FileStream ms = _pedidoRepository.GerarReciboProdutoVenda(userId, vendaId, produtoId);
+
+            return File(ms, "application/pdf");
+        }
     }
 }

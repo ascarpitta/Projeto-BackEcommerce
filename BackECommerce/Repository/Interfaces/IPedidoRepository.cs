@@ -29,5 +29,6 @@ namespace BackECommerce.Repository.Interfaces
         Venda AtualizarStatusPedido(string userId, string vendaId, int tipo);
         List<Venda> PedidosVendaEmAndamento(string userId);
         FileStream GerarReciboProduto(string userId, string pedidoId, string produtoId);
+        FileStream GerarReciboProdutoVenda(string userId, string vendaId, string produtoId);
     }
 }
