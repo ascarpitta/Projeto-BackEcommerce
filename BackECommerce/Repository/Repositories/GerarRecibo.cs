@@ -198,14 +198,10 @@ namespace BackECommerce.Repository.Repositories
             tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlFreteCompra.ToString())));
             tab_produtos.AddCell(new PdfPCell(new Phrase((venda.VlTotalCompra).ToString())));            
 
-            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
+            for (int i=0; i < 8; i++)
+            {
+                tab_produtos.AddCell(new PdfPCell(new Phrase(" ")));
+            }
 
             tab_produtos.AddCell(new PdfPCell(new Phrase("VALOR FINAL:")));
             tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlTotalCompra.ToString())));
