@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
+using BackECommerce.Repository.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -96,52 +97,61 @@ namespace BackECommerce.Controllers
             return Ok();
         }
 
-        [HttpGet("AlterarEndereco/{userId}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}/{complemento}")]
-        public IActionResult Put(string userId, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero, string complemento)
+        [HttpGet("AlterarEndereco/{id}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}/{complemento}")]
+        public IActionResult Put(string id, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero, string complemento)
         {
-            //Endereco enderecoNovo = new Endereco();
-            //enderecoNovo.User = userId;
-            //enderecoNovo.NomeEndereco = nome;
-            //enderecoNovo.Cep = cep;
-            //enderecoNovo.Uf = uf;
-            //enderecoNovo.Cidade = cidade;
-            //enderecoNovo.Bairro = bairro;
-            //enderecoNovo.Rua = rua;
-            //enderecoNovo.Numero = numero;
-            //enderecoNovo.Complemento = complemento;
+            var end = _enderecoRepository.BuscarEndereco(id);
 
-            //var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
+            if (end != null)
+            {
+                Endereco enderecoNovo = new Endereco();
+                enderecoNovo.User = end.User;
+                enderecoNovo.NomeEndereco = nome;
+                enderecoNovo.Cep = cep;
+                enderecoNovo.Uf = uf;
+                enderecoNovo.Cidade = cidade;
+                enderecoNovo.Bairro = bairro;
+                enderecoNovo.Rua = rua;
+                enderecoNovo.Numero = numero;
+                enderecoNovo.Complemento = complemento;
 
-            //if (endereco == null)
-            //{
-            //    return NotFound();
-            //}            
+                var endereco = _enderecoRepository.AtualizarEndereco(end.User, id, enderecoNovo);
 
-            return Ok();
+                if (endereco != null)
+                {
+                    return Ok();
+                }                
+            }
+            return NotFound();
         }
 
-        [HttpGet("AlterarEndereco/{userId}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}")]
-        public IActionResult PutSemComplemento(string userId, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero)
+        [HttpGet("AlterarEndereco/{id}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}")]
+        public IActionResult PutSemComplemento(string id, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero)
         {
-            //Endereco enderecoNovo = new Endereco();
-            //enderecoNovo.User = userId;
-            //enderecoNovo.NomeEndereco = nome;
-            //enderecoNovo.Cep = cep;
-            //enderecoNovo.Uf = uf;
-            //enderecoNovo.Cidade = cidade;
-            //enderecoNovo.Bairro = bairro;
-            //enderecoNovo.Rua = rua;
-            //enderecoNovo.Numero = numero;
+            var end = _enderecoRepository.BuscarEndereco(id);
 
-            //var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
+            if (end != null)
+            {
+                Endereco enderecoNovo = new Endereco();
+                enderecoNovo.User = end.User;
+                enderecoNovo.NomeEndereco = nome;
+                enderecoNovo.Cep = cep;
+                enderecoNovo.Uf = uf;
+                enderecoNovo.Cidade = cidade;
+                enderecoNovo.Bairro = bairro;
+                enderecoNovo.Rua = rua;
+                enderecoNovo.Numero = numero;
 
-            //if (endereco == null)
-            //{
-            //    return NotFound();
-            //}
+                var endereco = _enderecoRepository.AtualizarEndereco(end.User, id, enderecoNovo);
 
-            return Ok();
+                if (endereco != null)
+                {
+                    return Ok();
+                }
+            }
+            return NotFound();
         }
+    
 
         [HttpGet("ExcluirEndereco/{userId}/{id}")]
         public IActionResult GetExcluirEndereco(string userId, string id)
