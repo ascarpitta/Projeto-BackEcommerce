@@ -13,6 +13,9 @@ namespace BackECommerce.Models
 		[BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
 
+		[BsonElement("NumPedido")]
+		public int NumPedido { get; set; }
+
 		[BsonElement("userIdVenda")]
 		[BsonRequired]
 		[BsonRepresentation(BsonType.ObjectId)]

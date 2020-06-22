@@ -43,6 +43,7 @@ namespace BackECommerce.Repository.Repositories
         {
             if (carrinho != null)
             {
+                Random number = new Random();
                 var endereco = _enderecoRepository.BuscarEndereco(carrinho.EnderecoId);
 
                 Pedido pedido = new Pedido();
@@ -50,6 +51,7 @@ namespace BackECommerce.Repository.Repositories
                 
                 pedido.Produtos = new List<ProdutosCarrinho>();
 
+                pedido.NumPedido = number.Next(10000, 99999);
                 pedido.UserId = userId;
                 pedido.NomeEndereco = endereco.NomeEndereco;
                 pedido.Uf = endereco.Uf;
@@ -112,6 +114,7 @@ namespace BackECommerce.Repository.Repositories
                     venda.PedidoIdCompra = pedido.Id;
                     venda.RuaCompra = pedido.Rua;
                     venda.UfCompra = pedido.Uf;
+                    venda.NumPedido = number.Next(10000, 99999);
 
                     venda.DataPedidoRealizadoCompra = DateTime.Now;
                     venda.StatusCancelado = false;
@@ -138,7 +141,7 @@ namespace BackECommerce.Repository.Repositories
                 {
                     products = products + "\n" + prod.NameProduto;
                 }
-                _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.Id} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
+                _emailRepository.EnviarEmail(user.Email, "Pedido confirmado com sucesso!", $"Caro(a) {user.Name}, \n\nseu pedido de número {pedido.NumPedido} foi processado em nosso sistema.\n\nObrigado por comprar em nossa loja!");
                 Pedido pedidoFinal = _pedidoService.CreatePedido(pedido);
                 foreach (Venda v in listaVenda)
                 {
