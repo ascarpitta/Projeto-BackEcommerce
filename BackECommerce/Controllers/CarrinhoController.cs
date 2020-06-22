@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
+using BackECommerce.Repository.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,7 @@ namespace BackECommerce.Controllers
     public class CarrinhoController : ControllerBase
     {
         private readonly ICarrinhoRepository _carrinhoRepository;
+        private readonly IProdutoRepository _produtoRepository = new ProdutoRepository();
         public CarrinhoController(ICarrinhoRepository carrinhoRepository)
         {
             _carrinhoRepository = carrinhoRepository;
@@ -77,15 +79,13 @@ namespace BackECommerce.Controllers
         }
 
         [HttpGet("AumentarProduto/{userId}/{produtoId}")]
-        public ActionResult<Carrinho> PutAlterarQtd(string userId, string produtoId)
+        public int PutAlterarQtd(string userId, string produtoId)
         {
             var carrinho = _carrinhoRepository.AlterarQuantProduto(userId, produtoId, 1);
 
-            if (carrinho == null)
-            {
-                return NotFound();
-            }
-            return Ok();
+            var produto = _produtoRepository.BuscarProduto(produtoId);
+
+            return produto.Quantity;
         }
 
         [HttpGet("DiminuirProduto/{userId}/{produtoId}")]
