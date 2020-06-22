@@ -76,9 +76,9 @@ namespace BackECommerce.Repository.Repositories
             tab_pedido.AddCell(cel_vl_total);
 
             //Dados
-            tab_pedido.AddCell(new PdfPCell(new Phrase(venda.VlFinalCompra.ToString("0.00"))));
-            tab_pedido.AddCell(new PdfPCell(new Phrase(venda.VlFreteCompra.ToString("0.00"))));
             tab_pedido.AddCell(new PdfPCell(new Phrase(venda.VlTotalCompra.ToString("0.00"))));
+            tab_pedido.AddCell(new PdfPCell(new Phrase(venda.VlFreteCompra.ToString("0.00"))));
+            tab_pedido.AddCell(new PdfPCell(new Phrase(venda.VlFinalCompra.ToString("0.00"))));
 
             doc.Add(tab_pedido);
             doc.Add(quebraLinha);
@@ -195,9 +195,9 @@ namespace BackECommerce.Repository.Repositories
 
             double t = venda.Quandidade;
             tab_produtos.AddCell(new PdfPCell(new Phrase(t.ToString())));
-            tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlFinalCompra.ToString("0.00"))));
+            tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlTotalCompra.ToString("0.00"))));
             tab_produtos.AddCell(new PdfPCell(new Phrase(venda.VlFreteCompra.ToString("0.00"))));
-            tab_produtos.AddCell(new PdfPCell(new Phrase((venda.VlTotalCompra).ToString("0.00"))));            
+            tab_produtos.AddCell(new PdfPCell(new Phrase((venda.VlFinalCompra).ToString("0.00"))));            
 
             for (int i=0; i < 8; i++)
             {

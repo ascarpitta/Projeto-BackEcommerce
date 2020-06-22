@@ -82,8 +82,8 @@ namespace BackECommerce.Repository.Repositories
                     Venda venda = new Venda();
                     var produto = _produtoRepository.BuscarProduto(prod.IdProduto);
 
-                    pedido.VlFinal += (prod.Preco * prod.Quantidade);
-                    pedido.VlFrete += prod.Frete;
+                    pedido.VlTotal += (prod.Preco * prod.Quantidade);
+                    pedido.VlFrete += (prod.Frete * prod.Quantidade);
 
                     //Atualizar estoque
                     produto.Quantity -= prod.Quantidade;
@@ -122,9 +122,9 @@ namespace BackECommerce.Repository.Repositories
                     venda.StatusFinalizado = false;
                     venda.IdProdutoCompra = produto.Id;
                     venda.UserIdVenda = produto.User;
-                    venda.VlFinalCompra = prod.Preco * prod.Quantidade;
-                    venda.VlFreteCompra = prod.Frete;
-                    venda.VlTotalCompra = venda.VlFinalCompra + venda.VlFreteCompra;
+                    venda.VlTotalCompra = prod.Preco * prod.Quantidade;
+                    venda.VlFreteCompra = prod.Frete * prod.Quantidade;
+                    venda.VlFinalCompra = venda.VlTotalCompra + venda.VlFreteCompra;
                     venda.NomeProduto = prod.NameProduto;
                     venda.Url_imagem = prod.url_imagem;
                     venda.Quandidade = prod.Quantidade;
@@ -132,7 +132,7 @@ namespace BackECommerce.Repository.Repositories
                     listaVenda.Add(v);
                 }
 
-                pedido.VlTotal = pedido.VlFinal + pedido.VlFrete;
+                pedido.VlFinal = pedido.VlTotal + pedido.VlFrete;
 
                 var user = _usuarioRepository.BuscarUsuario(userId);
 
