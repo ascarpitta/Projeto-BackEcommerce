@@ -10,7 +10,7 @@ namespace BackECommerce.Repository.Repositories
 {
     public class EmailRepository : IEmailRepository
     {
-        public void EnviarEmail(string para, string assunto, string conteudo, string caminhoAnexo = null)
+        public void EnviarEmail(string para, string assunto, string conteudo)
         {
             var smtp = new SmtpClient("smtp.gmail.com");
             smtp.EnableSsl = true;
@@ -21,10 +21,6 @@ namespace BackECommerce.Repository.Repositories
             smtp.Credentials = new NetworkCredential("projetos.mack2020@gmail.com", "mackenzista2020");
             MailMessage mailMessage = new MailMessage("projetos.mack2020@gmail.com", para, assunto, conteudo);
             
-            if (caminhoAnexo != null)
-            {
-                mailMessage.Attachments.Add(new Attachment(caminhoAnexo));
-            }
             smtp.Send(mailMessage);
             smtp.Dispose();
             mailMessage.Dispose();

@@ -23,6 +23,11 @@ namespace BackECommerce.Service.Services
             return _produtos.Find(produto => produto.Ativo).ToList();
         }
 
+        public List<Produto> GetProdutoLogado(string userId)
+        {
+            return _produtos.Find(produto => produto.Ativo && produto.User == userId).ToList();
+        }
+
         public Produto GetProdutoById(string id)
         {
             return _produtos.Find<Produto>(produto => produto.Id == id).FirstOrDefault();

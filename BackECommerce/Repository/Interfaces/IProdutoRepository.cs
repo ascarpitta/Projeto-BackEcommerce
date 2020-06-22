@@ -10,6 +10,7 @@ namespace BackECommerce.Repository.Interfaces
     {
         Produto CadastroProduto(Produto produto); //No plano de teste
         List<Produto> BuscarProdutos(); //No plano de teste
+        List<Produto> BuscarProdutosLogado(string userId);
         Produto BuscarProduto(string id); //No plano de teste
         List<Produto> BuscarProdutosPorUsuario(string userId); //No plano de teste
         Produto BuscarProdutoPorUsuario(string userId, string id); //No plano de teste

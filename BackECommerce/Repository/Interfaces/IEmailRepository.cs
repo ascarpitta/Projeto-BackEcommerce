@@ -8,6 +8,6 @@ namespace BackECommerce.Repository.Interfaces
 {
     public interface IEmailRepository
     {
-        void EnviarEmail(string para, string assunto, string conteudo, string caminhoAnexo = null);
+        void EnviarEmail(string para, string assunto, string conteudo);
     }
 }

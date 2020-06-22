@@ -28,6 +28,12 @@ namespace BackECommerce.Controllers
             return _produtoRepository.BuscarProdutos();
         }
 
+        [HttpGet("{userId}")]
+        public ActionResult<List<Produto>> GetProduto(string userId)
+        {
+            return _produtoRepository.BuscarProdutosLogado(userId);
+        }
+
         [HttpGet("Id/{produtoId}")]
         public ActionResult<Produto> GetProdutoById(string produtoId)
         {

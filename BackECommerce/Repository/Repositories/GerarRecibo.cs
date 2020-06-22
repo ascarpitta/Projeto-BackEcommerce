@@ -30,7 +30,7 @@ namespace BackECommerce.Repository.Repositories
             doc.SetMargins(40, 40, 40, 80); 
             doc.AddCreationDate();
 
-            string caminho = AppDomain.CurrentDomain.BaseDirectory.ToString() + "ReciboCompra.pdf";
+            string caminho = AppDomain.CurrentDomain.BaseDirectory + "ReciboCompra.pdf";
             PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
 
             doc.Open();
