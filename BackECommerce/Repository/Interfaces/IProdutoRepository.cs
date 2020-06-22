@@ -8,7 +8,7 @@ namespace BackECommerce.Repository.Interfaces
 {
     public interface IProdutoRepository
     {
-        void CadastroProduto(Produto produto); //No plano de teste
+        Produto CadastroProduto(Produto produto); //No plano de teste
         List<Produto> BuscarProdutos(); //No plano de teste
         Produto BuscarProduto(string id); //No plano de teste
         List<Produto> BuscarProdutosPorUsuario(string userId); //No plano de teste

@@ -28,11 +28,11 @@ namespace BackECommerce.Repository.Repositories
             return _produtoService.GetProduto();
         }
 
-        public void CadastroProduto(Produto produto)
+        public Produto CadastroProduto(Produto produto)
         {
             produto.Ativo = true;
             produto.Carrinhos = new List<string>();
-            _produtoService.CreateProduto(produto);
+            return _produtoService.CreateProduto(produto);
         }
 
         public Produto BuscarProdutoPorUsuario(string userId, string id)

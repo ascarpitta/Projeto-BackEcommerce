@@ -64,7 +64,7 @@ namespace BackECommerce.Controllers
             return produto;
         }
 
-        [HttpGet("Imagem/Armazenar/{id}")]
+        [HttpPost("Imagem/Armazenar/{id}")]
         public ActionResult<Produto> StoreProductImage(string id)
         {
             DocumentoService documentoService = new DocumentoService();
@@ -176,8 +176,12 @@ namespace BackECommerce.Controllers
                 Ativo = true
             };
 
-            _produtoRepository.CadastroProduto(produto);   
-            return Ok();
+            var prod = _produtoRepository.CadastroProduto(produto);  
+            if (prod == null)
+            {
+                return NotFound();
+            }
+            return prod;
         }
 
         [HttpGet("AlterarProduto/{userId}/{nome}/{descricao}/{preco}/{frete}/{quantidade}/{categoria}/{marca}")]
