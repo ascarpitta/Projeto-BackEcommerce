@@ -400,7 +400,7 @@ namespace BackECommerce.Repository.Repositories
                     {
                         _gerarRecibo.gerarReciboCompraProduto(pedido, venda);
 
-                        FileStream fs = File.OpenRead(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ReciboCompra.pdf");
+                        FileStream fs = File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + "ReciboCompra.pdf");
                         return fs;
                     }
                 }

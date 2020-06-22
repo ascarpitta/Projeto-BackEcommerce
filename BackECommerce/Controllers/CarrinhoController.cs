@@ -81,7 +81,7 @@ namespace BackECommerce.Controllers
         [HttpGet("AumentarProduto/{userId}/{produtoId}")]
         public int PutAlterarQtd(string userId, string produtoId)
         {
-            var carrinho = _carrinhoRepository.AlterarQuantProduto(userId, produtoId, 1);
+            _carrinhoRepository.AlterarQuantProduto(userId, produtoId, 1);
 
             var produto = _produtoRepository.BuscarProduto(produtoId);
 
