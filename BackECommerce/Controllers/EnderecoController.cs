@@ -64,7 +64,6 @@ namespace BackECommerce.Controllers
         [HttpGet("CadastroEndereco/{idUsuario}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}/{complemento}")]
         public ActionResult<Endereco> PostEndereco(string idUsuario, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero, string complemento)
         {
-            //string bairro, string rua, int numero, string complemento, string obs
             Endereco endereco = new Endereco();
             endereco.User = idUsuario;
             endereco.NomeEndereco = nome;
@@ -83,7 +82,6 @@ namespace BackECommerce.Controllers
         [HttpGet("CadastroEndereco/{idUsuario}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}")]
         public ActionResult<Endereco> PostEnderecoSemComplemento(string idUsuario, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero)
         {
-            //string bairro, string rua, int numero, string complemento, string obs
             Endereco endereco = new Endereco();
             endereco.User = idUsuario;
             endereco.NomeEndereco = nome;
@@ -99,8 +97,19 @@ namespace BackECommerce.Controllers
         }
 
         [HttpGet("AlterarEndereco/{userId}/{id}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}/{complemento}")]
-        public IActionResult Put(string userId, string id, Endereco enderecoNovo)
+        public IActionResult Put(string userId, string id, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero, string complemento)
         {
+            Endereco enderecoNovo = new Endereco();
+            enderecoNovo.User = userId;
+            enderecoNovo.NomeEndereco = nome;
+            enderecoNovo.Cep = cep;
+            enderecoNovo.Uf = uf;
+            enderecoNovo.Cidade = cidade;
+            enderecoNovo.Bairro = bairro;
+            enderecoNovo.Rua = rua;
+            enderecoNovo.Numero = numero;
+            enderecoNovo.Complemento = complemento;
+
             var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
 
             if (endereco == null)
@@ -112,8 +121,18 @@ namespace BackECommerce.Controllers
         }
 
         [HttpGet("AlterarEndereco/{userId}/{id}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}")]
-        public IActionResult PutSemComplemento(string userId, string id, Endereco enderecoNovo)
+        public IActionResult PutSemComplemento(string userId, string id, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero)
         {
+            Endereco enderecoNovo = new Endereco();
+            enderecoNovo.User = userId;
+            enderecoNovo.NomeEndereco = nome;
+            enderecoNovo.Cep = cep;
+            enderecoNovo.Uf = uf;
+            enderecoNovo.Cidade = cidade;
+            enderecoNovo.Bairro = bairro;
+            enderecoNovo.Rua = rua;
+            enderecoNovo.Numero = numero;
+
             var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
 
             if (endereco == null)

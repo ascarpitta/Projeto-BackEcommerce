@@ -180,9 +180,22 @@ namespace BackECommerce.Controllers
             return Ok();
         }
 
-        [HttpGet("AlterarProduto/{userId}/{id}")]
-        public IActionResult Put(string userId, string id, Produto produtoNovo)
+        [HttpGet("AlterarProduto/{userId}/{nome}/{descricao}/{preco}/{frete}/{quantidade}/{categoria}/{marca}")]
+        public IActionResult Put(string userId, string id, string nome, string descricao, double preco, double frete, int quantidade, string categoria, string marca)
         {
+            Produto produtoNovo = new Produto
+            {
+                User = userId,
+                Name = nome,
+                Description = descricao,
+                Price = preco,
+                Frete = frete,
+                Quantity = quantidade,
+                Category = categoria,
+                Marca = marca,
+                Ativo = true
+            };
+
             var produto = _produtoRepository.AtualizarProduto(userId, id, produtoNovo);
 
             if (produto == null)
