@@ -28,22 +28,5 @@ namespace BackECommerce.Service.Services
             var url = uploadResult.SecureUri.ToString();
             return url;
         }
-
-        /// <summary>
-        /// Faz o carregamento da NFe para o servidor em nuvem e retorna a URL dela
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <returns></returns>
-        public string CarregarNFe(string caminhoArquivo)
-        {
-            var uploadParams = new ImageUploadParams
-            {
-                File = new FileDescription(caminhoArquivo),
-                Folder = "NFe's"
-            };
-            var uploadResult = Cloudinary.Upload(uploadParams);
-            var url = uploadResult.SecureUri.ToString();
-            return url;
-        }
     }
 }

@@ -20,7 +20,7 @@ namespace BackECommerce.Service.Services
 
         public List<Produto> GetProduto()
         {
-            return _produtos.Find(produto => true && produto.Ativo).ToList();
+            return _produtos.Find(produto => produto.Ativo).ToList();
         }
 
         public Produto GetProdutoById(string id)
