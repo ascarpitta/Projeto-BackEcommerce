@@ -114,7 +114,7 @@ namespace BackECommerce.Repository.Repositories
                     venda.PedidoIdCompra = pedido.Id;
                     venda.RuaCompra = pedido.Rua;
                     venda.UfCompra = pedido.Uf;
-                    venda.NumPedido = number.Next(10000, 99999);
+                    venda.NumPedido = pedido.NumPedido;
 
                     venda.DataPedidoRealizadoCompra = DateTime.Now;
                     venda.StatusCancelado = false;

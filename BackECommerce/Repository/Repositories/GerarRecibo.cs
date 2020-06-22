@@ -59,7 +59,7 @@ namespace BackECommerce.Repository.Repositories
             //Dados
             tab_pedido.AddCell(new PdfPCell(new Phrase(pedCompra.DataPedidoRealizado.ToString())));
             tab_pedido.AddCell(new PdfPCell(new Phrase(pedCompra.DataPagamentoConfirmado.ToString())));
-            tab_pedido.AddCell(new PdfPCell(new Phrase(pedCompra.Id)));
+            tab_pedido.AddCell(new PdfPCell(new Phrase(pedCompra.NumPedido)));
 
             //Cabeçalho
             var cel_vl_produto = new PdfPCell();
