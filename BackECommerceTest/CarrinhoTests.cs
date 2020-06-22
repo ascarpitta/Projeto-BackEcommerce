@@ -406,11 +406,13 @@ namespace BackECommerceTest
             _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
             Carrinho carrinhoResult2 = _carrinhoRepository.AlterarQuantProduto(_usuarioTeste.Id, _produtoTeste1.Id, 2);
-
-            if (carrinhoResult2.Produtos.Count != 0)
+            if (carrinhoResult2 != null)
             {
-                Assert.Fail();
-            }
+                if (carrinhoResult2.Produtos.Count != 0)
+                {
+                    Assert.Fail();
+                }
+            }            
 
             _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
 
@@ -519,15 +521,17 @@ namespace BackECommerceTest
             Carrinho carrinhoResult = _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
 
             Carrinho buscaResult = _carrinhoRepository.BuscarCarrinhoPorUsuario(_usuarioTeste.Id);
-
-            if (carrinhoResult.Id != buscaResult.Id)
+            if (carrinhoResult != null && buscaResult != null)
             {
-                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
-                Assert.Fail();
-            }
-            else
-            {
-                _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
+                if (carrinhoResult.Id != buscaResult.Id)
+                {
+                    _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
+                    Assert.Fail();
+                }
+                else
+                {
+                    _carrinhoRepository.RemoverCarrinhoPorUsuario(_usuarioTeste.Id);
+                }
             }
         }
 
