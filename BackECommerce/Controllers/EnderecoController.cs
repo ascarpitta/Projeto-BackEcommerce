@@ -98,7 +98,7 @@ namespace BackECommerce.Controllers
             return Ok();
         }
 
-        [HttpGet("AlterarEndereco/{userId}/{id}")]
+        [HttpGet("AlterarEndereco/{userId}/{id}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}/{complemento}")]
         public IActionResult Put(string userId, string id, Endereco enderecoNovo)
         {
             var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
@@ -107,6 +107,19 @@ namespace BackECommerce.Controllers
             {
                 return NotFound();
             }            
+
+            return Ok();
+        }
+
+        [HttpGet("AlterarEndereco/{userId}/{id}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}")]
+        public IActionResult PutSemComplemento(string userId, string id, Endereco enderecoNovo)
+        {
+            var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
+
+            if (endereco == null)
+            {
+                return NotFound();
+            }
 
             return Ok();
         }

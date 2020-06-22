@@ -20,7 +20,7 @@ namespace BackECommerce.Service.Services
 
         public List<Produto> GetProduto()
         {
-            return _produtos.Find(produto => true).ToList();
+            return _produtos.Find(produto => true && produto.Ativo).ToList();
         }
 
         public Produto GetProdutoById(string id)
@@ -57,35 +57,35 @@ namespace BackECommerce.Service.Services
 
         public List<Produto> GetProdutosByNameOrderByPrice(string nome)
         {
-            var lista = _produtos.Find<Produto>(produto => produto.Name.Contains(nome)).ToList();
+            var lista = _produtos.Find<Produto>(produto => produto.Ativo && produto.Name.ToUpper().Contains(nome.ToUpper())).ToList();
             var listaOrdenada = from s in lista orderby s.Price select s;
             return listaOrdenada.ToList();
         }
 
         public List<Produto> GetProdutosByNameOrderByPriceDesc(string nome)
         {
-            var lista = _produtos.Find<Produto>(produto => produto.Name.Contains(nome)).ToList();
+            var lista = _produtos.Find<Produto>(produto => produto.Ativo && produto.Name.ToUpper().Contains(nome.ToUpper())).ToList();
             var listaOrdenada = from s in lista orderby s.Price descending select s;
             return listaOrdenada.ToList();
         }
 
         public List<Produto> GetProdutosByNameAsc(string nome)
         {
-            var lista = _produtos.Find<Produto>(produto => produto.Name.Contains(nome)).ToList();
+            var lista = _produtos.Find<Produto>(produto => produto.Ativo && produto.Name.ToUpper().Contains(nome.ToUpper())).ToList();
             var listaOrdenada = from s in lista orderby s.Name select s;
             return listaOrdenada.ToList();
         }
 
         public List<Produto> GetProdutosByNameDesc(string nome)
         {
-            var lista = _produtos.Find<Produto>(produto => produto.Name.Contains(nome)).ToList();
+            var lista = _produtos.Find<Produto>(produto => produto.Ativo && produto.Name.ToUpper().Contains(nome.ToUpper())).ToList();
             var listaOrdenada = from s in lista orderby s.Name descending select s;
             return listaOrdenada.ToList();
         }
 
         public List<Produto> GetProdutosByCategory(string categoria)
         {
-            return _produtos.Find<Produto>(prod => prod.Category == categoria).ToList();
+            return _produtos.Find<Produto>(prod => prod.Ativo && prod.Category == categoria).ToList();
         }
 
         public void EndProdutoById(string id)
