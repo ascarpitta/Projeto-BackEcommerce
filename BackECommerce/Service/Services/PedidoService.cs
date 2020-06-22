@@ -33,9 +33,9 @@ namespace BackECommerce.Service.Services
             return _pedido.Find(pedido => true).ToList();
         }
 
-        public List<Pedido> GetPedidosByUser(string id)
+        public List<Pedido> GetPedidosByUser(string userId)
         {
-            return _pedido.Find<Pedido>(pedido => pedido.Id == id).ToList();
+            return _pedido.Find<Pedido>(pedido => pedido.UserId == userId).ToList();
         }
 
         public Pedido GetPedidoByUser(string userId, string pedidoId)
