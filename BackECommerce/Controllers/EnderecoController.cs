@@ -96,49 +96,49 @@ namespace BackECommerce.Controllers
             return Ok();
         }
 
-        [HttpGet("AlterarEndereco/{userId}/{id}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}/{complemento}")]
-        public IActionResult Put(string userId, string id, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero, string complemento)
+        [HttpGet("AlterarEndereco/{userId}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}/{complemento}")]
+        public IActionResult Put(string userId, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero, string complemento)
         {
-            Endereco enderecoNovo = new Endereco();
-            enderecoNovo.User = userId;
-            enderecoNovo.NomeEndereco = nome;
-            enderecoNovo.Cep = cep;
-            enderecoNovo.Uf = uf;
-            enderecoNovo.Cidade = cidade;
-            enderecoNovo.Bairro = bairro;
-            enderecoNovo.Rua = rua;
-            enderecoNovo.Numero = numero;
-            enderecoNovo.Complemento = complemento;
+            //Endereco enderecoNovo = new Endereco();
+            //enderecoNovo.User = userId;
+            //enderecoNovo.NomeEndereco = nome;
+            //enderecoNovo.Cep = cep;
+            //enderecoNovo.Uf = uf;
+            //enderecoNovo.Cidade = cidade;
+            //enderecoNovo.Bairro = bairro;
+            //enderecoNovo.Rua = rua;
+            //enderecoNovo.Numero = numero;
+            //enderecoNovo.Complemento = complemento;
 
-            var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
+            //var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
 
-            if (endereco == null)
-            {
-                return NotFound();
-            }            
+            //if (endereco == null)
+            //{
+            //    return NotFound();
+            //}            
 
             return Ok();
         }
 
-        [HttpGet("AlterarEndereco/{userId}/{id}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}")]
-        public IActionResult PutSemComplemento(string userId, string id, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero)
+        [HttpGet("AlterarEndereco/{userId}/{nome}/{cep}/{uf}/{cidade}/{bairro}/{rua}/{numero}")]
+        public IActionResult PutSemComplemento(string userId, string nome, string cep, string uf, string cidade, string bairro, string rua, int numero)
         {
-            Endereco enderecoNovo = new Endereco();
-            enderecoNovo.User = userId;
-            enderecoNovo.NomeEndereco = nome;
-            enderecoNovo.Cep = cep;
-            enderecoNovo.Uf = uf;
-            enderecoNovo.Cidade = cidade;
-            enderecoNovo.Bairro = bairro;
-            enderecoNovo.Rua = rua;
-            enderecoNovo.Numero = numero;
+            //Endereco enderecoNovo = new Endereco();
+            //enderecoNovo.User = userId;
+            //enderecoNovo.NomeEndereco = nome;
+            //enderecoNovo.Cep = cep;
+            //enderecoNovo.Uf = uf;
+            //enderecoNovo.Cidade = cidade;
+            //enderecoNovo.Bairro = bairro;
+            //enderecoNovo.Rua = rua;
+            //enderecoNovo.Numero = numero;
 
-            var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
+            //var endereco = _enderecoRepository.AtualizarEndereco(userId, id, enderecoNovo);
 
-            if (endereco == null)
-            {
-                return NotFound();
-            }
+            //if (endereco == null)
+            //{
+            //    return NotFound();
+            //}
 
             return Ok();
         }
