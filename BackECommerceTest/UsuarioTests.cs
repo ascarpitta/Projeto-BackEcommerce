@@ -118,6 +118,7 @@ namespace BackECommerceTest
             usuarioTeste.Cpf = 88216545320;
             usuarioTeste.Email = "teste_cadastro@hotmail.com";
             usuarioTeste.Password = "123454";
+            usuarioTeste.Ativo = true;
 
             _usuarioRepository.CadastroUsuario(usuarioTeste);
 
