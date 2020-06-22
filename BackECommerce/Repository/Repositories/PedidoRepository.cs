@@ -282,27 +282,7 @@ namespace BackECommerce.Repository.Repositories
             }
             return null;
         }
-
-        public FileStream GerarReciboProdutoVenda(string userId, string vendaId, string produtoId)
-        {
-            if (userId.Length == 24 && vendaId.Length == 24 && produtoId.Length == 24)
-            {
-                var venda = BuscarVendaPorUsuario(userId, vendaId);
-                if (venda != null)
-                {
-                    var pedido = BuscarPedido(venda.PedidoIdCompra);
-                    if (pedido != null)
-                    {
-                        _gerarRecibo.gerarReciboCompraProduto(pedido, venda);
-
-                        FileStream fs = File.OpenRead(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ReciboCompra.pdf");
-                        return fs;                         
-                    }
-                }
-            }
-            return null;
-        }
-
+                
         //VENDA
         public Venda BuscarVendaPorUsuario(string userId, string vendaId)
         {
@@ -408,6 +388,25 @@ namespace BackECommerce.Repository.Repositories
             return null;
         }
 
-        
+        public FileStream GerarReciboProdutoVenda(string userId, string vendaId, string produtoId)
+        {
+            if (userId.Length == 24 && vendaId.Length == 24 && produtoId.Length == 24)
+            {
+                var venda = BuscarVendaPorUsuario(userId, vendaId);
+                if (venda != null)
+                {
+                    var pedido = BuscarPedido(venda.PedidoIdCompra);
+                    if (pedido != null)
+                    {
+                        _gerarRecibo.gerarReciboCompraProduto(pedido, venda);
+
+                        FileStream fs = File.OpenRead(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ReciboCompra.pdf");
+                        return fs;
+                    }
+                }
+            }
+            return null;
+        }
+
     }
 }
