@@ -192,8 +192,7 @@ namespace BackECommerce.Repository.Repositories
                     {
                         if (item.IdProduto == produtoId)
                         {
-                            var pedidoVenda = BuscarVendaPorUsuario(item.IdUserVenda, pedido.Id);
-                            finalizado = false;
+                            var pedidoVenda = BuscarVendaPorUsuarioPorPedido(item.IdUserVenda, pedido.Id);                            
 
                             if (tipo == 0) //item cancelado
                             {
@@ -218,6 +217,13 @@ namespace BackECommerce.Repository.Repositories
                                     _vendaService.UpdateSale(pedidoVenda, pedidoVenda.Id);
                                 }
                             }                            
+                        }
+                    }
+                    foreach (ProdutosCarrinho item in pedido.Produtos)
+                    {
+                        if (!item.StatusEntregue)
+                        {
+                            finalizado = false;
                         }
                     }
                 }
