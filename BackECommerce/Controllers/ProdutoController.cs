@@ -187,7 +187,7 @@ namespace BackECommerce.Controllers
         }
 
         [HttpGet("AlterarProduto/{userId}/{id}/{nome}/{descricao}/{preco}/{frete}/{quantidade}/{categoria}/{marca}")]
-        public IActionResult Put(string userId, string id, string nome, string descricao, double preco, double frete, int quantidade, string categoria, string marca)
+        public ActionResult<Produto> Put(string userId, string id, string nome, string descricao, double preco, double frete, int quantidade, string categoria, string marca)
         {
             var prod = _produtoRepository.BuscarProdutoPorUsuario(userId, id);
 
@@ -205,7 +205,7 @@ namespace BackECommerce.Controllers
 
                 if (produto != null)
                 {
-                    return Ok();                    
+                    return produto;                    
                 }                
             }
             return NotFound();
