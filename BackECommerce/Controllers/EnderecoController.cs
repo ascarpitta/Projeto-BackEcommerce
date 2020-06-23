@@ -103,19 +103,17 @@ namespace BackECommerce.Controllers
             var end = _enderecoRepository.BuscarEndereco(id);
 
             if (end != null)
-            {
-                Endereco enderecoNovo = new Endereco();
-                enderecoNovo.User = end.User;
-                enderecoNovo.NomeEndereco = nome;
-                enderecoNovo.Cep = cep;
-                enderecoNovo.Uf = uf;
-                enderecoNovo.Cidade = cidade;
-                enderecoNovo.Bairro = bairro;
-                enderecoNovo.Rua = rua;
-                enderecoNovo.Numero = numero;
-                enderecoNovo.Complemento = complemento;
+            {                
+                end.NomeEndereco = nome;
+                end.Cep = cep;
+                end.Uf = uf;
+                end.Cidade = cidade;
+                end.Bairro = bairro;
+                end.Rua = rua;
+                end.Numero = numero;
+                end.Complemento = complemento;
 
-                var endereco = _enderecoRepository.AtualizarEndereco(end.User, id, enderecoNovo);
+                var endereco = _enderecoRepository.AtualizarEndereco(end.User, end.Id, end);
 
                 if (endereco != null)
                 {
@@ -132,17 +130,15 @@ namespace BackECommerce.Controllers
 
             if (end != null)
             {
-                Endereco enderecoNovo = new Endereco();
-                enderecoNovo.User = end.User;
-                enderecoNovo.NomeEndereco = nome;
-                enderecoNovo.Cep = cep;
-                enderecoNovo.Uf = uf;
-                enderecoNovo.Cidade = cidade;
-                enderecoNovo.Bairro = bairro;
-                enderecoNovo.Rua = rua;
-                enderecoNovo.Numero = numero;
+                end.NomeEndereco = nome;
+                end.Cep = cep;
+                end.Uf = uf;
+                end.Cidade = cidade;
+                end.Bairro = bairro;
+                end.Rua = rua;
+                end.Numero = numero;
 
-                var endereco = _enderecoRepository.AtualizarEndereco(end.User, id, enderecoNovo);
+                var endereco = _enderecoRepository.AtualizarEndereco(end.User, end.Id, end);
 
                 if (endereco != null)
                 {
