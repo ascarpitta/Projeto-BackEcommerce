@@ -189,7 +189,7 @@ namespace BackECommerceTest
 
             _carrinhoRepository.AddEndereco(_usuarioTeste.Id, enderecoResult.Id);
 
-            Pedido pedidoResult = _carrinhoRepository.FinalizarCarrinho(_usuarioTeste.Id);
+            _carrinhoRepository.FinalizarCarrinho(_usuarioTeste.Id);
 
             List<Pedido> listpedidoBuscado = _pedidoRepository.BuscarPedidosPorUsuario(_usuarioTeste.Id);
 

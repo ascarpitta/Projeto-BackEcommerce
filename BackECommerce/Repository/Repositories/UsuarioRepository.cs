@@ -211,25 +211,12 @@ namespace BackECommerce.Repository.Repositories
 
         public void RecuperarSenha(string email, long cpf)
         {
+            Random number = new Random();
             var usuario = BuscarUsuarioPorEmail(email);
-            string newPassword = GenerateHash();
+            string newPassword = number.Next(100000, 999999).ToString();
             usuario.Password = CriptografarSenha(newPassword);
             AtualizarUsuario(usuario.Id, usuario);
             _emailRepository.EnviarEmail(usuario.Email, "Recuperação de senha", $"Olá {usuario.Name}, sua nova senha é {newPassword}");
-        }
-
-        public static string GenerateHash()
-        {
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(new Random().Next(1000, 10000).ToString()));
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < 10; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
         }
     }
 }
