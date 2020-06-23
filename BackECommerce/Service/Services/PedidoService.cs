@@ -45,7 +45,7 @@ namespace BackECommerce.Service.Services
 
         public void UpdatePedido(Pedido pedidoNovo, string id)
         {
-            _pedido.ReplaceOne(pedido => pedido.UserId == id, pedidoNovo);
+            _pedido.ReplaceOne(pedido => pedido.Id == id, pedidoNovo);
         }
 
         public Pedido GetPedido(string pedidoId)
