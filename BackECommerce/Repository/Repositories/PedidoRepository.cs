@@ -168,7 +168,7 @@ namespace BackECommerce.Repository.Repositories
                 }
                 else
                 {
-                    if (pedido.DataPagamentoConfirmado >= pedido.DataPedidoRealizado && !pedido.StatusFinalizado)
+                    if (pedido.DataPagamentoConfirmado < pedido.DataPedidoRealizado && !pedido.StatusFinalizado)
                     {
                         ok = true;
                     }
