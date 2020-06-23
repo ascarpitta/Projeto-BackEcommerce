@@ -137,6 +137,7 @@ namespace BackECommerce.Controllers
                 end.Bairro = bairro;
                 end.Rua = rua;
                 end.Numero = numero;
+                end.Complemento = "";
 
                 var endereco = _enderecoRepository.AtualizarEndereco(end.User, end.Id, end);
 
