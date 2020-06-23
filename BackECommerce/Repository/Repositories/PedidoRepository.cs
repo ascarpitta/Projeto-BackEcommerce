@@ -163,25 +163,22 @@ namespace BackECommerce.Repository.Repositories
             var pedido = BuscarPedidoPorUsuario(userId, pedidoId);
             if (pedido != null)
             {
-                if (pedido.DataPagamentoConfirmado != null)
+                if (pedido.DataPagamentoConfirmado == null)
                 {
-                    if (pedido.DataPagamentoConfirmado >= pedido.DataPedidoRealizado && !pedido.StatusFinalizado)
+                    pedido.DataPagamentoConfirmado = DateTime.Now;
+                    AtualizarPedido(pedido, pedido.Id);
+
+                    //gerar recibo de compra
+
+                    foreach (ProdutosCarrinho itens in pedido.Produtos)
                     {
-                        pedido.DataPagamentoConfirmado = DateTime.Now;
-                        AtualizarPedido(pedido, pedido.Id);
+                        var venda = BuscarVendaPorUsuarioPorPedido(itens.IdUserVenda, pedido.Id);
+                        venda.DataPagamentoConfirmadoCompra = DateTime.Now;
+                        _vendaService.UpdateSale(venda, venda.Id);
 
-                        //gerar recibo de compra
-
-                        foreach (ProdutosCarrinho itens in pedido.Produtos)
-                        {
-                            var venda = BuscarVendaPorUsuarioPorPedido(itens.IdUserVenda, pedido.Id);
-                            venda.DataPagamentoConfirmadoCompra = DateTime.Now;
-                            _vendaService.UpdateSale(venda, venda.Id);
-
-                            //gerar recibo de venda
-                        }
-                        return pedido;
+                        //gerar recibo de venda
                     }
+                    return pedido;
                 }
             }//pedido não encontrado
             return null;
