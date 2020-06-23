@@ -193,27 +193,26 @@ namespace BackECommerce.Controllers
         [HttpGet("AlterarProduto/{userId}/{id}/{nome}/{descricao}/{preco}/{frete}/{quantidade}/{categoria}/{marca}")]
         public IActionResult Put(string userId, string id, string nome, string descricao, double preco, double frete, int quantidade, string categoria, string marca)
         {
-            Produto produtoNovo = new Produto
+            var prod = _produtoRepository.BuscarProdutoPorUsuario(userId, id);
+
+            if (prod != null)
             {
-                User = userId,
-                Name = nome,
-                Description = descricao,
-                Price = preco,
-                Frete = frete,
-                Quantity = quantidade,
-                Category = categoria,
-                Marca = marca,
-                Ativo = true
-            };
+                prod.Name = nome;
+                prod.Description = descricao;
+                prod.Price = preco;
+                prod.Frete = frete;
+                prod.Quantity = quantidade;
+                prod.Category = categoria;
+                prod.Marca = marca;
+                prod.Ativo = true;
+                var produto = _produtoRepository.AtualizarProduto(userId, id, prod);
 
-            var produto = _produtoRepository.AtualizarProduto(userId, id, produtoNovo);
-
-            if (produto == null)
-            {
-                return NotFound();
-            }            
-
-            return Ok();
+                if (produto != null)
+                {
+                    return Ok();                    
+                }                
+            }
+            return NotFound();
         }
 
         [HttpGet("AtivarProduto/{userId}/{id}")]
