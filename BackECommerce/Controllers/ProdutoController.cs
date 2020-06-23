@@ -247,7 +247,7 @@ namespace BackECommerce.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return produto;
         }
     }
 }
