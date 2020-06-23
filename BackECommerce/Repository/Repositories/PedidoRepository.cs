@@ -60,7 +60,8 @@ namespace BackECommerce.Repository.Repositories
                 pedido.Numero = endereco.Numero;
                 pedido.Complemento = endereco.Complemento;
                 pedido.DataPedidoRealizado = DateTime.Now;
-                pedido.StatusFinalizado = false;                
+                pedido.StatusFinalizado = false;
+                pedido.statusPagamento = false;
 
                 //Verificar se todos os produtos estão ativos e com estoque
                 foreach (ProdutosCarrinho prod in carrinho.Produtos)
@@ -158,24 +159,13 @@ namespace BackECommerce.Repository.Repositories
 
         public Pedido PagarPedido(string userId, string pedidoId)
         {
-            var ok = false;
+            
             var pedido = BuscarPedidoPorUsuario(userId, pedidoId);
             if (pedido != null)
             {
-                if (pedido.DataPagamentoConfirmado == null)
+                if (!pedido.statusPagamento)
                 {
-                    ok = true;
-                }
-                else
-                {
-                    if (pedido.DataPagamentoConfirmado < pedido.DataPedidoRealizado && !pedido.StatusFinalizado)
-                    {
-                        ok = true;
-                    }
-                }
-
-                if (ok)
-                {
+                    pedido.statusPagamento = true;
                     pedido.DataPagamentoConfirmado = DateTime.Now;
                     AtualizarPedido(pedido, pedido.Id);
 

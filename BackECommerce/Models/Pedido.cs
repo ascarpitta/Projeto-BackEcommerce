@@ -73,6 +73,9 @@ namespace BackECommerce.Models
 		[BsonElement("statusFinalizado")]
 		public bool StatusFinalizado { get; set; }
 
+		[BsonElement("statusPagamento")]
+		public bool statusPagamento { get; set; }
+
 		[BsonElement("__v")]
 		[BsonRepresentation(BsonType.Int32)]
 		public Int32 version { get; set; }
