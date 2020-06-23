@@ -2,10 +2,6 @@
 using BackECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using BackECommerce.Repository.Interfaces;
-using BackECommerce.Repository.Repositories;
-using System.Security.Cryptography;
-using System.Text;
-using System;
 
 namespace BackECommerce.Controllers
 {

@@ -1,14 +1,10 @@
-﻿using System.Web;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BackECommerce.Models;
-using Microsoft.AspNetCore.Http;
 using BackECommerce.Repository.Interfaces;
 using BackECommerce.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
-using HttpMultipartParser;
 
 namespace BackECommerce.Controllers
 {

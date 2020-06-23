@@ -4,8 +4,6 @@ using BackECommerce.Service.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BackECommerce.Repository.Repositories
 {
@@ -160,10 +158,23 @@ namespace BackECommerce.Repository.Repositories
 
         public Pedido PagarPedido(string userId, string pedidoId)
         {
+            var ok = false;
             var pedido = BuscarPedidoPorUsuario(userId, pedidoId);
             if (pedido != null)
             {
                 if (pedido.DataPagamentoConfirmado == null)
+                {
+                    ok = true;
+                }
+                else
+                {
+                    if (pedido.DataPagamentoConfirmado >= pedido.DataPedidoRealizado && !pedido.StatusFinalizado)
+                    {
+                        ok = true;
+                    }
+                }
+
+                if (ok)
                 {
                     pedido.DataPagamentoConfirmado = DateTime.Now;
                     AtualizarPedido(pedido, pedido.Id);
