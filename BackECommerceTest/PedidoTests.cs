@@ -253,5 +253,215 @@ namespace BackECommerceTest
             }
 
         }
+
+        [Test]
+        public void BuscaPedidoPorUsuario()
+        {
+            Endereco novo = new Endereco();
+            novo.Bairro = "Vila Paiva";
+            novo.Cep = "02075040";
+            novo.Cidade = "São Paulo";
+            novo.Uf = "SP";
+            novo.User = _usuarioTeste.Id;
+            novo.NomeEndereco = "AlteraEnderecoSucesso";
+            novo.Numero = 396;
+            novo.Rua = "Manuel de Almeida";
+
+            if (novo != null)
+            {
+                _enderecoRepository.CadastroEndereco(novo);
+            }
+
+            var enderecoResult = _enderecoRepository.BuscarEnderecoPorNome(novo.NomeEndereco).FirstOrDefault();
+
+            _produtoTeste1.Quantity = 1;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
+
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
+
+            _carrinhoRepository.AddEndereco(_usuarioTeste.Id, enderecoResult.Id);
+
+            Pedido pedidoResult = _carrinhoRepository.FinalizarCarrinho(_usuarioTeste.Id);
+
+            Pedido pedidoBuscado = _pedidoRepository.BuscarPedidoPorUsuario(_usuarioTeste.Id, pedidoResult.Id);
+
+            if (pedidoBuscado == null)
+            {
+                
+                _enderecoRepository.RemoverEndereco(enderecoResult.Id);
+                Assert.Fail();
+            }
+            else
+            {
+                _pedidoRepository.DeletarPedidoPorUsuario(_usuarioTeste.Id);
+                _enderecoRepository.RemoverEndereco(enderecoResult.Id);
+            }
+        }
+
+        [Test]
+        public void BuscaPedidoPorUsuarioInexistente()
+        {
+            Endereco novo = new Endereco();
+            novo.Bairro = "Vila Paiva";
+            novo.Cep = "02075040";
+            novo.Cidade = "São Paulo";
+            novo.Uf = "SP";
+            novo.User = _usuarioTeste.Id;
+            novo.NomeEndereco = "AlteraEnderecoSucesso";
+            novo.Numero = 396;
+            novo.Rua = "Manuel de Almeida";
+
+            if (novo != null)
+            {
+                _enderecoRepository.CadastroEndereco(novo);
+            }
+
+            var enderecoResult = _enderecoRepository.BuscarEnderecoPorNome(novo.NomeEndereco).FirstOrDefault();
+
+            _produtoTeste1.Quantity = 1;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
+
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
+
+            _carrinhoRepository.AddEndereco(_usuarioTeste.Id, enderecoResult.Id);
+
+            Pedido pedidoResult = _carrinhoRepository.FinalizarCarrinho(_usuarioTeste.Id);
+            _pedidoRepository.DeletarPedidoPorUsuario(_usuarioTeste.Id);
+            Pedido pedidoBuscado = _pedidoRepository.BuscarPedidoPorUsuario(_usuarioTeste.Id, pedidoResult.Id);
+
+            if (pedidoBuscado != null)
+            {
+                _pedidoRepository.DeletarPedidoPorUsuario(_usuarioTeste.Id);
+                _enderecoRepository.RemoverEndereco(enderecoResult.Id);
+                Assert.Fail();
+            }
+            else
+            {
+               _enderecoRepository.RemoverEndereco(enderecoResult.Id);
+            }
+        }
+
+        [Test]
+        public void BuscaPedidoCompraEmAndamento()
+        {
+            Endereco novo = new Endereco();
+            novo.Bairro = "Vila Paiva";
+            novo.Cep = "02075040";
+            novo.Cidade = "São Paulo";
+            novo.Uf = "SP";
+            novo.User = _usuarioTeste.Id;
+            novo.NomeEndereco = "AlteraEnderecoSucesso";
+            novo.Numero = 396;
+            novo.Rua = "Manuel de Almeida";
+
+            if (novo != null)
+            {
+                _enderecoRepository.CadastroEndereco(novo);
+            }
+
+            var enderecoResult = _enderecoRepository.BuscarEnderecoPorNome(novo.NomeEndereco).FirstOrDefault();
+
+            _produtoTeste1.Quantity = 1;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
+
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
+
+            _carrinhoRepository.AddEndereco(_usuarioTeste.Id, enderecoResult.Id);
+
+            _carrinhoRepository.FinalizarCarrinho(_usuarioTeste.Id);
+
+            List<Pedido> listpedidoBuscado = _pedidoRepository.PedidosCompraEmAndamento(_usuarioTeste.Id);
+
+            if (listpedidoBuscado.Count == 0)
+            {
+                
+                _enderecoRepository.RemoverEndereco(enderecoResult.Id);
+                Assert.Fail();
+            }
+            else
+            {
+                _pedidoRepository.DeletarPedidoPorUsuario(_usuarioTeste.Id);
+                _enderecoRepository.RemoverEndereco(enderecoResult.Id);
+            }
+        }
+
+        //Usuario Inexistente
+        [Test]
+        public void BuscaPedidoCompraEmAndamentoInexistente()
+        {
+
+            try
+            {
+                List<Pedido> listpedidoBuscado = _pedidoRepository.PedidosCompraEmAndamento("5eed8d19f7cf570004d6f68");
+
+                if (listpedidoBuscado != null)
+                {
+                    Assert.Fail();
+                }
+
+            }
+            catch(System.Exception e)
+            {
+                Assert.Fail();
+            }
+        }
+
+
+        [Test]
+        public void PagarPedido()
+        {
+            Endereco novo = new Endereco();
+            novo.Bairro = "Vila Paiva";
+            novo.Cep = "02075040";
+            novo.Cidade = "São Paulo";
+            novo.Uf = "SP";
+            novo.User = _usuarioTeste.Id;
+            novo.NomeEndereco = "AlteraEnderecoSucesso";
+            novo.Numero = 396;
+            novo.Rua = "Manuel de Almeida";
+
+            if (novo != null)
+            {
+                _enderecoRepository.CadastroEndereco(novo);
+            }
+
+            var enderecoResult = _enderecoRepository.BuscarEnderecoPorNome(novo.NomeEndereco).FirstOrDefault();
+
+            _produtoTeste1.Quantity = 1;
+            _produtoTeste1.Ativo = true;
+            _produtoRepository.AtualizarProduto(_produtoTeste1.User, _produtoTeste1.Id, _produtoTeste1);
+
+            _carrinhoRepository.AddProduto(_usuarioTeste.Id, _produtoTeste1.Id);
+
+            _carrinhoRepository.AddEndereco(_usuarioTeste.Id, enderecoResult.Id);
+
+            Pedido pedidoResult = _carrinhoRepository.FinalizarCarrinho(_usuarioTeste.Id);
+
+            Pedido pedidopago = _pedidoRepository.PagarPedido(_usuarioTeste.Id, pedidoResult.Id);
+            if(pedidopago == null)
+            {
+                _pedidoRepository.DeletarPedidoPorUsuario(_usuarioTeste.Id);
+                _enderecoRepository.RemoverEndereco(enderecoResult.Id);
+                Assert.Fail();
+            }
+            else
+            {
+                if (pedidopago.DataPagamentoConfirmado == null)
+                {
+                    _pedidoRepository.DeletarPedidoPorUsuario(_usuarioTeste.Id);
+                    _enderecoRepository.RemoverEndereco(enderecoResult.Id);
+                    Assert.Fail();
+                }
+                else
+                {
+                    _pedidoRepository.DeletarPedidoPorUsuario(_usuarioTeste.Id);
+                    _enderecoRepository.RemoverEndereco(enderecoResult.Id);
+                }
+            }
+
+        }
     }
 }
