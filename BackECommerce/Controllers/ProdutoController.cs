@@ -190,7 +190,7 @@ namespace BackECommerce.Controllers
             return prod;
         }
 
-        [HttpGet("AlterarProduto/{userId}/{nome}/{descricao}/{preco}/{frete}/{quantidade}/{categoria}/{marca}")]
+        [HttpGet("AlterarProduto/{userId}/{id}/{nome}/{descricao}/{preco}/{frete}/{quantidade}/{categoria}/{marca}")]
         public IActionResult Put(string userId, string id, string nome, string descricao, double preco, double frete, int quantidade, string categoria, string marca)
         {
             Produto produtoNovo = new Produto
