@@ -19,7 +19,7 @@ namespace BackECommerce.Service.Services
 
         public List<Produto> GetProduto()
         {
-            return _produtos.Find(produto => produto.Ativo && produto.Id != "5eee43682677f2362887051c" && produto.Id != "5eee5b117373bcd310902b22").ToList();
+            return _produtos.Find(produto => produto.Ativo && produto.Id != "5eee5b117373bcd310902b22" && produto.Id != "5eee43682677f2362887051c").ToList();
         }
 
         public List<Produto> GetProdutoLogado(string userId)
