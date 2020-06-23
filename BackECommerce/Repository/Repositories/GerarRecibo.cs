@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 //ESSAS SAO AS BIBLIOTECAS QUE DEVEREMOS ADICIONAR EM NOSSO PROJETO
 using System.IO;// A BIBLIOTECA DE ENTRADA E SAIDA DE ARQUIVOS
-
-using iTextSharp;//E A BIBLIOTECA ITEXTSHARP E SUAS EXTENÇÕES
 using iTextSharp.text;//ESTENSAO 1 (TEXT)
 using iTextSharp.text.pdf;//ESTENSAO 2 (PDF)
 using BackECommerce.Models;
-using NUnit.Framework.Constraints;
 using BackECommerce.Service;
 
 namespace BackECommerce.Repository.Repositories

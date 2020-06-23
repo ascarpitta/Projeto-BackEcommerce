@@ -1,10 +1,7 @@
 ﻿using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
 using System;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using BackECommerce.Service;
 using System.Security.Cryptography;
 using System.Text;

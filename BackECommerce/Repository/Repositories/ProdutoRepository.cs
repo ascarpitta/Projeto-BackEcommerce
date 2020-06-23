@@ -1,10 +1,7 @@
 ﻿using BackECommerce.Models;
 using BackECommerce.Repository.Interfaces;
 using BackECommerce.Service.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BackECommerce.Repository.Repositories
 {

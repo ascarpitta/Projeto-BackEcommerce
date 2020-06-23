@@ -1,7 +1,5 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using System.Globalization;
-using System.Configuration;
 using BackECommerce.Configs;
 
 namespace BackECommerce.Service.Services
