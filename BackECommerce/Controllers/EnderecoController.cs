@@ -150,14 +150,16 @@ namespace BackECommerce.Controllers
         {
             var endereco = _enderecoRepository.BuscarEndereco(id);
 
-            if (endereco == null)
+            if (endereco != null)                
             {
-                return NotFound();
+                if (endereco.User == userId)
+                {
+                    _enderecoRepository.RemoverEndereco(id);
+
+                    return Ok();
+                }                
             }
-
-            _enderecoRepository.RemoverEndereco(id);
-
-            return Ok();
+            return NotFound();
         }
     }
 }
