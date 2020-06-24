@@ -99,7 +99,13 @@ namespace BackECommerce.Controllers
 
             product.url_imagem = public_url;
 
-            return _produtoRepository.AtualizarProduto(product.User, product.Id, product);         
+            var prod = _produtoRepository.AtualizarProduto(product.User, product.Id, product);
+
+            if (prod != null)
+            {
+                return prod;
+            }
+            return NotFound(); 
         }
 
         [HttpGet("Busca/{busca}")]
